@@ -14,21 +14,67 @@
 <body>
 
     <!-- 1. 상단영역 -->
-    <header>
+    <header class="site-header">
         <div class="container header-inner">
             <h1 class="logo">Style <span>Kim</span></h1>
-                        <nav style="display: flex; align-items: center;">
+            <nav class="header-nav" aria-label="메인 메뉴">
                 <ul class="nav-menu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#show">Show</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#community">Community</a></li>
                 </ul>
+                <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mega-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
                     <span class="mode-text">LIGHT</span>
                 </button>
             </nav>
-
+        </div>
+        <div class="mega-menu" id="mega-menu">
+            <div class="container mega-menu-inner">
+                <div class="mega-menu-grid">
+                    <section class="mega-menu-column">
+                        <h2>Home</h2>
+                        <ul>
+                            <li><a href="#home">브랜드 소개</a></li>
+                            <li><a href="#home">시즌 컬렉션</a></li>
+                            <li><a href="#home">디자이너 스토리</a></li>
+                            <li><a href="#home">새로운 소식</a></li>
+                        </ul>
+                    </section>
+                    <section class="mega-menu-column">
+                        <h2>Show</h2>
+                        <ul>
+                            <li><a href="#show">런웨이 일정</a></li>
+                            <li><a href="#show">컬렉션 영상</a></li>
+                            <li><a href="#show">쇼 하이라이트</a></li>
+                            <li><a href="#show">티켓 안내</a></li>
+                        </ul>
+                    </section>
+                    <section class="mega-menu-column">
+                        <h2>Gallery</h2>
+                        <ul>
+                            <li><a href="#gallery">룩북</a></li>
+                            <li><a href="#gallery">캠페인 화보</a></li>
+                            <li><a href="#gallery">백스테이지</a></li>
+                            <li><a href="#gallery">스타일 아카이브</a></li>
+                        </ul>
+                    </section>
+                    <section class="mega-menu-column">
+                        <h2>Community</h2>
+                        <ul>
+                            <li><a href="#community">공지사항</a></li>
+                            <li><a href="#community">이벤트</a></li>
+                            <li><a href="#community">스타일 토크</a></li>
+                            <li><a href="#community">자주 묻는 질문</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -152,6 +198,51 @@
             }
             // 사용자 설정 저장
             localStorage.setItem('theme', theme);
+        });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const siteHeader = document.querySelector('.site-header');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navMenu.addEventListener('mouseenter', () => {
+            if (window.matchMedia('(min-width: 769px)').matches) {
+                siteHeader.classList.add('desktop-menu-open');
+            }
+        });
+
+        siteHeader.addEventListener('mouseleave', () => {
+            siteHeader.classList.remove('desktop-menu-open');
+        });
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = siteHeader.classList.toggle('mobile-menu-open');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+        });
+
+        document.querySelector('.mega-menu').addEventListener('click', (event) => {
+            if (window.matchMedia('(max-width: 768px)').matches && event.target.closest('a')) {
+                siteHeader.classList.remove('mobile-menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '메뉴 열기');
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (window.matchMedia('(max-width: 768px)').matches && !siteHeader.contains(event.target)) {
+                siteHeader.classList.remove('mobile-menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '메뉴 열기');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                siteHeader.classList.remove('mobile-menu-open');
+                siteHeader.classList.remove('desktop-menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', '메뉴 열기');
+            }
         });
 
         const swiper = new Swiper('.main-banner', {
