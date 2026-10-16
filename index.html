@@ -157,6 +157,73 @@
                 </div>
             </div>
         </section>
+
+        <section class="fashion-show-section" aria-labelledby="fashion-show-title">
+            <div class="fashion-show-container">
+                <div class="fashion-show-heading">
+                    <h2 id="fashion-show-title">FASHION WEEKS AROUND THE WORLD</h2>
+                    <p>도시마다 다른 감각으로 펼쳐지는 세계 패션위크를 만나보세요.</p>
+                </div>
+                <div class="fashion-show-slider">
+                    <div class="swiper fashion-show-swiper">
+                        <div class="swiper-wrapper">
+                            <article class="swiper-slide fashion-show-card">
+                                <img src="https://picsum.photos/seed/fashion1/600/800" alt="파리 패션위크 런웨이" loading="lazy">
+                                <div class="fashion-show-card-content">
+                                    <h3>파리 패션위크</h3>
+                                    <p>파리 <span>·</span> 2월 · 9월</p>
+                                </div>
+                            </article>
+                            <article class="swiper-slide fashion-show-card">
+                                <img src="https://picsum.photos/seed/fashion2/600/800" alt="밀라노 패션위크 런웨이" loading="lazy">
+                                <div class="fashion-show-card-content">
+                                    <h3>밀라노 패션위크</h3>
+                                    <p>밀라노 <span>·</span> 2월 · 9월</p>
+                                </div>
+                            </article>
+                            <article class="swiper-slide fashion-show-card">
+                                <img src="https://picsum.photos/seed/fashion3/600/800" alt="뉴욕 패션위크 런웨이" loading="lazy">
+                                <div class="fashion-show-card-content">
+                                    <h3>뉴욕 패션위크</h3>
+                                    <p>뉴욕 <span>·</span> 2월 · 9월</p>
+                                </div>
+                            </article>
+                            <article class="swiper-slide fashion-show-card">
+                                <img src="https://picsum.photos/seed/fashion4/600/800" alt="런던 패션위크 런웨이" loading="lazy">
+                                <div class="fashion-show-card-content">
+                                    <h3>런던 패션위크</h3>
+                                    <p>런던 <span>·</span> 2월 · 9월</p>
+                                </div>
+                            </article>
+                            <article class="swiper-slide fashion-show-card">
+                                <img src="https://picsum.photos/seed/fashion5/600/800" alt="서울 패션위크 런웨이" loading="lazy">
+                                <div class="fashion-show-card-content">
+                                    <h3>서울 패션위크</h3>
+                                    <p>서울 <span>·</span> 3월 · 9월</p>
+                                </div>
+                            </article>
+                            <article class="swiper-slide fashion-show-card">
+                                <img src="https://picsum.photos/seed/fashion6/600/800" alt="도쿄 패션위크 런웨이" loading="lazy">
+                                <div class="fashion-show-card-content">
+                                    <h3>도쿄 패션위크</h3>
+                                    <p>도쿄 <span>·</span> 3월 · 8월</p>
+                                </div>
+                            </article>
+                            <article class="swiper-slide fashion-show-card">
+                                <img src="https://picsum.photos/seed/fashion7/600/800" alt="상하이 패션위크 런웨이" loading="lazy">
+                                <div class="fashion-show-card-content">
+                                    <h3>상하이 패션위크</h3>
+                                    <p>상하이 <span>·</span> 3월 · 10월</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <button class="fashion-show-button fashion-show-button-prev" type="button" aria-label="이전 패션쇼"></button>
+                    <button class="fashion-show-button fashion-show-button-next" type="button" aria-label="다음 패션쇼"></button>
+                    <div class="swiper-pagination fashion-show-pagination"></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- 3. 하단영역 -->
@@ -269,6 +336,41 @@
                     }, 5000);
                 }
             }
+        });
+
+        const fashionShowSwiper = new Swiper('.fashion-show-swiper', {
+            loop: true,
+            loopAdditionalSlides: 2,
+            speed: 600,
+            spaceBetween: 20,
+            grabCursor: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: true,
+                pauseOnMouseEnter: true,
+            },
+            navigation: {
+                nextEl: '.fashion-show-button-next',
+                prevEl: '.fashion-show-button-prev',
+            },
+            pagination: {
+                el: '.fashion-show-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.2,
+                },
+                480: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1200: {
+                    slidesPerView: 4,
+                },
+            },
         });
     </script>
 </body>

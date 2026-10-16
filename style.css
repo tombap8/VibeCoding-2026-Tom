@@ -115,18 +115,15 @@ a { text-decoration: none; color: inherit; }
 }
 
 .mega-menu-inner {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 30px;
-    padding-bottom: 34px;
+    padding: 30px 40px 34px;
 }
 
 .mega-menu-grid {
     display: grid;
-    grid-template-columns: 55px 45px 75px 110px;
-    gap: 40px;
-    width: 405px;
-    margin-right: 76px;
+    grid-template-columns: repeat(4, max-content);
+    gap: 168px;
+    width: max-content;
+    margin: 0 auto;
 }
 
 .mega-menu-column h2 {
@@ -334,6 +331,142 @@ a { text-decoration: none; color: inherit; }
     color: #fff;
 }
 
+.fashion-show-section {
+    padding: 40px 0 100px;
+}
+
+.fashion-show-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.fashion-show-heading {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.fashion-show-heading h2 {
+    margin-bottom: 10px;
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(to right, #ff69b4, #00008b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fashion-show-heading p {
+    color: var(--card-text);
+}
+
+.fashion-show-slider {
+    position: relative;
+    padding: 4px 0 48px;
+}
+
+.fashion-show-swiper {
+    padding: 4px 4px 28px;
+}
+
+.fashion-show-swiper .swiper-slide {
+    display: block;
+    height: auto;
+    padding-left: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-bg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fashion-show-swiper .swiper-slide:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32);
+}
+
+.fashion-show-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.fashion-show-card-content {
+    padding: 18px 16px 20px;
+}
+
+.fashion-show-card-content h3 {
+    margin-bottom: 6px;
+    font-size: 1.05rem;
+}
+
+.fashion-show-card-content p {
+    color: var(--card-text);
+    font-size: 0.9rem;
+}
+
+.fashion-show-card-content p span {
+    padding: 0 4px;
+    color: #ff69b4;
+}
+
+.fashion-show-button {
+    position: absolute;
+    z-index: 2;
+    top: 42%;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid #ff69b4;
+    border-radius: 50%;
+    background: rgba(17, 17, 17, 0.92);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.fashion-show-button:hover {
+    background: #ff69b4;
+    color: #111;
+}
+
+.fashion-show-button::after {
+    font-family: swiper-icons;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.fashion-show-button-prev {
+    left: -18px;
+}
+
+.fashion-show-button-prev::after {
+    content: 'prev';
+}
+
+.fashion-show-button-next {
+    right: -18px;
+}
+
+.fashion-show-button-next::after {
+    content: 'next';
+}
+
+.fashion-show-pagination {
+    bottom: 10px !important;
+}
+
+.fashion-show-pagination .swiper-pagination-bullet {
+    background: #aaa;
+    opacity: 0.65;
+}
+
+.fashion-show-pagination .swiper-pagination-bullet-active {
+    background: #ff69b4 !important;
+    opacity: 1;
+}
+
 /* 하단영역 */
 footer {
     background-color: var(--footer-bg);
@@ -469,8 +602,7 @@ footer {
     }
 
     .mega-menu-inner {
-        padding-top: 20px;
-        padding-bottom: 24px;
+        padding: 20px 20px 24px;
     }
 
     .mega-menu-grid {
@@ -488,6 +620,32 @@ footer {
     .main-banner {
         height: 60vh;
     }
+
+    .fashion-show-section {
+        padding: 30px 0 70px;
+    }
+
+    .fashion-show-container {
+        padding: 0 26px;
+    }
+
+    .fashion-show-heading h2 {
+        font-size: 2rem;
+    }
+
+    .fashion-show-button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .fashion-show-button-prev {
+        left: -15px;
+    }
+
+    .fashion-show-button-next {
+        right: -15px;
+    }
+
     .banner-content h2 {
         font-size: 2.5rem;
     }
