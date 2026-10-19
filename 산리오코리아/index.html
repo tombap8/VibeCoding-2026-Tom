@@ -42,9 +42,10 @@
         .main-area {
             background: url('./images/main_visual_bg.jpg') repeat 0 0/50px;
         }
-        /* 배너영역 스타일 */
+                /* 배너영역 스타일 */
         .banner-area {
             padding: 80px;
+            position: relative;
         }
         .banner-area .center-banner {
             text-align: center;
@@ -56,6 +57,13 @@
             /* display: block; */
             width: 984px;
             max-width: 100%;
+        }
+        .sns {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 50px;
+            right: 50px;
         }
     
     </style>
@@ -82,7 +90,6 @@
         </div>
     </header>
     <!-- 2. 메인영역 -->
-    <style></style>
     <section class="main-area">
         <!-- 배경스타일 사용법:
         background: 색 이 반 고 윙/크
@@ -95,7 +102,7 @@
             </div>
 
             <!-- SNS이동버튼박스 -->
-            <div class="sns" style="display: flex;flex-direction: column;position: absolute;top: 50px;right: 50px;">
+            <div class="sns">
 				<a href="https://www.instagram.com/sanrio_kr/" target="_blank"><img src="./images/i_ins_pc_v3.png" alt="instargram"></a>
 				<a href="https://www.youtube.com/c/sanriokorea/featured" target="_blank"><img src="./images/i_you_pc_v3.png" alt="youtube"></a>
 			</div>
