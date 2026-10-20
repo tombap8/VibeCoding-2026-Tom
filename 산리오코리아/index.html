@@ -36,17 +36,16 @@
         text-decoration: none; /* 밑줄 제거 */
       }
 
-      .main-area {
+      
+    /* 배너영역 스타일 */
+    .banner-area {
+        position: relative;
+        padding: 80px;
         background: url("./images/main_visual_bg.jpg") repeat 0 0/50px;
         /* 배경스타일 사용법:
         background: 색 이 반 고 윙/크
         background: 배경색 이미지 반복 고정 위치/크기 */
-      }
-      /* 배너영역 스타일 */
-      banner-area {
-        padding: 80px;
-        position: relative;
-      }
+    }
       .banner-area .center-banner {
         text-align: center;
         /* display: flex; */
@@ -95,6 +94,7 @@
       </header>
       <!-- 2. 메인영역 -->
       <section class="main-area">
+        
         <!-- 2-1. 배너영역 -->
         <section class="banner-area">
           <!-- 배너영역 내용 -->
@@ -116,6 +116,11 @@
               target="_blank"
               ><img src="./images/i_you_pc_v3.png" alt="youtube"
             /></a>
+          </div>
+          <!-- 스크롤 유도 애니박스 -->
+          <div class="scroll_btn">
+            <span class="mouse"><span></span></span>
+            <p>scroll down</p>
           </div>
         </section>
         <!-- 2-2. 캐릭터영역 -->
