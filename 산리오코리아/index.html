@@ -185,7 +185,8 @@
 
       /* 캐리턱영역 박스 */
       .character-area {
-        height: 100vh;
+        /* 카드 4행이 잘리지 않도록 높이 자동 */
+        min-height: 100vh;
       }
       /* 공통타이틀박스 */
       .tit-box {
@@ -241,9 +242,17 @@
         content: url(./images/ico_more2.png);
       }
 
+      /* 캐릭터카드 박스 - 4열 줄바꿈 */
+      .character-card-box {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
       /* 캐릭터카드 */
       .character-card {
-        width: 285px;
+        width: 25%;
+        box-sizing: border-box;
         /* height: 285px;
         높이값이 없으면 기본값 auto임.
         의미는 내용물만큼 높이값이 생성됨 */
@@ -375,17 +384,166 @@
           </div>
         </div>
         <!-- 캐릭터카드 박스 -->
-        <!-- INSERT_YOUR_CODE -->
-        <div class="character-card">
-          <!-- 내부상단박스 -->
-          <div class="card-imgs">
-            <img src="./images/new_main_crt1.png" alt="캐릭터 메인 이미지" />
-            <img src="./images/new_main_crt1_ov.png" alt="캐릭터 오버 이미지" />
+        <div class="character-card-box">
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt1.png" alt="헬로키티" />
+              <img src="./images/new_main_crt1_ov.png" alt="헬로키티" />
+            </div>
+            <div class="card-desc">
+              <h3>헬로키티</h3>
+              <h4>hello kitty</h4>
+            </div>
           </div>
-          <!-- 내부하단박스 -->
-          <div class="card-desc">
-            <h3>헬로키티</h3>
-            <h4>Hello Kitty</h4>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt2.png" alt="마이멜로디" />
+              <img src="./images/new_main_crt2_ov.png" alt="마이멜로디" />
+            </div>
+            <div class="card-desc">
+              <h3>마이멜로디</h3>
+              <h4>MY MELODY</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt3.png" alt="쿠로미" />
+              <img src="./images/new_main_crt3_ov.png" alt="쿠로미" />
+            </div>
+            <div class="card-desc">
+              <h3>쿠로미</h3>
+              <h4>KUROMI</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt4.png" alt="폼폼푸린" />
+              <img src="./images/new_main_crt4_ov.png" alt="폼폼푸린" />
+            </div>
+            <div class="card-desc">
+              <h3>폼폼푸린</h3>
+              <h4>POMPOMPURIN</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt5.png" alt="시나모롤" />
+              <img src="./images/new_main_crt5_ov.png" alt="시나모롤" />
+            </div>
+            <div class="card-desc">
+              <h3>시나모롤</h3>
+              <h4>CINNAMOROLL</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt6.png" alt="리틀트윈스타" />
+              <img src="./images/new_main_crt6_ov.png" alt="리틀트윈스타" />
+            </div>
+            <div class="card-desc">
+              <h3>리틀트윈스타</h3>
+              <h4>LittleTwinStars</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt7.png" alt="포차코" />
+              <img src="./images/new_main_crt7_ov.png" alt="포차코" />
+            </div>
+            <div class="card-desc">
+              <h3>포차코</h3>
+              <h4>POCHACCO</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt8.png" alt="케로케로케로피" />
+              <img src="./images/new_main_crt8_ov.png" alt="케로케로케로피" />
+            </div>
+            <div class="card-desc">
+              <h3>케로케로케로피</h3>
+              <h4>KEROKEROKEROPPI</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt9.png" alt="구데타마" />
+              <img src="./images/new_main_crt9_ov.png" alt="구데타마" />
+            </div>
+            <div class="card-desc">
+              <h3>구데타마</h3>
+              <h4>GUDETAMA</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt10.png" alt="배드바츠마루" />
+              <img src="./images/new_main_crt10_ov.png" alt="배드바츠마루" />
+            </div>
+            <div class="card-desc">
+              <h3>배드바츠마루</h3>
+              <h4>BAD BADTZ-MARU</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt11.png" alt="턱시도샘" />
+              <img src="./images/new_main_crt11_ov.png" alt="턱시도샘" />
+            </div>
+            <div class="card-desc">
+              <h3>턱시도샘</h3>
+              <h4>TUXEDOSAM</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt12.png" alt="코기뮹" />
+              <img src="./images/new_main_crt12_ov.png" alt="코기뮹" />
+            </div>
+            <div class="card-desc">
+              <h3>코기뮹</h3>
+              <h4>Cogimyun</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt13.png" alt="딩구리데이즈" />
+              <img src="./images/new_main_crt13_ov.png" alt="딩구리데이즈" />
+            </div>
+            <div class="card-desc">
+              <h3>딩구리데이즈</h3>
+              <h4>Marumofubiyori</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt14.png" alt="숲의요정 페어리루" />
+              <img src="./images/new_main_crt14_ov.png" alt="숲의요정 페어리루" />
+            </div>
+            <div class="card-desc">
+              <h3>숲의요정 페어리루</h3>
+              <h4>RILU RILU FAIRILU</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt15.png" alt="어그레츠코" />
+              <img src="./images/new_main_crt15_ov.png" alt="어그레츠코" />
+            </div>
+            <div class="card-desc">
+              <h3>어그레츠코</h3>
+              <h4>Aggretsuko</h4>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="card-imgs">
+              <img src="./images/new_main_crt16.png" alt="꿈속의 뮤" />
+              <img src="./images/new_main_crt16_ov.png" alt="꿈속의 뮤" />
+            </div>
+            <div class="card-desc">
+              <h3>꿈속의 뮤</h3>
+              <h4>Mewkledreamy</h4>
+            </div>
           </div>
         </div>
       </section>
