@@ -243,7 +243,9 @@
       /* 캐릭터카드 */
       .character-card {
         width: 285px;
-        height: 285px;
+        /* height: 285px;
+        높이값이 없으면 기본값 auto임.
+        의미는 내용물만큼 높이값이 생성됨 */
         border: 1px solid #ddd;
         border-radius: 16px;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -255,13 +257,19 @@
       .character-card .card-imgs {
         /* 포지션을 준 이유: 자식요소중 앱솔루트 기준 */
         position: relative;
-        height: 204px;
+        /* height: 204px; 
+        내용물만큼 늘어나려면 높이값 주면 안됨! */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         background: #f7f7f7;
         border-bottom: 1px solid #eee;
+      }
+      /* 첫번째 이미지 셋팅 - 비율크기 유지역할 */
+      .character-area .card-imgs img:first-child{
+        width: 100%;
+        /* 싸고있는 부모박스 기준 채우기 */
       }
       /* 두번째 이미지만 앱솔루트주기 */
       .character-card .card-imgs img:last-child{
