@@ -236,7 +236,7 @@
         /* transition: all .5s; */
       }
       /* 버튼오버시 가상요소 after이미지변경 */
-      .btn-view:hover::after{
+      .btn-view:hover::after {
         content: url(./images/ico_more2.png);
       }
 
@@ -267,19 +267,21 @@
         border-bottom: 1px solid #eee;
       }
       /* 첫번째 이미지 셋팅 - 비율크기 유지역할 */
-      .character-area .card-imgs img:first-child{
+      .character-area .card-imgs img:first-child {
         width: 100%;
         /* 싸고있는 부모박스 기준 채우기 */
       }
       /* 두번째 이미지만 앱솔루트주기 */
-      .character-card .card-imgs img:last-child{
+      .character-card .card-imgs img:last-child {
         position: absolute;
         /* 부모는? .card-imgs */
         width: 100%;
       }
       /* 카드 내부하단 설명박스 */
       .character-card .card-desc {
-        height: 81px;
+        /* height: 81px; */
+        /* 비율유지 설정하기 (높이값 불필요!) */
+        aspect-ratio: 1 / 0.3;
         padding: 16px 12px 12px 12px;
         text-align: center;
       }
@@ -349,7 +351,7 @@
       <!-- 2-2. 캐릭터영역 -->
       <section class="character-area">
         <!-- 캐릭터영역 내용 -->
-         <!-- 타이틀박스 -->
+        <!-- 타이틀박스 -->
         <div class="tit-box">
           <h2 class="part-tit">character</h2>
           <div class="btn-box">
@@ -357,19 +359,19 @@
           </div>
         </div>
         <!-- 캐릭터카드 박스 -->
-      <!-- INSERT_YOUR_CODE -->
-      <div class="character-card">
-        <!-- 내부상단박스 -->
-        <div class="card-imgs">
-          <img src="./images/new_main_crt1.png" alt="캐릭터 메인 이미지" />
-          <img src="./images/new_main_crt1_ov.png" alt="캐릭터 오버 이미지" />
+        <!-- INSERT_YOUR_CODE -->
+        <div class="character-card">
+          <!-- 내부상단박스 -->
+          <div class="card-imgs">
+            <img src="./images/new_main_crt1.png" alt="캐릭터 메인 이미지" />
+            <img src="./images/new_main_crt1_ov.png" alt="캐릭터 오버 이미지" />
+          </div>
+          <!-- 내부하단박스 -->
+          <div class="card-desc">
+            <h3>헬로키티</h3>
+            <h4>Hello Kitty</h4>
+          </div>
         </div>
-        <!-- 내부하단박스 -->
-        <div class="card-desc">
-          <h3>헬로키티</h3>
-          <h4>Hello Kitty</h4>
-        </div>
-      </div>
       </section>
       <!-- 2-3. 컴퍼니영역 -->
       <section class="company-area">
