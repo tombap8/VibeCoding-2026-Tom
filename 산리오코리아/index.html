@@ -33,6 +33,17 @@
         font-weight: normal;
       }
 
+      /* 공통셋팅 */
+      /* 메인영역 하위박스 공통 */
+      /* 직계자식 선택자(>), 형제선택자(+)
+      section + section 은 앞에 section태그가 있는 section태그를
+      모두 선택하라! 즉, 첫번째 section을 제외한 모든 section선택
+      */
+      .main-area > section + section {
+        padding: 85px 0;
+      }
+
+      /* 상단영역 내부박스 */
       .top-inner {
         max-width: 1440px; /* 최대 너비 지정 */
         margin: 0 auto; /* 가운데 정렬 */
@@ -192,7 +203,9 @@
       .tit-box {
         max-width: 1200px;
         margin: 0 auto;
-        outline: 3px dashed blue;
+        /* outline: 3px dashed blue; */
+        /* 대문자변환 */
+        text-transform: uppercase;
       }
       /* 타이틀파트 */
       .tit-box .part-tit {
@@ -202,11 +215,17 @@
         font-size: 5rem;
         font-weight: normal;
       }
-
+      
       /* 타이틀박스 하위 버튼박스 */
       .btn-box {
         text-align: center;
-        padding: 20px 0;
+        /* padding: 20px 0; */
+        margin-bottom: 50px;
+        /* 버튼이 사라지면 하단 마진도 사라짐! */
+      }
+      /* 버튼출력안함 클래스 */
+      .btn-box.off {
+        display: none;
       }
 
       /* 타이틀 아래 버튼 */
@@ -248,10 +267,17 @@
         margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
+        /* gap 사이간격
+        (값을 두개쓰면 가로,세로) */
+        gap: 20px;
       }
       /* 캐릭터카드 */
       .character-card {
-        width: 25%;
+        width: calc(25% - 15px);
+        /* calc(계산식) 
+          +,-는 기호 앞뒤를 반드시 띄어서야함!
+          *,/ 곱하기 나누기는 붙여써도 됨
+        */
         box-sizing: border-box;
         /* height: 285px;
         높이값이 없으면 기본값 auto임.
@@ -295,7 +321,16 @@
         position: absolute;
         /* 부모는? .card-imgs */
         left: 0;
+        top: 0;
         width: 100%;
+        /* 처음엔 투명, 오버시 보이게 */
+        opacity: 0;
+        /* 트랜지션 : 속시이지(속성 시간 이징 지연) */
+        transition: opacity 0.5s;
+      }
+      /* 카드 마우스 오버시 두번째 이미지 보이기 */
+      .character-card:hover .card-imgs img:last-child {
+        opacity: 1;
       }
       /* 카드 내부하단 설명박스 */
       .character-card .card-desc {
@@ -550,18 +585,46 @@
       <!-- 2-3. 컴퍼니영역 -->
       <section class="company-area">
         <!-- 컴퍼니영역 내용 -->
+         <!-- 타이틀박스 -->
+        <div class="tit-box">
+          <h2 class="part-tit">company</h2>
+          <div class="btn-box off">
+            <a href="#" class="btn-view">veiw more</a>
+          </div>
+        </div>
       </section>
       <!-- 2-4. 리쿠르트영역 -->
       <section class="recruit-area">
         <!-- 리쿠르트영역 내용 -->
+         <!-- 타이틀박스 -->
+        <div class="tit-box">
+          <h2 class="part-tit">recruit</h2>
+          <div class="btn-box off">
+            <a href="#" class="btn-view">veiw more</a>
+          </div>
+        </div>
       </section>
       <!-- 2-5. 플레이스영역 -->
       <section class="place-area">
         <!-- 플레이스영역 내용 -->
+         <!-- 타이틀박스 -->
+        <div class="tit-box">
+          <h2 class="part-tit">place</h2>
+          <div class="btn-box">
+            <a href="#" class="btn-view">veiw more</a>
+          </div>
+        </div>
       </section>
       <!-- 2-6. 컨텍어스영역 -->
       <section class="contactus-area">
         <!-- 컨텍어스영역 내용 -->
+         <!-- 타이틀박스 -->
+        <div class="tit-box">
+          <h2 class="part-tit">contact us</h2>
+          <div class="btn-box">
+            <a href="#" class="btn-view">veiw more</a>
+          </div>
+        </div>
       </section>
     </main>
     <!-- 3. 하단영역 -->
