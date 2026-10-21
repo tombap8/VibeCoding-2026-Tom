@@ -26,87 +26,8 @@
         font-family: Montserrat, NanumBarunGothic, Dotum, sans-serif;
       }
       /* 공통요소 초기화 */
-      html,
-      body,
-      div,
-      span,
-      applet,
-      object,
-      iframe,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      blockquote,
-      pre,
-      a,
-      abbr,
-      acronym,
-      address,
-      big,
-      cite,
-      code,
-      del,
-      dfn,
-      em,
-      img,
-      ins,
-      kbd,
-      q,
-      s,
-      samp,
-      small,
-      strike,
-      strong,
-      sub,
-      sup,
-      tt,
-      var,
-      b,
-      u,
-      i,
-      center,
-      dl,
-      dt,
-      dd,
-      ol,
-      ul,
-      li,
-      fieldset,
-      form,
-      label,
-      legend,
-      table,
-      caption,
-      tbody,
-      tfoot,
-      thead,
-      tr,
-      th,
-      td,
-      article,
-      aside,
-      canvas,
-      details,
-      embed,
-      figure,
-      figcaption,
-      footer,
-      header,
-      hgroup,
-      menu,
-      nav,
-      output,
-      ruby,
-      section,
-      summary,
-      time,
-      mark,
-      audio,
-      video {
+      /* prettier-ignore */
+      html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
         margin: 0;
         padding: 0;
       }
@@ -297,7 +218,7 @@
         border: 1px solid #222;
         padding: 16px 32px;
         /* 트랜지션 : 속시이지(속성 시간 이징 지연) */
-        transition: all .5s;
+        transition: all 0.5s;
       }
       /* 버튼가상요소로 이미지 넣기 */
       /* 앞은 ::before, 뒤는 ::after */
@@ -307,12 +228,55 @@
         padding-left: 20px;
       }
       /* 버튼 오버시 가상클래스 :hover를 사용함 */
-      .btn-view:hover{
+      .btn-view:hover {
         color: #fff;
         background: #222;
         /* 트랜지션 양방향은 원본에 설정함! */
         /* :hover에 설정하면 오버시에만 애니됨 */
         /* transition: all .5s; */
+      }
+      /* 버튼오버시 가상요소 after이미지변경 */
+      .btn-view:hover::after{
+        content: url(./images/ico_more2.png);
+      }
+
+      /* 캐릭터카드 */
+      .character-card {
+        width: 285px;
+        height: 285px;
+        border: 1px solid #ddd;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: inline-block;
+        background: #fff;
+      }
+      /* 카드 내부상단 이미지박스 */
+      .character-card .card-imgs {
+        height: 204px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #f7f7f7;
+        border-bottom: 1px solid #eee;
+      }
+      /* 카드 내부하단 설명박스 */
+      .character-card .card-desc {
+        height: 81px;
+        padding: 16px 12px 12px 12px;
+        text-align: center;
+      }
+      .character-card .card-desc h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 4px 0;
+      }
+      .character-card .card-desc h4 {
+        font-size: 1.2rem;
+        color: #888;
+        font-weight: 400;
+        margin: 0;
       }
     </style>
   </head>
@@ -342,13 +306,23 @@
       <section class="banner-area">
         <!-- 배너영역 내용 -->
         <div class="center-banner">
-          <img src="./images/main_visual_pc_v1.png" alt="메인 비주얼" class="main-visual-img" />
+          <img
+            src="./images/main_visual_pc_v1.png"
+            alt="메인 비주얼"
+            class="main-visual-img"
+          />
         </div>
 
         <!-- SNS이동버튼박스 -->
         <div class="sns">
-          <a href="https://www.instagram.com/sanrio_kr/" target="_blank"><img src="./images/i_ins_pc_v3.png" alt="instargram" /></a>
-          <a href="https://www.youtube.com/c/sanriokorea/featured" target="_blank"><img src="./images/i_you_pc_v3.png" alt="youtube" /></a>
+          <a href="https://www.instagram.com/sanrio_kr/" target="_blank"
+            ><img src="./images/i_ins_pc_v3.png" alt="instargram"
+          /></a>
+          <a
+            href="https://www.youtube.com/c/sanriokorea/featured"
+            target="_blank"
+            ><img src="./images/i_you_pc_v3.png" alt="youtube"
+          /></a>
         </div>
         <!-- 스크롤 유도 애니박스 -->
         <div class="scroll_btn">
@@ -359,12 +333,27 @@
       <!-- 2-2. 캐릭터영역 -->
       <section class="character-area">
         <!-- 캐릭터영역 내용 -->
+         <!-- 타이틀박스 -->
         <div class="tit-box">
           <h2 class="part-tit">character</h2>
           <div class="btn-box">
             <a href="#" class="btn-view">veiw more</a>
           </div>
         </div>
+        <!-- 캐릭터카드 박스 -->
+      <!-- INSERT_YOUR_CODE -->
+      <div class="character-card">
+        <!-- 내부상단박스 -->
+        <div class="card-imgs">
+          <img src="./images/new_main_crt1.png" alt="캐릭터 메인 이미지" />
+          <img src="./images/new_main_crt1_ov.png" alt="캐릭터 오버 이미지" />
+        </div>
+        <!-- 내부하단박스 -->
+        <div class="card-desc">
+          <h3>헬로키티</h3>
+          <h4>Hello Kitty</h4>
+        </div>
+      </div>
       </section>
       <!-- 2-3. 컴퍼니영역 -->
       <section class="company-area">
