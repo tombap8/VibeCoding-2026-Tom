@@ -253,6 +253,8 @@
       }
       /* 카드 내부상단 이미지박스 */
       .character-card .card-imgs {
+        /* 포지션을 준 이유: 자식요소중 앱솔루트 기준 */
+        position: relative;
         height: 204px;
         display: flex;
         flex-direction: column;
@@ -260,6 +262,12 @@
         justify-content: center;
         background: #f7f7f7;
         border-bottom: 1px solid #eee;
+      }
+      /* 두번째 이미지만 앱솔루트주기 */
+      .character-card .card-imgs img:last-child{
+        position: absolute;
+        /* 부모는? .card-imgs */
+        width: 100%;
       }
       /* 카드 내부하단 설명박스 */
       .character-card .card-desc {
