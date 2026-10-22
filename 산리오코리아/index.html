@@ -454,6 +454,55 @@
         display: block;
         font-size: 1.8rem;
       }
+
+      /* 컨택트 박스 (지도 + 회사정보) */
+      .contact-box {
+        display: flex;
+        width: 1200px;
+        height: 350px;
+        margin: 0 auto;
+        /* 모서리 20px 둥글게 (자식이 넘치지 않도록 hidden) */
+        border-radius: 20px;
+        overflow: hidden;
+        background: #fff;
+      }
+      /* 왼쪽 지도 / 오른쪽 정보 - 반반 */
+      .contact-box .map-box,
+      .contact-box .info-box {
+        width: 50%;
+        height: 100%;
+      }
+      .contact-box .map-box iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      .contact-box .info-box {
+        box-sizing: border-box;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #222;
+      }
+      .contact-box .info-box h3 {
+        font-size: 2.4rem;
+        font-weight: bold;
+        margin-bottom: 14px;
+      }
+      .contact-box .info-box h4 {
+        font-size: 1.6rem;
+        color: #555;
+        line-height: 1.5;
+      }
+      .contact-box .info-box h4:nth-of-type(2) {
+        margin-bottom: 28px;
+      }
+      .contact-box .info-box h5 {
+        font-size: 1.6rem;
+        line-height: 1.8;
+      }
     </style>
   </head>
   <body>
@@ -835,6 +884,26 @@
           <h2 class="part-tit">contact us</h2>
           <div class="btn-box">
             <a href="#" class="btn-view">veiw more</a>
+          </div>
+        </div>
+        <!-- 컨택트 박스 : 왼쪽 지도 / 오른쪽 회사정보 -->
+        <div class="contact-box">
+          <div class="map-box">
+            <iframe
+              src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C%20509&hl=ko&z=17&output=embed"
+              title="산리오코리아 위치"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="info-box">
+            <h3>서울시 강남구 테헤란로 509, 4층 (삼성동, 엔씨타워1)</h3>
+            <h4>509, Teheranro, Gangnam-gu, Seoul</h4>
+            <h4>(4th floor, Samsung-dong, NC Tower 1)</h4>
+            <h5>M : webmaster@sanriokorea.co.kr</h5>
+            <h5>T : +82 (0) 2 543 3810</h5>
+            <h5>F : +82 (0) 2 543 2904</h5>
           </div>
         </div>
       </section>
