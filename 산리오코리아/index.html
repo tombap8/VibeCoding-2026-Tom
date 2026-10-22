@@ -461,9 +461,10 @@
         width: 1200px;
         height: 350px;
         margin: 0 auto;
-        /* 모서리 20px 둥글게 (자식이 넘치지 않도록 hidden) */
+        /* 모서리 20px 둥글게 */
         border-radius: 20px;
-        overflow: hidden;
+        /* overflow:hidden을 쓰면 자식(키티자동차)이 박스 밖에서 잘리므로
+        사용하지 않고, 대신 좌우 자식박스에 각각 둥근 모서리를 줌 */
         background: #fff;
       }
       /* 왼쪽 지도 / 오른쪽 정보 - 반반 */
@@ -472,6 +473,10 @@
         width: 50%;
         height: 100%;
       }
+      .contact-box .map-box {
+        border-radius: 20px 0 0 20px;
+        overflow: hidden;
+      }
       .contact-box .map-box iframe {
         display: block;
         width: 100%;
@@ -479,6 +484,9 @@
         border: 0;
       }
       .contact-box .info-box {
+        /* 자식 #kitty-car의 absolute 기준박스 */
+        position: relative;
+        border-radius: 0 20px 20px 0;
         box-sizing: border-box;
         padding: 40px;
         display: flex;
@@ -490,6 +498,12 @@
       #kitty-car{
         width: 207px;
         height: 240px;
+        /* 부모(.info-box) 기준 오른쪽 아래 배치 */
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        /* 자기 높이의 10%만큼 아래로 (박스 밖으로 나와도 보임) */
+        transform: translateY(10%);
       }
       .contact-box .info-box h3 {
         font-size: 2.4rem;
