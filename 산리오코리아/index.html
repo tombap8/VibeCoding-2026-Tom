@@ -3,6 +3,9 @@
   <head>
     <title>산리오 코리아 홍홍</title>
     <meta charset="UTF-8" />
+    <!-- 미디어쿼리를 위한 뷰포트 필수!!!
+     줄임말 meta:vp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- 인터널스타일시트(internal style sheet) -->
     <!-- 상단영역 스타일 (Top Area Styles) -->
     <style>
@@ -47,17 +50,30 @@
       .top-inner {
         max-width: 1440px; /* 최대 너비 지정 */
         margin: 0 auto; /* 가운데 정렬 */
+        padding: 0 20px;
         display: flex; /* 가로 레이아웃을 위한 flex 사용 */
         align-items: center; /* 세로 중앙 정렬 */
         justify-content: space-between; /* 양끝 정렬 */
         height: 90px; /* 높이 지정 */
       }
-      .logo-box {
-        flex: 0 0 auto; /* 크기가 고정된 flex 아이템 */
+      /* 상단로고박스 */
+      h1.logo-box {
+        width: 10%;
       }
-      .logo-box img {
-        height: 56px; /* 로고 이미지 높이 고정 */
+      h1.logo-box img {
+        max-width: 100%;
       }
+
+      /* 1024px 이하 미디어쿼리 시작 */
+      @media screen and (max-width: 1024px) {
+        /* 기존선택자와 동일하게 사용함! */
+        /* 상단로고박스 */
+        h1.logo-box {
+          width: 30%;
+        }
+      }
+      /* 1024px 이하 미디어쿼리 종료 */
+
       .menu-list {
         flex: 0 0 auto; /* 크기 고정 */
         display: flex; /* 가로로 나열 */
@@ -233,7 +249,7 @@
         color: #fff;
       }
       /* 타이틀박스의 로고 컨트롤 */
-      .tit-box.white .logo-box{
+      .tit-box.white .logo-box {
         text-align: center;
         margin-bottom: 20px;
       }
@@ -395,6 +411,24 @@
         color: #ccc;
       }
 
+      /* 800px 이하 미디어쿼리 시작 */
+      @media screen and (max-width: 800px) {
+        /* 루트(html) 글자크기 조정
+        타이틀은 5rem 이므로 5rem = 32px 이 되려면
+        1rem = 32px / 5 = 6.4px 이어야 함!
+        rem단위를 쓴 나머지 글자는 자동으로 비례해서 줄어듦 */
+        html {
+          font-size: 6.4px;
+        }
+
+        /* 캐릭터카드 4열 -> 2열
+        2열 간격(gap)은 1개(20px)이므로 20px의 절반인 10px을 뺌 */
+        .character-card {
+          width: calc(50% - 10px);
+        }
+      }
+      /* 800px 이하 미디어쿼리 종료 */
+
       /* 컴퍼니 영역 */
       .company-area {
         background-color: #f5f5f5;
@@ -458,7 +492,7 @@
       /* 컨택트 박스 (지도 + 회사정보) */
       .contact-box {
         display: flex;
-        width: 1200px;
+        max-width: 1200px;
         height: 350px;
         margin: 0 auto;
         /* 모서리 20px 둥글게 */
@@ -495,7 +529,7 @@
         color: #222;
       }
       /* 키티 자동차 이미지 */
-      #kitty-car{
+      #kitty-car {
         width: 207px;
         height: 240px;
         /* 부모(.info-box) 기준 오른쪽 아래 배치 */
@@ -504,7 +538,7 @@
         bottom: 0;
         /* 자기 높이의 10%만큼 아래로 (박스 밖으로 나와도 보임) */
         /* transform: translate(가로이동,세로이동) */
-        transform: translate(-23%,23%);
+        transform: translate(-23%, 23%);
         /* translate: -23% 23%; */
         /* 다른 방법? translate: 가로이동 세로이동 */
       }
@@ -527,12 +561,12 @@
       }
 
       /* 하단영역 */
-      .bottom-area{
+      .bottom-area {
         background-color: #222;
         padding: 50px;
       }
       /* 하단속박스 */
-      .bottom-inner{
+      .bottom-inner {
         /* 플렉스박스 */
         display: flex;
         /* 진행방향정렬:사이간격 일정하게 */
@@ -541,7 +575,7 @@
         align-items: center;
       }
       /* 하단속박스 카피라이트 이미지 */
-      .bottom-inner img{
+      .bottom-inner img {
         height: 13px;
       }
       /* 하단속박스 버튼 */
@@ -550,7 +584,7 @@
         color: #fff;
         border-color: #fff;
       }
-      .bottom-inner .btn-box{
+      .bottom-inner .btn-box {
         margin-bottom: 0;
       }
     </style>
@@ -561,9 +595,9 @@
       <!-- 상단영역 내용 -->
       <div class="top-inner">
         <!-- 로고이미지박스 (왼쪽 끝) -->
-        <div class="logo-box">
+        <h1 class="logo-box">
           <img src="./images/logo_2023.png" alt="산리오코리아 로고" />
-        </div>
+        </h1>
         <!-- 메뉴리스트 (오른쪽 끝) -->
         <nav>
           <ul class="menu-list">
@@ -955,7 +989,11 @@
             <h5>T : +82 (0) 2 543 3810</h5>
             <h5>F : +82 (0) 2 543 2904</h5>
             <!-- 키티이미지 -->
-             <img id="kitty-car" src="./images/contact_img.png" alt="키티자동차">
+            <img
+              id="kitty-car"
+              src="./images/contact_img.png"
+              alt="키티자동차"
+            />
           </div>
         </div>
       </section>
@@ -963,14 +1001,14 @@
     <!-- 3. 하단영역 -->
     <footer class="bottom-area">
       <!-- 하단영역 내용 -->
-       <div class="bottom-inner">
+      <div class="bottom-inner">
         <!-- 카피라잇 이미지 -->
-         <img src="./images/copyright_2023_02_v2.png" alt="산리오카피라이트">
-         <!-- 개인정보버튼 -->
-         <div class="btn-box simple">
+        <img src="./images/copyright_2023_02_v2.png" alt="산리오카피라이트" />
+        <!-- 개인정보버튼 -->
+        <div class="btn-box simple">
           <a href="#" class="btn-view">개인정보처리방침</a>
         </div>
-       </div>
+      </div>
     </footer>
   </body>
 </html>
