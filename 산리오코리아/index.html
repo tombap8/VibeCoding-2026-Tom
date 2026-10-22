@@ -215,7 +215,7 @@
         font-size: 5rem;
         font-weight: normal;
       }
-      
+
       /* 타이틀박스 하위 버튼박스 */
       .btn-box {
         text-align: center;
@@ -231,7 +231,7 @@
       /* 화살표 출력안함 클래스
       -> 부모박스에 simple클래스를 주면
       자식 버튼에 가상요소 화살표가 출력안됨 */
-      .btn-box.simple .btn-view::after{
+      .btn-box.simple .btn-view::after {
         display: none;
       }
 
@@ -367,10 +367,31 @@
       }
 
       /* 컴퍼니 영역 */
-      .company-area{
+      .company-area {
         background-color: #f5f5f5;
       }
 
+      .card-part {
+        /* 플렉스박스 */
+        display: flex;
+        /* 플렉스 방향(수직) */
+        flex-direction: column;
+        /* 진행방향의 직각방향 정렬 */
+        align-items: center;
+        width: 400px;
+      }
+      .img-box {
+      }
+      /* 카드타이틀 */
+      .card-title{
+        font-size: 2rem;
+      }
+      /* 카드설명 span */
+      .card-desc span {
+        /* 인라인인 span을 블록으로 변경 */
+        display: block;
+        font-size: 1.5rem;
+      }
     </style>
   </head>
   <body>
@@ -568,7 +589,10 @@
           <div class="character-card">
             <div class="card-imgs">
               <img src="./images/new_main_crt14.png" alt="숲의요정 페어리루" />
-              <img src="./images/new_main_crt14_ov.png" alt="숲의요정 페어리루" />
+              <img
+                src="./images/new_main_crt14_ov.png"
+                alt="숲의요정 페어리루"
+              />
             </div>
             <div class="card-desc">
               <h3>숲의요정 페어리루</h3>
@@ -600,7 +624,7 @@
       <!-- 2-3. 컴퍼니영역 -->
       <section class="company-area">
         <!-- 컴퍼니영역 내용 -->
-         <!-- 타이틀박스 -->
+        <!-- 타이틀박스 -->
         <div class="tit-box">
           <h2 class="part-tit">company</h2>
           <div class="btn-box off">
@@ -608,28 +632,28 @@
           </div>
         </div>
         <!-- 카드섹션파트 -->
-         <figure class="card-part">
+        <figure class="card-part">
           <!-- 이미지박스 -->
           <div class="img-box">
-            <img src="./images/ico_company1.png" alt="회사아이콘">
+            <img src="./images/ico_company1.png" alt="회사아이콘" />
           </div>
           <!-- 타이틀 -->
-           <h3 class="card-title">회사소개</h3>
-           <!-- 내용 -->
-            <p class="card-desc">
-              <span>맑고 깨끗한 강가에</span>
-              <span>문화를 쌓아 올리자.</span>
-            </p>
-            <!-- 버튼박스 -->
-            <div class="btn-box simple">
-              <a href="#" class="btn-view">more</a>
-            </div>
-         </figure>
+          <h3 class="card-title">회사소개</h3>
+          <!-- 내용 -->
+          <p class="card-desc">
+            <span>맑고 깨끗한 강가에</span>
+            <span>문화를 쌓아 올리자.</span>
+          </p>
+          <!-- 버튼박스 -->
+          <div class="btn-box simple">
+            <a href="#" class="btn-view">more</a>
+          </div>
+        </figure>
       </section>
       <!-- 2-4. 리쿠르트영역 -->
       <section class="recruit-area">
         <!-- 리쿠르트영역 내용 -->
-         <!-- 타이틀박스 -->
+        <!-- 타이틀박스 -->
         <div class="tit-box">
           <h2 class="part-tit">recruit</h2>
           <div class="btn-box off">
@@ -640,7 +664,7 @@
       <!-- 2-5. 플레이스영역 -->
       <section class="place-area">
         <!-- 플레이스영역 내용 -->
-         <!-- 타이틀박스 -->
+        <!-- 타이틀박스 -->
         <div class="tit-box">
           <h2 class="part-tit">place</h2>
           <div class="btn-box">
@@ -651,7 +675,7 @@
       <!-- 2-6. 컨텍어스영역 -->
       <section class="contactus-area">
         <!-- 컨텍어스영역 내용 -->
-         <!-- 타이틀박스 -->
+        <!-- 타이틀박스 -->
         <div class="tit-box">
           <h2 class="part-tit">contact us</h2>
           <div class="btn-box">
