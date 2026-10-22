@@ -525,6 +525,31 @@
         font-size: 1.6rem;
         line-height: 1.8;
       }
+
+      /* 하단영역 */
+      .bottom-area{
+        background-color: #222;
+        padding: 50px;
+      }
+      /* 하단속박스 */
+      .bottom-inner{
+        /* 플렉스박스 */
+        display: flex;
+        /* 진행방향정렬:사이간격 일정하게 */
+        justify-content: space-between;
+        /* 진행방향의 수직정렬: 중간 */
+        align-items: center;
+      }
+      /* 하단속박스 카피라이트 이미지 */
+      .bottom-inner img{
+        height: 13px;
+      }
+      /* 하단속박스 버튼 */
+      .bottom-inner .btn-view {
+        background-color: transparent;
+        color: #fff;
+        border-color: #fff;
+      }
     </style>
   </head>
   <body>
@@ -935,6 +960,14 @@
     <!-- 3. 하단영역 -->
     <footer class="bottom-area">
       <!-- 하단영역 내용 -->
+       <div class="bottom-inner">
+        <!-- 카피라잇 이미지 -->
+         <img src="./images/copyright_2023_02_v2.png" alt="산리오카피라이트">
+         <!-- 개인정보버튼 -->
+         <div class="btn-box simple">
+          <a href="#" class="btn-view">개인정보처리방침</a>
+        </div>
+       </div>
     </footer>
   </body>
 </html>
