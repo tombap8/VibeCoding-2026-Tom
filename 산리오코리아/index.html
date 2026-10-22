@@ -228,6 +228,31 @@
         display: none;
       }
 
+      /* 타이틀 흰색테마 클래스 */
+      .tit-box.white .part-tit {
+        color: #fff;
+      }
+      /* 타이틀박스의 로고 컨트롤 */
+      .tit-box.white .logo-box{
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      /* 버튼 흰색테마 클래스 */
+      .tit-box.white .btn-view {
+        color: #fff;
+        border: 1px solid #fff;
+      }
+      .tit-box.white .btn-view::after {
+        content: url(./images/ico_more2.png);
+      }
+      .tit-box.white .btn-view:hover {
+        color: #222;
+        background: #fff;
+      }
+      .tit-box.white .btn-view:hover::after {
+        content: url(./images/ico_more1.png);
+      }
+
       /* 화살표 출력안함 클래스
       -> 부모박스에 simple클래스를 주면
       자식 버튼에 가상요소 화살표가 출력안됨 */
@@ -235,7 +260,7 @@
         display: none;
       }
       /* simple클래스 버튼 디자인변경 */
-      .btn-box.simple .btn-view{
+      .btn-box.simple .btn-view {
         padding: 11px 22px;
       }
 
@@ -384,10 +409,13 @@
       /* 플레이스 영역 */
       .place-area {
         /* 배경:색이반고윙/크 */
-        background: url(./images/bg_recruit.png) no-repeat center 70px;
-
+        background: url(./images/bg_shop.jpg) no-repeat center;
         height: 30vh;
+      }
 
+      /* 컨텍어스 영역 */
+      .contactus-area {
+        background-color: #4a679e;
       }
 
       /* 카드파트는 공통모듈임(컴퍼니&리쿠르트) */
@@ -417,7 +445,7 @@
       .img-box {
       }
       /* 카드타이틀 */
-      .card-title{
+      .card-title {
         font-size: 2.5rem;
       }
       /* 카드설명 span */
@@ -801,6 +829,9 @@
         <!-- 컨텍어스영역 내용 -->
         <!-- 타이틀박스 -->
         <div class="tit-box">
+          <div class="logo-box">
+            <img src="./images/logo_w.png" alt="화이트로고" />
+          </div>
           <h2 class="part-tit">contact us</h2>
           <div class="btn-box">
             <a href="#" class="btn-view">veiw more</a>
