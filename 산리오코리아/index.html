@@ -234,6 +234,10 @@
       .btn-box.simple .btn-view::after {
         display: none;
       }
+      /* simple클래스 버튼 디자인변경 */
+      .btn-box.simple .btn-view{
+        padding: 11px 22px;
+      }
 
       /* 타이틀 아래 버튼 */
       .btn-view {
@@ -371,6 +375,17 @@
         background-color: #f5f5f5;
       }
 
+      /* 카드파트 묶음박스 - 가로 flex, 최대 1200px */
+      .card-part-box {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        /* 가로방향 일정간격 */
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      /* 개별카드박스 */
       .card-part {
         /* 플렉스박스 */
         display: flex;
@@ -378,19 +393,22 @@
         flex-direction: column;
         /* 진행방향의 직각방향 정렬 */
         align-items: center;
-        width: 400px;
+        /* 사이간격 */
+        gap: 20px;
+        flex: 1;
+        margin: 0;
       }
       .img-box {
       }
       /* 카드타이틀 */
       .card-title{
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
       /* 카드설명 span */
       .card-desc span {
         /* 인라인인 span을 블록으로 변경 */
         display: block;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
       }
     </style>
   </head>
@@ -631,24 +649,60 @@
             <a href="#" class="btn-view">veiw more</a>
           </div>
         </div>
-        <!-- 카드섹션파트 -->
-        <figure class="card-part">
-          <!-- 이미지박스 -->
-          <div class="img-box">
-            <img src="./images/ico_company1.png" alt="회사아이콘" />
-          </div>
-          <!-- 타이틀 -->
-          <h3 class="card-title">회사소개</h3>
-          <!-- 내용 -->
-          <p class="card-desc">
-            <span>맑고 깨끗한 강가에</span>
-            <span>문화를 쌓아 올리자.</span>
-          </p>
-          <!-- 버튼박스 -->
-          <div class="btn-box simple">
-            <a href="#" class="btn-view">more</a>
-          </div>
-        </figure>
+        <!-- 카드섹션파트 묶음 -->
+        <div class="card-part-box">
+          <figure class="card-part">
+            <!-- 이미지박스 -->
+            <div class="img-box">
+              <img src="./images/ico_company1.png" alt="회사아이콘" />
+            </div>
+            <!-- 타이틀 -->
+            <h3 class="card-title">회사소개</h3>
+            <!-- 내용 -->
+            <p class="card-desc">
+              <span>맑고 깨끗한 강가에</span>
+              <span>문화를 쌓아 올리자.</span>
+            </p>
+            <!-- 버튼박스 -->
+            <div class="btn-box simple">
+              <a href="#" class="btn-view">more</a>
+            </div>
+          </figure>
+          <figure class="card-part">
+            <!-- 이미지박스 -->
+            <div class="img-box">
+              <img src="./images/ico_company3.png" alt="회사아이콘" />
+            </div>
+            <!-- 타이틀 -->
+            <h3 class="card-title">회사연혁</h3>
+            <!-- 내용 -->
+            <p class="card-desc">
+              <span>산리오의 히스토리를</span>
+              <span>확인하세요.</span>
+            </p>
+            <!-- 버튼박스 -->
+            <div class="btn-box simple">
+              <a href="#" class="btn-view">more</a>
+            </div>
+          </figure>
+          <figure class="card-part">
+            <!-- 이미지박스 -->
+            <div class="img-box">
+              <img src="./images/ico_company4.png" alt="회사아이콘" />
+            </div>
+            <!-- 타이틀 -->
+            <h3 class="card-title">사업영역</h3>
+            <!-- 내용 -->
+            <p class="card-desc">
+              <span>소셜 커뮤니케이션을</span>
+              <span>산리오가 시작합니다.</span>
+            </p>
+            <!-- 버튼박스 -->
+            <div class="btn-box simple">
+              <a href="#" class="btn-view">more</a>
+            </div>
+          </figure>
+        </div>
       </section>
       <!-- 2-4. 리쿠르트영역 -->
       <section class="recruit-area">
@@ -659,6 +713,60 @@
           <div class="btn-box off">
             <a href="#" class="btn-view">veiw more</a>
           </div>
+        </div>
+        <!-- 카드섹션파트 묶음 -->
+        <div class="card-part-box">
+          <figure class="card-part">
+            <!-- 이미지박스 -->
+            <div class="img-box">
+              <img src="./images/ico_recruit1.png" alt="채용아이콘" />
+            </div>
+            <!-- 타이틀 -->
+            <h3 class="card-title">채용공고</h3>
+            <!-- 내용 -->
+            <p class="card-desc">
+              <span>산리오코리아에서</span>
+              <span>인재를 찾습니다</span>
+            </p>
+            <!-- 버튼박스 -->
+            <div class="btn-box simple">
+              <a href="#" class="btn-view">more</a>
+            </div>
+          </figure>
+          <figure class="card-part">
+            <!-- 이미지박스 -->
+            <div class="img-box">
+              <img src="./images/ico_recruit2.png" alt="채용아이콘" />
+            </div>
+            <!-- 타이틀 -->
+            <h3 class="card-title">직무소개</h3>
+            <!-- 내용 -->
+            <p class="card-desc">
+              <span>산리오코리아에서는</span>
+              <span>어떤 일을 할까요?</span>
+            </p>
+            <!-- 버튼박스 -->
+            <div class="btn-box simple">
+              <a href="#" class="btn-view">more</a>
+            </div>
+          </figure>
+          <figure class="card-part">
+            <!-- 이미지박스 -->
+            <div class="img-box">
+              <img src="./images/ico_recruit3.png" alt="채용아이콘" />
+            </div>
+            <!-- 타이틀 -->
+            <h3 class="card-title">복리후생</h3>
+            <!-- 내용 -->
+            <p class="card-desc">
+              <span>산리오코리아에서</span>
+              <span>누릴 수 있는것!</span>
+            </p>
+            <!-- 버튼박스 -->
+            <div class="btn-box simple">
+              <a href="#" class="btn-view">more</a>
+            </div>
+          </figure>
         </div>
       </section>
       <!-- 2-5. 플레이스영역 -->
