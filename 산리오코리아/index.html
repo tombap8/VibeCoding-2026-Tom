@@ -228,11 +228,20 @@
         display: none;
       }
 
+      /* 화살표 출력안함 클래스
+      -> 부모박스에 simple클래스를 주면
+      자식 버튼에 가상요소 화살표가 출력안됨 */
+      .btn-box.simple .btn-view::after{
+        display: none;
+      }
+
       /* 타이틀 아래 버튼 */
       .btn-view {
         text-decoration: none;
         color: #222;
         font-size: 1.2rem;
+        /* 대문자출력 */
+        text-transform: uppercase;
         display: inline-block;
         margin: 0 auto;
         border-radius: 24px;
@@ -611,6 +620,10 @@
               <span>맑고 깨끗한 강가에</span>
               <span>문화를 쌓아 올리자.</span>
             </p>
+            <!-- 버튼박스 -->
+            <div class="btn-box simple">
+              <a href="#" class="btn-view">more</a>
+            </div>
          </figure>
       </section>
       <!-- 2-4. 리쿠르트영역 -->
