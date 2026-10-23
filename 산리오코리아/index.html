@@ -656,6 +656,15 @@
           z-index: 1;
           transform: translateX(100%);
           visibility: hidden;
+          /* 트랜지션을 처음부터 주면 메뉴변경시 화면한번 보이므로
+          처음엔 트랜지션을 주지 않는다. */
+          /* transition:
+            transform 0.4s ease,
+            visibility 0s 0.4s; */
+        }
+        /* 모바일용 메뉴를 위한 클래스 지정:트랜지션 넣기 
+        -> mob클래스를 자바스크립트에서 작동시 넣어주면된다!*/
+        .top-area nav.mob{
           transition:
             transform 0.4s ease,
             visibility 0s 0.4s;
