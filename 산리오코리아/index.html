@@ -654,8 +654,16 @@
           align-items: center;
           justify-content: center;
           z-index: 1;
-          transform: translateX(100%);
-          visibility: hidden;
+          /* 변경내용 : 위치이동, 투명도 */
+          translate: 100%;
+          opacity: 0;
+          transition: .4s;
+          /* translate속성값은 하나만 쓰면 x축, 두개 x,y축 */
+          /* transform: translateX(100%); */
+          /* visibility와 opacity 투명도0의 차이는 
+          투명해진 후 이벤트 적용여부다.
+          opacity:0은 이벤트가 적용되고 visibility:hidden은 이벤트 적용안됨. */
+          /* visibility: hidden; */
           /* 트랜지션을 처음부터 주면 메뉴변경시 화면한번 보이므로
           처음엔 트랜지션을 주지 않는다. */
           /* transition:
@@ -664,14 +672,9 @@
         }
         /* 모바일용 메뉴를 위한 클래스 지정:트랜지션 넣기 
         -> mob클래스를 자바스크립트에서 작동시 넣어주면된다!*/
-        .top-area.mob nav{ /* 트랜지션설정 */
-          transition:
-            transform 0.4s ease,
-            visibility 0s 0.4s;
-        }
-        .top-area.mob.on nav{/* 트랜스폼 보이게 설정 */
-          transform: translateX(0);
-          visibility: visible;
+        .top-area.on nav{/* 트랜스폼 보이게 설정 */
+          translate: 0;
+          opacity: 1;
         }
         .menu-open .top-area nav {
           transform: translateX(0);
@@ -1489,8 +1492,6 @@
         // 해당요소에 클릭이벤트가 발생하면 이 구역을 실행함
         나야나함수('orange');
       }; ///// onclik 함수 ///////
-
-
 
 
 
