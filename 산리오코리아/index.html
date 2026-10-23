@@ -628,14 +628,14 @@
           transform: translateY(-100%);
         }
         /* 열림 상태: X 모양 */
-        .menu-open .menu-btn span:nth-child(1) {
+        .top-area.on .menu-btn span:nth-child(1) {
           top: 50%;
           transform: translateY(-50%) rotate(45deg);
         }
-        .menu-open .menu-btn span:nth-child(2) {
+        .top-area.on .menu-btn span:nth-child(2) {
           opacity: 0;
         }
-        .menu-open .menu-btn span:nth-child(3) {
+        .top-area.on .menu-btn span:nth-child(3) {
           top: 50%;
           transform: translateY(-50%) rotate(-45deg);
         }
@@ -676,15 +676,16 @@
           translate: 0;
           opacity: 1;
         }
-        .menu-open .top-area nav {
+        /* .menu-open .top-area nav {
           transform: translateX(0);
           visibility: visible;
           transition:
             transform 0.4s ease,
             visibility 0s;
-        }
+        } */
         body.menu-open {
-          overflow: hidden; /* 메뉴 열린 동안 배경 스크롤 방지 */
+          overflow: hidden; 
+          /* 메뉴 열린 동안 배경 스크롤 방지 */
         }
         /* 항목 세로 쌓기 + 가운데 정렬 + 대문자 + 큰 글자 */
         .menu-list {
@@ -1492,6 +1493,18 @@
         // 해당요소에 클릭이벤트가 발생하면 이 구역을 실행함
         나야나함수('orange');
       }; ///// onclik 함수 ///////
+
+
+      ////////  햄버거버튼 클릭시 메뉴 보이기/숨기기 ////////
+      // 1. 대상선정
+      // 1-1. 이벤트 대상 : 햄버거버튼(.menu-btn)
+      let 햄버거 = document.querySelector('.menu-btn');
+
+      // 1-2. 변경대상 : 상단영역(.top-area)
+      let 상단박스 = document.querySelector('.top-area');
+
+      console.log('선택확인:',햄버거,상단박스);
+
 
 
 
