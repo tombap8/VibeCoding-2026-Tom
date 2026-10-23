@@ -664,10 +664,14 @@
         }
         /* 모바일용 메뉴를 위한 클래스 지정:트랜지션 넣기 
         -> mob클래스를 자바스크립트에서 작동시 넣어주면된다!*/
-        .top-area nav.mob{
+        .top-area.mob nav{ /* 트랜지션설정 */
           transition:
             transform 0.4s ease,
             visibility 0s 0.4s;
+        }
+        .top-area.mob.on nav{/* 트랜스폼 보이게 설정 */
+          transform: translateX(0);
+          visibility: visible;
         }
         .menu-open .top-area nav {
           transform: translateX(0);
