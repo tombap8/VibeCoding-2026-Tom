@@ -1453,9 +1453,13 @@
         console.log('함수호출! 전달값은?',색상);
         // 상단요소의 배경색 바꾸기
         나야나.style.backgroundColor = 색상;
-        나야나.style.rotate = '360deg';
         나야나.style.transition = '2s ease-in-out';
+        // 회전은 로고가 하도록 변경
+        나야나.querySelector('.logo-box').style.rotate = '360deg';
+        // 로고 트랜지션 : 2초후 1초간 ease-in-out
+        나야나.querySelector('.logo-box').style.transition = '1s ease-in-out 2s';
       }; ///////// 나야나함수 /////////
+
 
       // 할당된 화살표함수는 반드시 함수 아래쪽에서 호출해야함!
       // 또는 이벤트 발생시엔 상관없음.
