@@ -25,6 +25,24 @@
   /* display: block; */
   width: 984px;
   max-width: 100%;
+  /* 로딩 애니메이션 호출 : 이름 시간 이징 지연시간 마지막상태
+  both = 지연시간(1s) 동안에도 시작상태(투명, 위쪽)를 유지하고, 끝난 뒤엔 마지막 상태를 유지 */
+  animation: visual-down 1s ease-out .5s both;
+}
+/* 모바일용 이미지는 PC에서 숨김 */
+.banner-area .main-visual-m {
+  display: none;
+}
+/* 메인 비주얼 등장 키프레임 : 투명 + 20% 위 → 원래 위치 + 보임 */
+@keyframes visual-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* SNS 버튼 박스 스타일 */
@@ -414,6 +432,14 @@
 
 /* ---------- 800px 이하 ---------- */
 @media screen and (max-width: 800px) {
+  /* 메인 비주얼: PC용 이미지 숨기고 모바일용 이미지 표시 */
+  .banner-area .main-visual-pc {
+    display: none;
+  }
+  .banner-area .main-visual-m {
+    display: inline-block;
+  }
+
   /* 6. character: 2열, 정사각형 카드, 이미지 중앙 */
   .character-card {
     width: calc(50% - 10px);
@@ -534,7 +560,9 @@
 @media screen and (max-width: 736px) {
   /* 3. SNS: 화면 너비 기준 위치, 아이콘 34px */
   .sns {
-    top: 20vw;
+    /* 모바일에서는 안보임 */
+    display: none;
+    /* top: 20vw; */
   }
   .sns img {
     width: 34px;
