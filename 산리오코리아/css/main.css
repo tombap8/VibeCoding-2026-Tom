@@ -259,7 +259,13 @@
 
 /* 플레이스 영역 */
 .place-area {
-  background: url(../images/bg_shop.jpg) no-repeat 0 / 100%;
+  /* 기존 배경이미지는 제거 -> 슬라이드박스(.place-slide)로 대체 */
+  /* 슬라이드/오버레이를 이 박스 크기에 맞추기 위한 기준점 */
+  position: relative;
+  /* 슬라이드가 박스 밖으로 보이지 않게 */
+  overflow: hidden;
+  /* z-index 층 구분을 이 박스 안에서만 적용 */
+  isolation: isolate;
   /* height: 30vh; */
   /* aspect-ratio 속성 비율은 가로/세로 
   -> 높이값 없이 비율로 유지
@@ -276,6 +282,71 @@
   /* 더 강한 패딩설정이 덮어쓰므로 !important로 가장 강하게 우선순위를 높여줌(주의: !important남발은 하지말것!) */
   padding: 3vw !important;
   /* vw단위는 뷰포트 단위로 보이는 화면 가로크기기준 %크기임. */
+}
+
+/* 플레이스 슬라이드 : 현재 박스와 정확히 같은 크기의 이미지박스 3개 */
+.place-slide-wrap {
+  position: absolute;
+  inset: 0; /* 부모(.place-area)와 똑같은 크기 */
+  z-index: 0; /* 가장 아래층 */
+  overflow: hidden;
+}
+.place-slide-track {
+  display: flex; /* 이미지박스 3개를 가로로 배치 */
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+.place-slide {
+  flex: 0 0 100%; /* 한 박스가 항상 부모와 같은 크기 */
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.place-slide.slide1 {
+  background-image: url(../images/bg_shop.jpg);
+}
+.place-slide.slide2 {
+  background-image: url(../images/bg_shop2.jpg);
+}
+.place-slide.slide3 {
+  background-image: url(../images/bg_shop3.jpg);
+}
+
+/* 가독성: 어두운 오버레이 (슬라이드 위, 글자 아래) */
+.place-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+/* 타이틀/버튼은 이미지박스보다 위 */
+.place-area .tit-box {
+  position: relative;
+  z-index: 2;
+}
+.place-area .part-tit {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+.place-area .btn-view {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+/* 처음부터 흰색 이미지로 나오게함! */
+.place-area .btn-view::after {
+  content: url(../images/ico_more2.png);
+  padding-left: 20px;
 }
 
 /* 컨텍어스 영역 */
@@ -430,7 +501,7 @@
   }
 
   /* 10. place: 배경 태블릿용 교체 자리
-     .place-area { background-image: url(../images/bg_shop_tablet.jpg); } */
+     .place-slide.slide1 { background-image: url(../images/bg_shop_tablet.jpg); } */
 
   /* 11. contact us: 아래 여백 150px, 스티커 위치 변경 */
   .main-area > section.contactus-area {
@@ -539,11 +610,8 @@
     margin-bottom: 0;
   }
 
-  /* 10. place: 모바일용 배경(cover) */
-  .place-area {
-    background-size: cover;
-    /* background-image: url(../images/bg_shop_mobile.jpg); */
-  }
+  /* 10. place: 모바일용 배경은 .place-slide 에서 cover 로 처리됨
+     (모바일 전용 이미지는 .place-slide.slide1~3 의 background-image 교체) */
 
   /* 11. contact us: 지도 상단 + 정보 하단 세로 배치, 지도 280px, 위쪽 모서리 20px */
   .contact-box {

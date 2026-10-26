@@ -387,8 +387,16 @@
       </section>
       <!-- 2-5. 플레이스영역 -->
       <section class="place-area">
+        <!-- 슬라이드 박스 : 3개의 이미지박스를 flex로 나란히 담는다 (JS가 오른쪽에서 왼쪽으로 이동시킴) -->
+        <div class="place-slide-wrap" aria-hidden="true">
+          <div class="place-slide-track">
+            <div class="place-slide slide1"></div>
+            <div class="place-slide slide2"></div>
+            <div class="place-slide slide3"></div>
+          </div>
+        </div>
         <!-- 플레이스영역 내용 -->
-        <!-- 타이틀박스 -->
+        <!-- 타이틀박스 (슬라이드보다 위) -->
         <div class="tit-box">
           <h2 class="part-tit">place</h2>
           <div class="btn-box">
