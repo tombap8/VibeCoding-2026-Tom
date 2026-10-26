@@ -214,7 +214,7 @@ h1.logo-box img {
   }
 
   /* 상단고정으로 body에 패딩탑 필요 */
-  body{
+  body {
     padding-top: 100px;
   }
 
@@ -381,8 +381,12 @@ h1.logo-box img {
 /* ---------- 736px 이하 ---------- */
 @media screen and (max-width: 736px) {
   /* 상단고정으로 body에 패딩탑 필요 */
-  body{
+  body {
     padding-top: 50px;
+  }
+  /* 로고 사이즈 조정 */
+  h1.logo-box img {
+    max-width: 75%;
   }
   /* 2. 헤더 높이 50px, 햄버거 24px(선 3px), 메뉴 글자 28px */
   .top-inner {
