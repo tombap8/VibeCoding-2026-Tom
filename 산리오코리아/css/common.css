@@ -215,7 +215,9 @@ h1.logo-box img {
 
   /* 2. 헤더: 높이 100px + 회색 구분선 */
   .top-area {
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
     z-index: 100;
     background: #fff;
     border-bottom: 1px solid #ddd;
@@ -291,7 +293,7 @@ h1.logo-box img {
     /* 변경내용 : 위치이동, 투명도 */
     translate: 100%;
     opacity: 0;
-    transition: .4s;
+    transition: 0.4s;
     /* translate속성값은 하나만 쓰면 x축, 두개 x,y축 */
     /* transform: translateX(100%); */
     /* visibility와 opacity 투명도0의 차이는 
@@ -306,7 +308,8 @@ h1.logo-box img {
   }
   /* 모바일용 메뉴를 위한 클래스 지정:트랜지션 넣기 
   -> mob클래스를 자바스크립트에서 작동시 넣어주면된다!*/
-  .top-area.on nav{/* 트랜스폼 보이게 설정 */
+  .top-area.on nav {
+    /* 트랜스폼 보이게 설정 */
     translate: 0;
     opacity: 1;
   }
@@ -318,7 +321,7 @@ h1.logo-box img {
       visibility 0s;
   } */
   body.menu-open {
-    overflow: hidden; 
+    overflow: hidden;
     /* 메뉴 열린 동안 배경 스크롤 방지 */
   }
   /* 항목 세로 쌓기 + 가운데 정렬 + 대문자 + 큰 글자 */
