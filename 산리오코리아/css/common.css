@@ -213,6 +213,11 @@ h1.logo-box img {
     padding-right: 14px;
   }
 
+  /* 상단고정으로 body에 패딩탑 필요 */
+  body{
+    padding-top: 100px;
+  }
+
   /* 2. 헤더: 높이 100px + 회색 구분선 */
   .top-area {
     position: fixed;
