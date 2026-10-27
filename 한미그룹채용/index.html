@@ -284,6 +284,167 @@
   }
   .footer-inner p { margin: 0; }
 
+  /* =====================================================
+     Responsive (Desktop First / max-width)
+     ===================================================== */
+  /* 모바일 전용 요소는 기본(데스크탑)에서 숨김 */
+  .header-apply, .btn-menu, .gnb-head { display: none; }
+
+  /* ---------- Tablet : 1024px 이하 ---------- */
+  @media (max-width: 1024px) {
+    /* 헤더 */
+    .header-inner { width: 100%; padding: 0 clamp(20px, 3.9vw, 40px); transform: none; }
+    .brand { width: clamp(110px, 14.8vw, 152px); height: auto; }
+    .brand img { width: 100%; height: auto; }
+    .gnb-list { gap: clamp(10px, 2.93vw, 30px); }
+    .gnb-list a,
+    .gnb-list li:first-child a { font-size: clamp(12px, 1.66vw, 17px); }
+    .gnb-cta { padding-left: clamp(12px, 2.93vw, 30px); }
+    .btn-apply {
+      width: clamp(88px, 11.7vw, 120px);
+      height: clamp(36px, 4.3vw, 44px);
+      padding: 0;
+      font-size: clamp(13px, 1.56vw, 16px);
+    }
+    .btn-apply svg { width: 6px; height: 10px; }
+
+    /* 히어로: 텍스트 위 / 비주얼 아래 세로 배치 */
+    .main-visual { height: auto; min-height: 0; }
+    .mv-container { width: 100%; height: auto; padding-bottom: 140px; transform: none; }
+
+    .mv-copy {
+      position: static;
+      width: auto;
+      padding: 98px clamp(20px, 3.9vw, 40px) 0;
+      justify-content: flex-start;
+      gap: 40px;
+    }
+    .mv-text { gap: 22px; }
+    .mv-title { gap: 16px; }
+    .mv-season { font-size: clamp(20px, 2.73vw, 28px); }
+    .mv-brand { font-size: clamp(44px, 5.57vw, 57px); line-height: 60px; letter-spacing: -1.4px; }
+    .mv-kind { font-size: clamp(28px, 3.32vw, 34px); line-height: 54px; letter-spacing: -0.9px; }
+    .mv-period { font-size: clamp(13px, 1.875vw, 19.2px); white-space: normal; }
+    .btn-main { width: 303px; height: 64px; padding: 0; font-size: 20px; line-height: 30px; letter-spacing: -0.42px; }
+
+    /* 비주얼 콜라주: 1440 기준 px 좌표(700,118 ~ 1390,781) → 박스 대비 % 로 변환 */
+    .mv-visual {
+      position: relative;
+      width: clamp(300px, 46vw, 470px);
+      height: auto;
+      aspect-ratio: 690 / 663;
+      margin: 30px auto 0;
+    }
+    .ring-glow { left: 0; top: 0; width: 96.09%; height: 100%; }
+    .ring-line { left: 7.97%; top: 8.3%; width: 80.14%; height: 83.41%; }
+    .micro { left: 9.54%; top: 5.08%; width: 41.96%; height: 33.45%; }
+    .char1 { left: 16.68%; top: 26.71%; width: 36.73%; height: 59.6%; }
+    .char2 { left: 48.81%; top: 26.46%; width: 26.27%; height: 57.47%; }
+    .char3 { left: 5.71%; top: 53%; width: 31.37%; height: 39.55%; }
+    .char4 { left: 57.36%; top: 56.18%; width: 42.34%; height: 31.19%; }
+    .star1 { left: 32.12%; top: 17.95%; width: 2.55%; height: 2.52%; }
+    .star2 { left: 5.84%; top: 53%; width: 3.32%; height: 3.58%; }
+    .star3 { left: 89.12%; top: 53.78%; width: 3.06%; height: 3.19%; }
+    .star3.big { left: 91.67%; top: 47.42%; width: 4.97%; height: 5.31%; }
+    .star4 { left: 66.8%; top: 19.82%; width: 3.44%; height: 3.72%; }
+
+    .scroll-down { bottom: 40px; width: 64px; height: 64px; margin-left: -32px; }
+    .scroll-down svg { width: 32px; height: 32px; }
+  }
+
+  /* ---------- Mobile : 390px 이하 ---------- */
+  @media (max-width: 390px) {
+    /* 헤더: 로고 + 지원하기 + 햄버거 */
+    .site-header { height: 70px; }
+    .header-inner { height: 70px; padding: 0 20px; }
+    .brand { width: 130px; margin-right: auto; }
+
+    .header-apply {
+      display: inline-flex;
+      position: relative;
+      width: 63px;
+      height: 29px;
+      font-size: 12px;
+      line-height: 1;
+      letter-spacing: -0.3px;
+    }
+    .header-apply::after { content: ""; position: absolute; inset: -8px -4px; } /* 터치 영역 확장 */
+
+    .btn-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-right: -12px; /* 아이콘 우측을 20px 여백에 맞춤 */
+      padding: 0;
+      background: transparent;
+      color: var(--black);
+    }
+    .btn-menu svg { width: 20px; height: 14px; }
+
+    /* 전체 메뉴: 오른쪽에서 슬라이드 */
+    .gnb {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0 20px;
+      overflow-y: auto;
+      background: var(--white) url("./images/mo_menu_char.png") no-repeat right 12px bottom 24px / 121px auto;
+      z-index: 10;
+      transform: translateX(100%);
+      visibility: hidden;
+      transition: transform 0.3s ease, visibility 0s linear 0.3s;
+    }
+    .gnb.is-open {
+      transform: translateX(0);
+      visibility: visible;
+      transition: transform 0.3s ease, visibility 0s;
+    }
+    html.menu-open,
+    html.menu-open body { overflow: hidden; } /* 배경 스크롤 방지 */
+
+    .gnb-head { display: flex; align-items: center; justify-content: space-between; height: 48px; }
+    .gnb-head img { width: 94px; height: 16px; }
+    .btn-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-right: -15px;
+      padding: 0;
+      background: transparent;
+      color: var(--black);
+    }
+    .btn-close svg { width: 14px; height: 14px; }
+
+    .gnb-list { flex-direction: column; gap: 0; margin-top: 44px; }
+    .gnb-list li { border-bottom: 1px solid #E5E5E5; }
+    .gnb-list a,
+    .gnb-list li:first-child a { height: 51px; font-size: 17px; }
+    .gnb-cta { padding: 36px 0 0; }
+    .gnb-cta .btn-apply { width: 100%; height: 44px; font-size: 16px; }
+
+    /* 히어로 */
+    .mv-container { padding-bottom: 90px; }
+    .mv-copy { padding: 100px 20px 0; gap: 48px; }
+    .mv-text { gap: 24px; }
+    .mv-title { gap: 20px; }
+    .mv-season { font-size: 20px; line-height: 34px; letter-spacing: -0.4px; }
+    .mv-brand { font-size: 54px; line-height: 58px; letter-spacing: -1.3px; }
+    .mv-kind { font-size: 34px; line-height: 52px; letter-spacing: -0.8px; }
+    .mv-period { font-size: 12.5px; line-height: 20px; letter-spacing: -0.26px; }
+    .btn-main { width: 200px; height: 47px; font-size: 15px; line-height: 22px; letter-spacing: -0.3px; }
+
+    .mv-visual { width: calc(100% - 30px); margin-top: 32px; }
+    .ring-glow { border-width: 3px; }
+    .scroll-down { bottom: 20px; width: 40px; height: 40px; margin-left: -20px; }
+    .scroll-down svg { width: 20px; height: 20px; }
+  }
+
   .sr-only {
     position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
     overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
@@ -299,7 +460,15 @@
       <img src="./images/logo_svg.svg" alt="한미그룹 Hanmi">
     </a>
 
-    <nav class="gnb" aria-label="주요 메뉴">
+    <nav class="gnb" id="gnb" aria-label="주요 메뉴">
+      <div class="gnb-head">
+        <img src="./images/logo_svg.svg" alt="한미그룹 Hanmi">
+        <button type="button" class="btn-close" aria-label="메뉴 닫기">
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
       <ul class="gnb-list">
         <li><a href="#jobs">직무소개</a></li>
         <li><a href="#qualification">지원자격 및 접수방법</a></li>
@@ -314,6 +483,14 @@
         </a>
       </div>
     </nav>
+
+    <!-- 모바일 전용: 헤더 지원하기 + 햄버거 -->
+    <a class="btn btn-apply header-apply" href="#apply">지원하기</a>
+    <button type="button" class="btn-menu" aria-label="메뉴 열기" aria-controls="gnb" aria-expanded="false">
+      <svg viewBox="0 0 20 14" fill="none" aria-hidden="true">
+        <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
   </div>
 </header>
 
@@ -375,11 +552,36 @@
   (function () {
     var root = document.documentElement;
     function fit() {
-      var s = Math.min(1, window.innerWidth / 1440);
+      // 태블릿/모바일(1024px 이하)은 CSS 반응형 레이아웃을 쓰므로 축소하지 않는다.
+      var w = window.innerWidth;
+      var s = w <= 1024 ? 1 : Math.min(1, w / 1440);
       root.style.setProperty('--scale', s.toFixed(4));
     }
     fit();
     window.addEventListener('resize', fit);
+
+    // 모바일 햄버거 메뉴
+    var toggle = document.querySelector('.btn-menu');
+    var closeBtn = document.querySelector('.btn-close');
+    var gnb = document.getElementById('gnb');
+    function setMenu(open) {
+      gnb.classList.toggle('is-open', open);
+      root.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) closeBtn.focus();
+      else if (gnb.contains(document.activeElement)) toggle.focus();
+    }
+    toggle.addEventListener('click', function () { setMenu(true); });
+    closeBtn.addEventListener('click', function () { setMenu(false); });
+    gnb.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); }); // 스크롤 잠금 해제 후 아래 앵커 이동 실행
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && gnb.classList.contains('is-open')) setMenu(false);
+    });
+    var mq = window.matchMedia('(max-width: 390px)');
+    function onMq(e) { if (!e.matches) setMenu(false); }
+    if (mq.addEventListener) mq.addEventListener('change', onMq); else mq.addListener(onMq);
 
     // 앵커 이동: 대상 섹션이 있을 때만 부드럽게 스크롤
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
