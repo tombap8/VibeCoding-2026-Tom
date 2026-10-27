@@ -32,6 +32,7 @@
     background: var(--white);
     -webkit-font-smoothing: antialiased;
     word-break: keep-all;
+    position: relative;
   }
   a { color: inherit; text-decoration: none; transition: color var(--transition); }
   button { font-family: inherit; border: 0; cursor: pointer; }
@@ -61,18 +62,23 @@
   }
 
   /* ---------- Header ---------- */
+  /* header는 main 밖(형제)에 위치하며, 히어로 상단에 겹쳐 보이도록 절대 배치 */
   .site-header {
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 100px;
+    height: calc(100px * var(--scale));
     z-index: 5;
   }
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: var(--container-width);
     height: 100px;
+    margin: 0 auto;
     padding: 0 60px;
+    transform: scale(var(--scale));
+    transform-origin: top center;
   }
   .brand { display: block; width: 182px; height: 31px; }
   .brand img { width: 182px; height: 31px; }
@@ -261,6 +267,23 @@
   .scroll-down svg { width: 40px; height: 40px; }
   .scroll-down:hover { background: var(--white); color: var(--red); }
 
+  /* ---------- Footer ---------- */
+  .site-footer {
+    background: var(--black);
+    color: var(--white-50);
+  }
+  .footer-inner {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 40px 60px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.3px;
+  }
+  .footer-inner p { margin: 0; }
+
   .sr-only {
     position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
     overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
@@ -269,33 +292,35 @@
 </head>
 <body>
 
+<!-- 상단 메뉴 영역 -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#main-visual" aria-label="한미그룹 홈">
+      <img src="./images/logo_svg.svg" alt="한미그룹 Hanmi">
+    </a>
+
+    <nav class="gnb" aria-label="주요 메뉴">
+      <ul class="gnb-list">
+        <li><a href="#jobs">직무소개</a></li>
+        <li><a href="#qualification">지원자격 및 접수방법</a></li>
+        <li><a href="#schedule">채용설명회 일정</a></li>
+      </ul>
+      <div class="gnb-cta">
+        <a class="btn btn-apply" href="#apply">
+          <span>지원하기</span>
+          <svg viewBox="0 0 7 12" fill="none" aria-hidden="true">
+            <path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- 메인 컨텐츠 영역 -->
 <main>
   <section class="main-visual" id="main-visual" aria-label="한미그룹 2026년 하반기 공개채용">
     <div class="mv-container">
-
-      <header class="site-header">
-        <div class="header-inner">
-          <a class="brand" href="#main-visual" aria-label="한미그룹 홈">
-            <img src="./images/logo_svg.svg" alt="한미그룹 Hanmi">
-          </a>
-
-          <nav class="gnb" aria-label="주요 메뉴">
-            <ul class="gnb-list">
-              <li><a href="#jobs">직무소개</a></li>
-              <li><a href="#qualification">지원자격 및 접수방법</a></li>
-              <li><a href="#schedule">채용설명회 일정</a></li>
-            </ul>
-            <div class="gnb-cta">
-              <a class="btn btn-apply" href="#apply">
-                <span>지원하기</span>
-                <svg viewBox="0 0 7 12" fill="none" aria-hidden="true">
-                  <path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </nav>
-        </div>
-      </header>
 
       <div class="mv-visual" aria-hidden="true">
         <div class="ring ring-glow"></div>
@@ -337,6 +362,13 @@
     </div>
   </section>
 </main>
+
+<!-- 하단 푸터 영역 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>&copy; 2026 Hanmi Group. All rights reserved.</p>
+  </div>
+</footer>
 
 <script>
   // 1440px 미만 뷰포트에서는 컨테이너 전체를 비율 축소해 레이아웃이 깨지지 않게 한다.
