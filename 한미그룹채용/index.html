@@ -1421,6 +1421,55 @@
         .jobs-list { grid-template-columns: 1fr; }
         .jobs-br { display: none; } /* PC/태블릿 강제 줄바꿈 해제 → 자연 줄바꿈 */
       }
+
+      /* ---------- Innovation: 성장과 혁신 소식 ---------- */
+      .innovation { position:relative; overflow:hidden; isolation:isolate; background:#fff8f5; }
+      .innovation::before,.innovation::after { content:"";position:absolute;pointer-events:none;z-index:-1;border-radius:50%;background:radial-gradient(circle,var(--red) 0%,transparent 72%); }
+      .innovation::before { width:30vw;height:30vw;right:-12vw;top:-6vw;opacity:.1; }
+      .innovation::after { width:20vw;height:20vw;left:-7vw;bottom:-7vw;opacity:.2; }
+      .innovation-inner { max-width:1440px;margin:auto;padding:105px 60px 100px;position:relative; }
+      .innovation-head { text-align:center;margin-bottom:70px; }
+      .innovation-title { font-size:clamp(30px,3.2vw,48px);line-height:1.4;font-weight:800;letter-spacing:-.05em;margin:0 0 22px; }
+      .innovation-lead { margin:0;font-size:20px;line-height:1.6; }
+      .innovation-board { position:relative;background:rgba(255,250,248,.75);border:1px solid #fff;box-shadow:0 6px 15px rgba(104,55,38,.12);border-radius:22px;padding:38px 60px 42px; }
+      .innovation-news { display:flex;flex-direction:column;gap:26px;margin:0;padding:0;list-style:none; }
+      .innovation-news li { display:flex;min-width:0; }
+      .innovation-news li:nth-child(even) { justify-content:flex-end; }
+      .innovation-bubble { position:relative;max-width:66%;padding:17px 23px;border-radius:14px;background:var(--orange);color:#fff;box-shadow:0 6px 13px rgba(96,51,38,.09);font-size:17px;font-weight:700;line-height:1.55;letter-spacing:-.035em; }
+      .innovation-news li:nth-child(even) .innovation-bubble { background:#fff;color:var(--orange); border-bottom-left-radius: 0;}
+      .innovation-bubble svg { position:absolute;bottom:0px;left:-9px;width:18px;height:18px;fill:var(--orange);pointer-events:none; }
+      .innovation-news li:nth-child(even) .innovation-bubble svg {left:auto;right:-9px;fill:#fff;transform:scaleX(-1);}
+      .innovation-note { text-align:right;margin:28px 0 0;font-size:12px;color:#999; }
+      .innovation-note::before {content:"•";color:var(--orange);margin-right:8px;}
+      .innovation-deco {position:absolute;height:auto;pointer-events:none;z-index:2;}
+      .innovation-deco--chemical {width:230px;right:8px;top:205px;opacity:.7;}
+      .innovation-deco--atom {width:135px;right:85px;top:180px;}
+      .innovation-deco--molecule {width:140px;left:60px;bottom:10px;}
+      @media(max-width:1024px) {
+        .innovation-inner {padding:75px 30px 85px;}
+        .innovation-head {margin-bottom:55px;}
+        .innovation-title {font-size:clamp(28px,3.6vw,38px);}
+        .innovation-lead {font-size:16px;}
+        .innovation-board {padding:40px 42px;}
+        .innovation-bubble {max-width:74%;font-size:15px;padding:14px 18px;}
+        .innovation-deco--chemical {width:190px;right:0;top:188px;}
+        .innovation-deco--atom {width:105px;right:58px;top:183px;}
+        .innovation-deco--molecule {width:100px;left:30px;bottom:8px;}
+      }
+      @media(max-width:568px) {
+        .innovation-inner {padding:14px 28px 70px;}
+        .innovation-head {margin-bottom:45px;}
+        .innovation-title {font-size:clamp(24px,6vw,32px);line-height:1.4;margin-bottom:14px;}
+        .innovation-lead {font-size:15px;line-height:1.6;}
+        .innovation-board {padding:20px 28px 25px;border-radius:20px;}
+        .innovation-news {gap:13px;}
+        .innovation-news li,.innovation-news li:nth-child(even) {justify-content:stretch;}
+        .innovation-bubble {max-width:100%;width:100%;padding:13px 15px;font-size:14px;line-height:1.5;}
+        .innovation-note {font-size:11px;margin-top:22px;}
+        .innovation-deco--chemical {width:125px;right:8px;top:145px;}
+        .innovation-deco--atom {width:76px;right:46px;top:148px;}
+        .innovation-deco--molecule {width:80px;left:25px;bottom:6px;}
+      }
     </style>
   </head>
   <body>
@@ -1727,6 +1776,29 @@
             <!-- TODO: 현직자 전체 보기 URL로 교체 -->
             <a class="btn btn-main jobs-cta" href="#jobs">모든 현직자 알아가기!</a>
           </div>
+        </div>
+      </section>
+      <section class="innovation" id="innovation" aria-labelledby="innovation-title">
+        <div class="innovation-inner">
+          <header class="innovation-head">
+            <h2 class="innovation-title" id="innovation-title">당신의 가능성,<br>한미그룹에서 더 크게 성장합니다</h2>
+            <p class="innovation-lead">연구와 혁신으로 성장하며 글로벌 제약/바이오 기업을 향해 나아갑니다.</p>
+          </header>
+          <img class="innovation-deco innovation-deco--chemical" src="./images/inno_chemical.png" alt="" />
+          <img class="innovation-deco innovation-deco--atom" src="./images/inno_molecule1.png" alt="" />
+          <div class="innovation-board">
+            <ul class="innovation-news" aria-label="한미그룹 혁신 소식">
+              <li><div class="innovation-bubble">한미약품, 상반기 누적 매출 8,602억원...2분기 영업이익 117% 증가<svg viewBox="0 0 18 18" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M18 0 V18 H0 Q11 15 18 0Z"/></svg></div></li>
+              <li><div class="innovation-bubble">“사업형 지주사 경쟁력 입증”...한미사이언스, 2분기 영업이익 71%↑ 2분기 매출 3,679억원...상반기 누적 매출 7,216억원 돌파<svg viewBox="0 0 18 18" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M18 0 V18 H0 Q11 15 18 0Z"/></svg></div></li>
+              <li><div class="innovation-bubble">한미약품, 로슈 제넨텍에 비만신약 기술수출...최대 3조 2,000억 규모<svg viewBox="0 0 18 18" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M18 0 V18 H0 Q11 15 18 0Z"/></svg></div></li>
+              <li><div class="innovation-bubble">“UCN2 이어 또...” 한미약품, 두 번째 근육 증가 비만신약 공개<svg viewBox="0 0 18 18" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M18 0 V18 H0 Q11 15 18 0Z"/></svg></div></li>
+              <li><div class="innovation-bubble">명품 반열 오른 한미 ‘로수젯’...압도적 데이터 경쟁력으로 시장 석권 2년 연속 국내사 개발 전문의약품 시장 ‘1위’...올해 상반기 누적 처방액도 선두<svg viewBox="0 0 18 18" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M18 0 V18 H0 Q11 15 18 0Z"/></svg></div></li>
+              <li><div class="innovation-bubble">“비만 넘어 항암으로 혁신 확장”...한미, AACR서 차세대 신약 대거 공개<svg viewBox="0 0 18 18" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M18 0 V18 H0 Q11 15 18 0Z"/></svg></div></li>
+              <li><div class="innovation-bubble">한미 완전두유·케어미, 영양에 ‘맛’까지 인정...국제 우수 미각상 수상<svg viewBox="0 0 18 18" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M18 0 V18 H0 Q11 15 18 0Z"/></svg></div></li>
+            </ul>
+            <p class="innovation-note">말풍선을 클릭해서 기사를 확인해 보세요.</p>
+          </div>
+          <img class="innovation-deco innovation-deco--molecule" src="./images/inno_molecule2.png" alt="" />
         </div>
       </section>
     </main>
