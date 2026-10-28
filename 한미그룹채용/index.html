@@ -85,7 +85,7 @@
         min-height: calc(720px * var(--scale));
         margin: 0 auto;
         overflow: hidden;
-        background: #fff1ec url("./images/mv_bg_png.png") center / cover
+        background: #fff1ec url("./images/mv_bg.png") center / cover
           no-repeat;
       }
 
@@ -958,15 +958,30 @@
         --his-end-main: calc(34 * var(--u));
         --his-dot: calc(8 * var(--u));
         --his-ease: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        /* 접힘 상태 한 화면 기준: 100vh 폴백 → 100dvh 우선 (모바일 주소창 대응) */
+        --his-vh: 100vh;
+        /* 접힘 시 푸터(토글 버튼)가 본문과 겹치는 양 / 본문 아래로 튀어나오는 양 */
+        --his-foot-pull: 110px;
+        --his-foot-net: 14px;
+        --his-collapsed-h: calc(var(--his-vh) - var(--his-foot-net)); /* 본문 + 푸터 = 정확히 1화면 */
         position: relative;
         width: 100%;
         background: var(--white);
       }
+      @supports (height: 100dvh) {
+        .history { --his-vh: 100dvh; }
+      }
       .history-body {
         position: relative;
-        overflow: hidden;
+        overflow: hidden; /* 트랜지션 중 콘텐츠 클리핑. 펼침 완료 후엔 max-height:none 이라 잘리지 않음 */
+        min-height: 0;
         transition: max-height var(--his-ease);
       }
+      /* 접힘: JS 가 inline 으로 넣는 max-height(전체 높이의 2/3)보다 우선시켜 1화면(100dvh)로 고정.
+         inline max-height 가 px 로 남아 있어도 !important 로 덮어써서 기존 토글/트랜지션 구조는 그대로 사용 */
+      .history.is-collapsed .history-body { max-height: var(--his-collapsed-h) !important; }
+      /* 펼침: 높이 제한 해제(JS 가 transitionend 후 inline none 처리). 내부 콘텐츠는 자연 높이로 늘어나며 페이지 스크롤로 이어짐 */
+      .history.is-expanded .history-body { min-height: 0; }
       /* 접힘 상태: 하단 페이드아웃 (투명 → #fff). rgba(255,255,255,0)은 사파리의 회색 번짐 방지용 */
       .history-body::after {
         content: "";
@@ -974,7 +989,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        height: clamp(180px, 22vw, 320px);
+        height: min(clamp(180px, 22vw, 320px), 40%);
         background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 85%);
         opacity: 0;
         pointer-events: none;
@@ -1118,7 +1133,14 @@
         padding: calc(24 * var(--u)) 0 calc(120 * var(--u));
         transition: margin-top var(--his-ease);
       }
-      .history.is-collapsed .history-foot { margin-top: -110px; padding-top: 0; padding-bottom: 60px; }
+      .history.is-collapsed .history-foot {
+        box-sizing: border-box;
+        align-items: flex-start;
+        margin-top: calc(-1 * var(--his-foot-pull));
+        height: calc(var(--his-foot-pull) + var(--his-foot-net)); /* 본문 하단 +14px 만 차지 */
+        padding-top: 0;
+        padding-bottom: 60px;
+      }
       .history-toggle {
         display: flex;
         flex-direction: column;
@@ -1171,6 +1193,7 @@
         .history-end-copy { margin-top: clamp(40px, 8vw, 75px); }
         .history-end-copy::before { inset: -120px -2% 0; }
         .history-foot { padding: 24px 0 clamp(60px, 12vw, 120px); }
+        /* 접힘 푸터는 .history.is-collapsed .history-foot(높이 고정)이 우선 → 1화면 비율 유지 */
       }
 
       /* ---------- Mobile : 568px 이하 (선 제거, 1열, 홀/짝 블록 좌우 교차 정렬) ---------- */
@@ -1209,6 +1232,194 @@
         .history-end-copy::before { inset: -60px -20px 0; }
         .history-end-main { line-height: 1.75; }
         .history-toggle { font-size: 14px; }
+        .history-body::after { height: min(clamp(120px, 30vw, 180px), 40%); }
+      }
+
+      /* 가로 모드 등 낮은 화면: 페이드/푸터가 한 화면을 과점하지 않도록 */
+      @media (max-height: 480px) {
+        .history { --his-foot-pull: 90px; }
+        .history.is-collapsed .history-foot { padding-bottom: 40px; }
+        .history-body::after { height: min(120px, 40%); }
+      }
+
+      /* ---------- Jobs (직무소개) ---------- */
+      /* 데스크탑(1025px~): 1440 기준 px 값을 --scale 로 축소 (history 와 동일 방식).
+         태블릿/모바일: 같은 변수를 시안 비율(vw) 기반 clamp 값으로 교체. */
+      .jobs {
+        --u: calc(1px * var(--scale));
+        --jobs-pad-top: calc(199 * var(--u));
+        --jobs-pad-bottom: calc(112 * var(--u));
+        --jobs-pad-x: calc(60 * var(--u));
+        --jobs-title: calc(48 * var(--u));
+        --jobs-title-gap: calc(24 * var(--u));
+        --jobs-lead: calc(24 * var(--u));
+        --jobs-lead-gap: calc(84 * var(--u));
+        --jobs-card-gap: calc(60 * var(--u));
+        --jobs-card-pad: calc(40 * var(--u));
+        --jobs-card-radius: calc(32 * var(--u));
+        --jobs-photo-radius: calc(24 * var(--u));
+        --jobs-desc: calc(18 * var(--u));
+        --jobs-desc-gap: calc(36 * var(--u));
+        --jobs-meta: calc(16 * var(--u));
+        --jobs-foot-gap: calc(30 * var(--u));
+        --jobs-arrow: calc(40 * var(--u));
+        --jobs-cta-gap: calc(88 * var(--u));
+        --jobs-cta-w: calc(328 * var(--u));
+        --jobs-cta-h: calc(72 * var(--u));
+        --jobs-cta-font: calc(22px * var(--scale));
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background: #fdf5f2;
+      }
+      /* 우측 중앙 / 우하단 은은한 빛 번짐 (데스크탑 시안) */
+      .jobs::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse calc(130 * var(--u)) calc(90 * var(--u)) at 100% 54%, rgba(248, 196, 150, 0.6) 0%, rgba(248, 196, 150, 0) 100%),
+          radial-gradient(ellipse calc(420 * var(--u)) calc(120 * var(--u)) at 100% 100%, rgba(255, 93, 50, 0.08) 0%, rgba(255, 93, 50, 0) 100%);
+      }
+      .jobs-inner {
+        position: relative;
+        z-index: 2;
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: var(--jobs-pad-top) var(--jobs-pad-x) var(--jobs-pad-bottom);
+      }
+      .jobs-deco { position: absolute; height: auto; max-width: none; pointer-events: none; }
+      .jobs-deco--bottle { z-index: 2; left: 0; bottom: calc(118 * var(--u)); width: calc(224 * var(--u)); }
+      .jobs-deco--char { z-index: 2; right: calc(11 * var(--u)); top: calc(134 * var(--u)); width: calc(281 * var(--u)); }
+
+      /* 헤드 */
+      .jobs-head { text-align: center; margin-bottom: var(--jobs-lead-gap); }
+      .jobs-headline { position: relative; display: inline-block; }
+      .jobs-logo { position: absolute; left: calc(-46 * var(--u)); top: calc(-60 * var(--u)); width: calc(110 * var(--u)); height: auto; }
+      .jobs-title { margin: 0; font-size: var(--jobs-title); font-weight: 800; line-height: 1.5; letter-spacing: -0.03em; }
+      .jobs-lead { margin: var(--jobs-title-gap) 0 0; font-size: var(--jobs-lead); font-weight: 500; line-height: 1.5; letter-spacing: -0.03em; }
+
+      /* 카드 2열 */
+      .jobs-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--jobs-card-gap); margin: 0; padding: 0; list-style: none; }
+      .jobs-card {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        padding: var(--jobs-card-pad);
+        border-radius: var(--jobs-card-radius);
+        background: #fef7f5c9;
+    backdrop-filter: blur(4px);
+        box-shadow: 0 calc(10 * var(--u)) calc(30 * var(--u)) rgba(120, 60, 40, 0.07);
+        transition: transform var(--transition), box-shadow var(--transition),background .5s;
+      }
+
+      /* 마우스 오버시 카드 배경색 투명도없애기 */
+      .jobs-card:hover {
+        background: #fef7f5;
+      }
+
+      .jobs-photo { margin: 0; overflow: hidden; border-radius: var(--jobs-photo-radius); aspect-ratio: 1100 / 706; background: #eee; }
+      .jobs-photo img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; }
+      .jobs-desc { margin: var(--jobs-desc-gap) 0 0; font-size: var(--jobs-desc); font-weight: 700; line-height: 1.6; letter-spacing: -0.03em; }
+      .jobs-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: var(--jobs-foot-gap); }
+      .jobs-meta { display: flex; align-items: center; flex-wrap: wrap; margin: 0; font-size: var(--jobs-meta); font-weight: 500; line-height: 1.5; letter-spacing: -0.03em; color: #585858; }
+      .jobs-name { display: inline-flex; align-items: center; }
+      .jobs-name::before { content: ""; width: 1px; height: 0.8em; margin: 0 0.9em; background: #8a8a8a; } /* 소속 | 이름 구분선 (장식) */
+
+      /* 화살표 원형 버튼: ::after 로 카드 전체를 클릭 영역으로 확장 */
+      .jobs-arrow {
+        display: flex;
+        flex: none;
+        align-items: center;
+        justify-content: center;
+        width: var(--jobs-arrow);
+        height: var(--jobs-arrow);
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ea8a6b 0%, #f4dfd8 105%);
+        color: var(--white);
+        transition: background var(--transition), transform var(--transition);
+      }
+      .jobs-arrow svg { width: 45%; height: 45%; }
+      .jobs-arrow::after { content: ""; position: absolute; inset: 0; border-radius: var(--jobs-card-radius); }
+      .jobs-arrow:focus-visible { outline: none; }
+      .jobs-arrow:focus-visible::after { outline: 2px solid var(--red); outline-offset: 3px; }
+      @media (hover: hover) {
+        .jobs-card:hover { transform: translateY(-6px); box-shadow: 0 calc(16 * var(--u)) calc(36 * var(--u)) rgba(120, 60, 40, 0.12); }
+        .jobs-card:hover .jobs-arrow { background: var(--gradient-cta); transform: translateX(3px); }
+      }
+
+      /* CTA (기존 .btn-main 재사용, 크기만 시안에 맞게 변수화) */
+      .jobs-cta-wrap { position: relative; z-index: 1; display: flex; justify-content: center; margin-top: var(--jobs-cta-gap); }
+      .jobs .jobs-cta { width: var(--jobs-cta-w); height: var(--jobs-cta-h); padding: 0; font-size: var(--jobs-cta-font); line-height: 1.5; letter-spacing: -0.03em; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .jobs-card, .jobs-arrow { transition: none; }
+        .jobs-card:hover, .jobs-card:hover .jobs-arrow { transform: none; }
+      }
+
+      /* ---------- Tablet : 1024px 이하 (시안 954px 폭 기준 vw 비례, 2열 유지) ---------- */
+      @media (max-width: 1024px) {
+        .jobs {
+          --u: 1px;
+          --jobs-pad-top: clamp(80px, 13.6vw, 140px);
+          --jobs-pad-bottom: clamp(60px, 10.7vw, 110px);
+          --jobs-pad-x: clamp(20px, 4.2vw, 43px);
+          --jobs-title: clamp(24px, 3.4vw, 35px);
+          --jobs-title-gap: clamp(8px, 1.7vw, 18px);
+          --jobs-lead: clamp(14px, 2.05vw, 21px);
+          --jobs-lead-gap: clamp(28px, 3.7vw, 38px);
+          --jobs-card-gap: clamp(12px, 1.9vw, 20px);
+          --jobs-card-pad: clamp(16px, 2.4vw, 25px);
+          --jobs-card-radius: clamp(18px, 2.5vw, 26px);
+          --jobs-photo-radius: clamp(12px, 1.9vw, 20px);
+          --jobs-desc: clamp(13px, 1.52vw, 16px);
+          --jobs-desc-gap: clamp(14px, 2.1vw, 22px);
+          --jobs-meta: clamp(11px, 1.3vw, 13.5px);
+          --jobs-foot-gap: clamp(12px, 1.7vw, 18px);
+          --jobs-arrow: clamp(24px, 3.1vw, 32px);
+          --jobs-cta-gap: clamp(28px, 3.9vw, 40px);
+          --jobs-cta-w: clamp(220px, 29.3vw, 300px);
+          --jobs-cta-h: clamp(48px, 6.3vw, 64px);
+          --jobs-cta-font: clamp(15px, 1.66vw, 17px);
+        }
+        .jobs::before { content: none; }
+        .jobs-logo { left: -8.2vw; top: -4.2vw; width: 7.4vw; }
+        .jobs-deco--char { right: 0.6vw; top: 2.6vw; width: 19.5vw; }
+        .jobs-deco--bottle { left: 9.2vw; bottom: 2.3vw; width: 16vw; }
+        .jobs-card { box-shadow: 0 8px 24px rgba(120, 60, 40, 0.07); }
+      }
+
+      /* ---------- Mobile : 568px 이하 (시안 337px 폭 기준 vw 비례, 1열) ---------- */
+      @media (max-width: 568px) {
+        .jobs {
+          --jobs-pad-top: clamp(100px, 29.7vw, 170px);
+          --jobs-pad-bottom: clamp(60px, 20.5vw, 110px);
+          --jobs-pad-x: clamp(20px, 5vw, 28px);
+          --jobs-title: clamp(20px, 5.5vw, 30px);
+          --jobs-title-gap: clamp(10px, 3.7vw, 20px);
+          --jobs-lead: clamp(12px, 3.03vw, 17px);
+          --jobs-lead-gap: clamp(20px, 6.2vw, 36px);
+          --jobs-card-gap: clamp(12px, 4.2vw, 24px);
+          --jobs-card-pad: clamp(18px, 6.2vw, 32px);
+          --jobs-card-radius: clamp(18px, 5.6vw, 30px);
+          --jobs-photo-radius: clamp(10px, 3.5vw, 18px);
+          --jobs-desc: clamp(12px, 2.97vw, 16px);
+          --jobs-desc-gap: clamp(14px, 4.7vw, 24px);
+          --jobs-meta: clamp(11px, 2.6vw, 14px);
+          --jobs-foot-gap: clamp(10px, 3vw, 16px);
+          --jobs-arrow: clamp(24px, 6.2vw, 34px);
+          --jobs-cta-gap: clamp(20px, 6.2vw, 34px);
+          --jobs-cta-w: clamp(200px, 51.5vw, 260px);
+          --jobs-cta-h: clamp(47px, 11.6vw, 58px);
+          --jobs-cta-font: clamp(15px, 3.7vw, 18px);
+        }
+        .jobs-logo { left: -12.5vw; top: -11.6vw; width: 19.3vw; }
+        .jobs-deco--char { right: 0; top: 0; width: 32.7vw; }
+        .jobs-deco--bottle { display: none; } /* 모바일 시안에는 약병 없음 */
+        .jobs-list { grid-template-columns: 1fr; }
+        .jobs-br { display: none; } /* PC/태블릿 강제 줄바꿈 해제 → 자연 줄바꿈 */
       }
     </style>
   </head>
@@ -1303,11 +1514,11 @@
           <div class="mv-visual" aria-hidden="true">
             <div class="ring ring-glow"></div>
             <div class="ring ring-line"></div>
-            <img class="micro" src="./images/mv_micro_png.png" alt="" />
-            <img class="char1" src="./images/mv_char1_png.png" alt="" />
-            <img class="char2" src="./images/mv_char2_png.png" alt="" />
-            <img class="char3" src="./images/mv_char3_png.png" alt="" />
-            <img class="char4" src="./images/mv_char4_png.png" alt="" />
+            <img class="micro" src="./images/mv_micro.png" alt="" />
+            <img class="char1" src="./images/mv_char1.png" alt="" />
+            <img class="char2" src="./images/mv_char2.png" alt="" />
+            <img class="char3" src="./images/mv_char3.png" alt="" />
+            <img class="char4" src="./images/mv_char4.png" alt="" />
             <span class="star star1"></span>
             <span class="star star2"></span>
             <span class="star star3"></span>
@@ -1455,6 +1666,67 @@
             </svg>
             <span class="history-toggle-label">접기</span>
           </button>
+        </div>
+      </section>
+
+      <!-- ---------- 직무소개 (Jobs) ---------- -->
+      <section class="jobs" id="jobs" aria-labelledby="jobs-title">
+        <img class="jobs-deco jobs-deco--bottle" src="./images/con3_bottle.png" width="442" height="692" alt="한미 로고가 새겨진 파란색 약병 일러스트" />
+
+        <div class="jobs-inner">
+          <header class="jobs-head">
+            <div class="jobs-headline">
+              <img class="jobs-logo" src="./images/con3_logo.png" width="216" height="193" alt="Hanmi 로고" />
+              <h2 class="jobs-title" id="jobs-title">한미에서는 어떤 일을 할까요?</h2>
+            </div>
+            <p class="jobs-lead">일의 보람부터 성장의 순간까지, 먼저 경험한 현직자들이 솔직하게 들려드립니다.</p>
+          </header>
+
+          <img class="jobs-deco jobs-deco--char" src="./images/con3_char.png" width="560" height="458" alt="서류 가방을 들고 출근하는 보라색 캐릭터" />
+
+          <ul class="jobs-list">
+            <li class="jobs-card">
+              <figure class="jobs-photo">
+                <img src="./images/con3_int1.png" width="1100" height="706" alt="실험 장비가 놓인 품질관리 연구실에서 주먹을 쥐어 보이며 웃고 있는 한미약품 이건호 사원" />
+              </figure>
+              <p class="jobs-desc">정밀한 시험과 분석으로 의약품의 품질을 확인해<br class="jobs-br" /> 안전하고 신뢰할 수 있는 의약품을 만들어갑니다.</p>
+              <div class="jobs-foot">
+                <p class="jobs-meta">
+                  <span class="jobs-dept">한미약품 품질관리</span>
+                  <span class="jobs-name">이건호 사원</span>
+                </p>
+                <!-- TODO: 실제 인터뷰 상세 URL로 교체 (카드 전체가 클릭 영역) -->
+                <a class="jobs-arrow" href="#jobs" aria-label="한미약품 품질관리 이건호 사원 인터뷰 보기">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="jobs-card">
+              <figure class="jobs-photo">
+                <img src="./images/con3_int2.png" width="1100" height="706" alt="밝은 사무 공간의 소파에 앉아 미소 짓고 있는 한미약품 박진하 연구원" />
+              </figure>
+              <p class="jobs-desc">신약 후보물질의 가능성을 과학적으로 검증해<br class="jobs-br" /> 새로운 치료제가 환자에게 향하는 첫걸음을 만듭니다.</p>
+              <div class="jobs-foot">
+                <p class="jobs-meta">
+                  <span class="jobs-dept">한미약품 전임상연구</span>
+                  <span class="jobs-name">박진하 연구원</span>
+                </p>
+                <a class="jobs-arrow" href="#jobs" aria-label="한미약품 전임상연구 박진하 연구원 인터뷰 보기">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div>
+            </li>
+          </ul>
+
+          <div class="jobs-cta-wrap">
+            <!-- TODO: 현직자 전체 보기 URL로 교체 -->
+            <a class="btn btn-main jobs-cta" href="#jobs">모든 현직자 알아가기!</a>
+          </div>
         </div>
       </section>
     </main>
