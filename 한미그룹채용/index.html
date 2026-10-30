@@ -101,12 +101,26 @@
       /* ---------- Header ---------- */
       /* header는 main 밖(형제)에 위치하며, 히어로 상단에 겹쳐 보이도록 절대 배치 */
       .site-header {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         height: calc(100px * var(--scale));
         z-index: 5;
+        transition:
+          top 0.3s ease,
+          background-color 0.3s ease;
+      }
+      .site-header.is-hidden {
+        top: -100px;
+      }
+      .site-header.is-scrolled {
+        background-color: var(--white);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .site-header {
+          transition: none;
+        }
       }
       .header-inner {
         display: flex;
@@ -454,13 +468,15 @@
       }
       .con8-list {
         display: grid;
-        width: 100%;
+        width: calc(100% + 10px);
+        flex-shrink: 0;
         max-width: 1200px;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 4.35%;
         margin: 0;
         padding: 0;
         list-style: none;
+        transform: translateX(5px);
       }
       .con8-card {
         min-width: 0;
@@ -480,7 +496,7 @@
         position: relative;
         display: block;
         overflow: hidden;
-        aspect-ratio: 0.81;
+        aspect-ratio: 0.8135;
         border-radius: 8px;
         background: #222;
       }
@@ -496,7 +512,7 @@
       }
       .con8-card-description {
         display: block;
-        margin: 12px 0 6px;
+        margin: 20px 0 6px;
         font-size: 16px;
         line-height: 1.5;
         text-align: center;
@@ -522,34 +538,34 @@
         height: auto;
       }
       .con8-marking--first-arrow {
-        top: 81%;
-        left: 6%;
+        top: 80.5%;
+        left: 6.7%;
         width: 10%;
       }
       .con8-marking--first-star {
-        top: 86%;
+        top: 85.5%;
         right: -1%;
         width: 13%;
       }
       .con8-marking--first-underline {
-        top: 100%;
-        left: 44%;
+        top: 100.7%;
+        left: 44.7%;
         width: 18%;
       }
       .con8-marking--second-arrow {
-        top: 82%;
-        right: 6%;
+        top: 80.5%;
+        right: 7.3%;
         width: 10%;
       }
       .con8-marking--second-circle {
         top: 91%;
-        left: 41%;
-        width: 18%;
+        left: 39.3%;
+        width: 20%;
       }
       .con8-marking--third-underline {
-        top: 100%;
+        top: 100.7%;
         left: 29%;
-        width: 21%;
+        width: 20%;
       }
       .con8-arrow,
       .con9-arrow {
@@ -691,6 +707,24 @@
       .footer-logo {
         width: 112px;
         height: auto;
+      }
+      .scroll-reveal {
+        opacity: 0;
+        translate: 0 20%;
+        transition:
+          opacity 0.7s ease,
+          translate 0.7s ease;
+      }
+      .scroll-reveal.is-revealed {
+        opacity: 1;
+        translate: 0 0;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .scroll-reveal {
+          opacity: 1;
+          translate: none;
+          transition: none;
+        }
       }
 
       /* =====================================================
@@ -901,6 +935,9 @@
         /* 헤더: 로고 + 지원하기 + 햄버거 */
         .site-header {
           height: 70px;
+        }
+        .site-header.is-hidden {
+          top: -70px;
         }
         .header-inner {
           height: 70px;
@@ -3856,11 +3893,14 @@
           width: 64px;
         }
         .con8-list {
+          width: calc(100% + 5px);
           max-width: 760px;
           gap: 3.2%;
+          transform: translateX(3px);
         }
         .con8-card-description {
-          font-size: 11px;
+          margin-top: 6px;
+          font-size: 10px;
         }
         .con8-card:nth-child(1) {
           margin-top: 37px;
@@ -3872,26 +3912,30 @@
           aspect-ratio: 0.77;
         }
         .con8-marking--first-arrow {
+          top: 79%;
           left: 9%;
         }
         .con8-marking--first-star {
-          top: 84%;
+          top: 82%;
           right: 0;
         }
         .con8-marking--first-underline {
+          top: 99%;
           left: 36%;
           width: 25%;
         }
         .con8-marking--second-arrow {
-          top: 77%;
+          top: 80%;
           right: 8%;
           width: 11%;
         }
         .con8-marking--second-circle {
+          top: 92%;
           left: 38%;
           width: 24%;
         }
         .con8-marking--third-underline {
+          top: 99%;
           left: 29%;
           width: 30%;
         }
@@ -5376,6 +5420,95 @@
     </footer>
 
     <script>
+      (function () {
+        if (!("IntersectionObserver" in window)) return;
+
+        var revealSelector = [
+          ".mirae-title",
+          ".mirae-scene",
+          ".history-head",
+          ".history-block",
+          ".history-foot",
+          ".jobs-head",
+          ".jobs-card",
+          ".jobs-cta-wrap",
+          ".innovation-head",
+          ".innovation-board",
+          ".welfare-head",
+          ".welfare-intro",
+          ".welfare-card",
+          ".tasks-intro",
+          ".tasks-tabs",
+          ".tasks-content > *",
+          ".requirement-title",
+          ".requirement-eligibility-item",
+          ".requirement-conditions",
+          ".requirement-notice",
+          ".requirement-process-group",
+          ".exposition-title",
+          ".exposition-description",
+          ".exposition-hint",
+          ".exposition-tab",
+          ".exposition-region",
+          ".exposition-date-card",
+          ".con8-card",
+        ].join(", ");
+        var previousScrollY = window.scrollY;
+        var scrollDirection = "down";
+        window.addEventListener(
+          "scroll",
+          function () {
+            var currentScrollY = window.scrollY;
+            if (currentScrollY !== previousScrollY) {
+              scrollDirection =
+                currentScrollY > previousScrollY ? "down" : "up";
+              previousScrollY = currentScrollY;
+            }
+          },
+          { passive: true },
+        );
+
+        var revealObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting && scrollDirection === "down") {
+                entry.target.classList.add("is-revealed");
+              } else if (
+                !entry.isIntersecting &&
+                scrollDirection === "up"
+              ) {
+                entry.target.classList.remove("is-revealed");
+              }
+            });
+          },
+          {
+            rootMargin: "-45% 0px -45% 0px",
+            threshold: 0,
+          },
+        );
+
+        function observeRevealTarget(element) {
+          if (element.classList.contains("scroll-reveal")) return;
+          element.classList.add("scroll-reveal");
+          revealObserver.observe(element);
+        }
+
+        function observeRevealTargets(root) {
+          if (root.nodeType !== Node.ELEMENT_NODE) return;
+          if (root.matches(revealSelector)) observeRevealTarget(root);
+          root.querySelectorAll(revealSelector).forEach(observeRevealTarget);
+        }
+
+        var main = document.querySelector("main");
+        observeRevealTargets(main);
+        new MutationObserver(function (records) {
+          records.forEach(function (record) {
+            record.addedNodes.forEach(observeRevealTargets);
+          });
+        }).observe(main, { childList: true, subtree: true });
+      })();
+    </script>
+    <script>
       // 1440px 미만 뷰포트에서는 컨테이너 전체를 비율 축소해 레이아웃이 깨지지 않게 한다.
       (function () {
         var root = document.documentElement;
@@ -5392,6 +5525,7 @@
         var toggle = document.querySelector(".btn-menu");
         var closeBtn = document.querySelector(".btn-close");
         var gnb = document.getElementById("gnb");
+        var siteHeader = document.querySelector(".site-header");
         function setMenu(open) {
           gnb.classList.toggle("is-open", open);
           root.classList.toggle("menu-open", open);
@@ -5420,6 +5554,42 @@
         }
         if (mq.addEventListener) mq.addEventListener("change", onMq);
         else mq.addListener(onMq);
+
+        var previousScrollY = window.scrollY;
+        var scrollTicking = false;
+        function updateHeaderOnScroll() {
+          var currentScrollY = window.scrollY;
+          var scrollDelta = currentScrollY - previousScrollY;
+          previousScrollY = currentScrollY;
+
+          if (gnb.classList.contains("is-open")) {
+            siteHeader.classList.remove("is-hidden");
+            scrollTicking = false;
+            return;
+          }
+
+          if (currentScrollY <= siteHeader.offsetHeight) {
+            siteHeader.classList.remove("is-hidden");
+            siteHeader.classList.remove("is-scrolled");
+          } else {
+            siteHeader.classList.add("is-scrolled");
+            if (scrollDelta > 4) {
+              siteHeader.classList.add("is-hidden");
+            } else if (scrollDelta < -4) {
+              siteHeader.classList.remove("is-hidden");
+            }
+          }
+          scrollTicking = false;
+        }
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (scrollTicking) return;
+            scrollTicking = true;
+            window.requestAnimationFrame(updateHeaderOnScroll);
+          },
+          { passive: true },
+        );
 
         // 앵커 이동: 대상 섹션이 있을 때만 부드럽게 스크롤
         document.querySelectorAll('a[href^="#"]').forEach(function (a) {
