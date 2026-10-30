@@ -2218,8 +2218,8 @@
         margin: 0 0 18px;
       }
       .welfare-intro > * {
-        flex: 1 1 200px;
-        min-width: min(200px, 100%);
+        flex: 0 1 auto;
+        min-width: 0;
       }
       .welfare-scrollbox {
         max-height: 418px;
@@ -2241,20 +2241,21 @@
         background: var(--orange);
       }
       .welfare-subtitle {
+        flex: 0 0 auto;
         margin: 0;
         color: var(--orange);
         font-size: 20px;
         font-weight: 800;
         line-height: 1.5;
         letter-spacing: -0.04em;
+        white-space: nowrap;
       }
       .welfare-subtitle::before {
         content: "💗";
         margin-right: 8px;
       }
-      .welfare-subtitle,
       .welfare-note {
-        word-break: break-all;
+        word-break: keep-all;
         overflow-wrap: break-word;
       }
       .welfare-note {
@@ -2266,7 +2267,7 @@
       .welfare-list {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-auto-rows: 74px;
+        grid-auto-rows: minmax(74px, auto);
         gap: 12px 14px;
         margin: 0;
         padding: 0;
@@ -2282,6 +2283,10 @@
       }
       .welfare-list-intro .welfare-intro {
         margin: 0;
+      }
+      .welfare-data-error {
+        color: #b42318;
+        font-size: 14px;
       }
       .welfare-card {
         display: flex;
@@ -2369,10 +2374,10 @@
       }
       @media (max-width: 568px) {
         .welfare-inner {
-          padding: 82px 24px 24px;
+          padding: 40px 24px 24px;
         }
         .welfare-head {
-          margin-bottom: 46px;
+          margin-bottom: 20px;
         }
         .welfare-title {
           max-width: 340px;
@@ -2408,8 +2413,11 @@
           font-size: 13px;
         }
         .welfare-list {
-          grid-auto-rows: minmax(124px, auto);
+          grid-auto-rows: auto;
           gap: 14px;
+        }
+        .welfare-list > li:not(.welfare-list-intro) {
+          min-height: 124px;
         }
         .welfare-scrollbox {
           max-height: 552px;
@@ -2885,6 +2893,710 @@
           transition: none;
         }
       }
+
+      /* ---------- Requirement: 지원자격 및 전형절차 ---------- */
+      .requirement {
+        --requirement-orange: #ff5d32;
+        background: #fff;
+        color: #111;
+      }
+      .requirement-inner {
+        position: relative;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 48px 40px 46px;
+      }
+      .requirement-title {
+        max-width: 680px;
+        margin: 0 auto 62px;
+        text-align: center;
+        font-size: clamp(32px, 3.2vw, 42px);
+        font-weight: 800;
+        line-height: 1.4;
+        letter-spacing: -0.05em;
+      }
+      .requirement-bulb {
+        position: absolute;
+        top: 24px;
+        right: 7%;
+        width: 92px;
+        height: auto;
+      }
+      .requirement-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 0;
+        padding: 0 0 22px;
+        border-bottom: 1px solid #dedede;
+        list-style: none;
+      }
+      .requirement-tab {
+        width: 100%;
+        height: 48px;
+        border-radius: 12px;
+        background: transparent;
+        color: #888;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .requirement-tab[aria-selected="true"] {
+        background: #fffaf8;
+        box-shadow: 0 5px 13px rgba(128, 74, 54, 0.16);
+        color: var(--requirement-orange);
+      }
+      .requirement-content {
+        min-width: 0;
+      }
+      .requirement-panel[hidden] {
+        display: none;
+      }
+      .requirement-eligibility {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 52px 0 48px;
+        border-bottom: 1px solid #dedede;
+      }
+      .requirement-eligibility-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-width: 0;
+        text-align: center;
+      }
+      .requirement-eligibility-item + .requirement-eligibility-item {
+        border-left: 1px solid #dedede;
+      }
+      .requirement-eligibility-item img {
+        width: 58px;
+        height: 68px;
+        object-fit: contain;
+      }
+      .requirement-eligibility-item h3 {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 800;
+        line-height: 1.5;
+      }
+      .requirement-conditions {
+        display: grid;
+        place-items: center;
+        min-height: 132px;
+        margin: 0;
+        padding: 24px;
+        border-bottom: 1px solid #dedede;
+        list-style: none;
+      }
+      .requirement-conditions ul {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .requirement-conditions li {
+        position: relative;
+        padding-left: 14px;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .requirement-conditions li::before {
+        position: absolute;
+        top: 0.6em;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--requirement-orange);
+        content: "";
+      }
+      .requirement-notice {
+        margin: 0;
+        padding: 34px 16px;
+        border-bottom: 1px solid #dedede;
+        color: #888;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.6;
+      }
+      .requirement-notice strong {
+        color: var(--requirement-orange);
+      }
+      .requirement-process-viewport {
+        width: 100%;
+        overflow: hidden;
+      }
+      .requirement-process-notes {
+        display: grid;
+        gap: 18px;
+        margin: 0;
+        padding: 82px 7% 84px;
+        border-top: 1px solid #dedede;
+        border-bottom: 1px solid #dedede;
+        list-style: none;
+      }
+      .requirement-process-notes li {
+        position: relative;
+        padding-left: 24px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+      .requirement-process-notes li::before {
+        position: absolute;
+        top: 0.65em;
+        left: 0;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--requirement-orange);
+        content: "";
+      }
+      .requirement-process-canvas {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 48px 30px 34px;
+      }
+      .requirement-process-group {
+        padding: 0 0 42px;
+      }
+      .requirement-process-group + .requirement-process-group {
+        padding-top: 42px;
+        border-top: 1px solid #dedede;
+      }
+      .requirement-process-group h3 {
+        margin: 0 0 34px;
+        font-size: 24px;
+        font-weight: 800;
+      }
+      .requirement-process-list {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .requirement-process-step {
+        position: relative;
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: center;
+        min-width: 0;
+        text-align: center;
+      }
+      .requirement-process-step + .requirement-process-step::before {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        color: #111;
+        content: "›";
+        font-size: 30px;
+        line-height: 1;
+      }
+      .requirement-process-icon {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 64px;
+        margin-bottom: 16px;
+        color: #ee8064;
+        font-size: 44px;
+        line-height: 1;
+      }
+      .requirement-process-step h4 {
+        margin: 0 0 4px;
+        font-size: 17px;
+        font-weight: 800;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+      }
+      .requirement-process-step p {
+        margin: 0;
+        color: #888;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+      }
+      @media (max-width: 1024px) {
+        .requirement-inner {
+          padding: 54px 32px 40px;
+        }
+        .requirement-title {
+          margin-bottom: 52px;
+          font-size: clamp(30px, 4vw, 38px);
+        }
+        .requirement-bulb {
+          top: 28px;
+          right: 6%;
+          width: 78px;
+        }
+        .requirement-eligibility {
+          padding: 48px 0;
+        }
+        .requirement-process-canvas {
+          padding: 38px 16px 28px;
+        }
+        .requirement-process-group {
+          padding-bottom: 30px;
+        }
+        .requirement-process-group + .requirement-process-group {
+          padding-top: 30px;
+        }
+        .requirement-process-group h3 {
+          margin-bottom: 24px;
+          font-size: 20px;
+        }
+        .requirement-process-step + .requirement-process-step::before {
+          top: 14px;
+          font-size: 26px;
+        }
+        .requirement-process-step h4 {
+          font-size: 14px;
+        }
+        .requirement-process-step p {
+          font-size: 12px;
+        }
+        .requirement-process-notes li {
+          font-size: 16px;
+        }
+      }
+      @media (max-width: 568px) {
+        .requirement-inner {
+          padding: 48px 21px 38px;
+        }
+        .requirement-title {
+          max-width: 340px;
+          margin-bottom: 48px;
+          font-size: 26px;
+          line-height: 1.45;
+        }
+        .requirement-bulb {
+          display: none;
+        }
+        .requirement-tabs {
+          padding-bottom: 14px;
+        }
+        .requirement-tab {
+          height: 60px;
+          border-radius: 16px;
+          font-size: 14px;
+        }
+        .requirement-eligibility {
+          grid-template-columns: 1fr;
+          padding: 0;
+        }
+        .requirement-eligibility-item {
+          min-height: 176px;
+          gap: 8px;
+        }
+        .requirement-eligibility-item + .requirement-eligibility-item {
+          border-top: 1px solid #dedede;
+          border-left: 0;
+        }
+        .requirement-eligibility-item img {
+          width: 58px;
+          height: 68px;
+        }
+        .requirement-eligibility-item h3 {
+          font-size: 18px;
+        }
+        .requirement-conditions {
+          min-height: 144px;
+          place-items: center start;
+          padding: 24px 28px;
+        }
+        .requirement-conditions li {
+          font-size: 13px;
+        }
+        .requirement-notice {
+          padding: 38px 32px;
+          font-size: 14px;
+        }
+        .requirement-process-canvas {
+          padding: 28px 0 22px;
+        }
+        .requirement-process-group {
+          padding-bottom: 24px;
+        }
+        .requirement-process-group + .requirement-process-group {
+          padding-top: 24px;
+        }
+        .requirement-process-group h3 {
+          margin-bottom: 18px;
+          font-size: 17px;
+        }
+        .requirement-process-icon {
+          width: 36px;
+          height: 42px;
+          margin-bottom: 8px;
+          font-size: 32px;
+        }
+        .requirement-process-step + .requirement-process-step::before {
+          top: 8px;
+          font-size: 20px;
+        }
+        .requirement-process-step h4 {
+          margin-bottom: 3px;
+          font-size: 10px;
+          line-height: 1.35;
+        }
+        .requirement-process-step p {
+          font-size: 8px;
+          line-height: 1.35;
+          white-space: nowrap;
+        }
+        .requirement-process-notes li {
+          font-size: 14px;
+        }
+      }
+      @media (max-width: 360px) {
+        .requirement-process-icon {
+          width: 20px;
+          height: 28px;
+          margin-bottom: 6px;
+          font-size: 18px;
+        }
+        .requirement-process-step + .requirement-process-step::before {
+          top: 5px;
+          font-size: 14px;
+        }
+        .requirement-process-step h4 {
+          font-size: 7px;
+        }
+        .requirement-process-step p {
+          font-size: 5px;
+        }
+      }
+
+      /* ---------- Exposition: 박람회 및 캠퍼스 방문 일정 ---------- */
+      .exposition {
+        background: #fff;
+        color: #111;
+      }
+      .exposition-inner {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 58px 42px 48px;
+      }
+      .exposition-head {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 192px;
+        margin-bottom: 30px;
+      }
+      .exposition-character {
+        flex: 0 0 260px;
+        width: 260px;
+        height: auto;
+        object-fit: contain;
+      }
+      .exposition-heading {
+        flex: 1;
+        min-width: 0;
+        padding: 0 40px;
+        text-align: center;
+      }
+      .exposition-title {
+        margin: 0 0 18px;
+        font-size: clamp(32px, 3.4vw, 44px);
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: -0.05em;
+      }
+      .exposition-description {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+      .exposition-hint {
+        margin: 18px 0 0;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .exposition-hint::before {
+        margin-right: 8px;
+        color: var(--orange);
+        content: "•";
+        font-size: 18px;
+      }
+      .exposition-tabs,
+      .exposition-regions {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .exposition-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-bottom: 20px;
+      }
+      .exposition-tab,
+      .exposition-region {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        color: #888;
+        font-family: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .exposition-tab {
+        height: 54px;
+        border-radius: 14px;
+        font-size: 16px;
+      }
+      .exposition-tab[aria-selected="true"],
+      .exposition-region[aria-selected="true"] {
+        background: #fffaf8;
+        box-shadow: 0 5px 13px rgba(128, 74, 54, 0.16);
+        color: var(--orange);
+      }
+      .exposition-panel[hidden] {
+        display: none;
+      }
+      .exposition-fair-grid,
+      .exposition-campus-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        border-top: 1px solid #dedede;
+      }
+      .exposition-date-card {
+        min-width: 0;
+        border-bottom: 1px solid #dedede;
+      }
+      .exposition-date {
+        position: relative;
+        display: grid;
+        min-height: 44px;
+        place-items: center;
+        padding: 8px 5px;
+        border-bottom: 1px solid #dedede;
+        font-size: 14px;
+        font-weight: 700;
+        text-align: center;
+      }
+      .exposition-date-card:not(:nth-child(5n + 1)) .exposition-date::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 14px;
+        border-left: 1px solid #dedede;
+        content: "";
+        transform: translateY(-50%);
+      }
+      .exposition-venues {
+        display: flex;
+        min-height: 178px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px 8px;
+      }
+      .exposition-venue {
+        padding: 4px 2px;
+        background: none;
+        color: #ff8066;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.5;
+        text-align: center;
+      }
+      button.exposition-venue {
+        cursor: pointer;
+      }
+      .exposition-venue--static {
+        cursor: default;
+      }
+      .exposition-venue[aria-expanded="true"] {
+        color: var(--orange);
+      }
+      .exposition-date-card.has-details
+        .exposition-venue[aria-expanded="true"] {
+        display: none;
+      }
+      .exposition-venue-detail[hidden] {
+        display: none;
+      }
+      .exposition-venue-detail {
+        display: grid;
+        flex: 1;
+        align-content: center;
+        justify-items: center;
+        width: 100%;
+        min-height: 154px;
+        gap: 7px;
+        padding: 12px 8px;
+        border-radius: 0 0 8px 8px;
+        background: #fff7f4;
+        text-align: center;
+      }
+      .exposition-venue-detail-label {
+        color: var(--orange);
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .exposition-venue-detail-value {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+      }
+      button.exposition-venue:hover,
+      button.exposition-venue:focus-visible {
+        color: #e64c2e;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      .exposition-venue--static + .exposition-venue--static::before,
+      button.exposition-venue + button.exposition-venue::before {
+        display: block;
+        width: 42px;
+        margin: 0 auto 10px;
+        border-top: 1px solid #ffd1c5;
+        content: "";
+      }
+      .exposition-campus-controls {
+        margin: 0 0 18px;
+        padding: 8px;
+        border-radius: 12px;
+        background: #fffaf8;
+      }
+      .exposition-regions {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .exposition-region {
+        height: 44px;
+        border-radius: 10px;
+        font-size: 14px;
+      }
+      .exposition-empty {
+        grid-column: 1 / -1;
+        display: grid;
+        min-height: 178px;
+        place-items: center;
+        margin: 0;
+        padding: 24px;
+        border-bottom: 1px solid #dedede;
+        color: #888;
+        font-size: 14px;
+        text-align: center;
+      }
+      @media (max-width: 1024px) {
+        .exposition-inner {
+          padding: 48px 32px 42px;
+        }
+        .exposition-head {
+          min-height: 0;
+          margin-bottom: 40px;
+        }
+        .exposition-character {
+          display: none;
+        }
+        .exposition-heading {
+          padding: 0 24px;
+        }
+        .exposition-title {
+          font-size: clamp(30px, 4vw, 38px);
+        }
+        .exposition-venues {
+          min-height: 160px;
+        }
+      }
+      @media (max-width: 568px) {
+        .exposition-inner {
+          padding: 38px 15px 32px;
+        }
+        .exposition-head {
+          margin-bottom: 30px;
+        }
+        .exposition-heading {
+          padding: 0 6px;
+        }
+        .exposition-title {
+          margin-bottom: 12px;
+          font-size: 22px;
+          line-height: 1.4;
+        }
+        .exposition-description {
+          font-size: 12px;
+          line-height: 1.65;
+        }
+        .exposition-hint {
+          margin-top: 12px;
+          font-size: 10px;
+        }
+        .exposition-tabs {
+          margin-bottom: 14px;
+        }
+        .exposition-tab {
+          height: 48px;
+          font-size: 12px;
+        }
+        .exposition-date {
+          min-height: 38px;
+          padding: 6px 2px;
+          font-size: 10px;
+        }
+        .exposition-fair-grid,
+        .exposition-campus-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .exposition-date-card:not(:nth-child(5n + 1)) .exposition-date::before {
+          display: none;
+        }
+        .exposition-date-card:nth-child(2n) .exposition-date::before {
+          display: block;
+        }
+        .exposition-venues {
+          min-height: 120px;
+          gap: 8px;
+          padding: 14px 5px;
+        }
+        .exposition-venue-detail {
+          min-height: 112px;
+          gap: 5px;
+          padding: 8px 4px;
+        }
+        .exposition-venue-detail-label {
+          font-size: 9px;
+        }
+        .exposition-venue-detail-value {
+          font-size: 10px;
+        }
+        .exposition-venue {
+          font-size: 10px;
+        }
+        .exposition-venue + .exposition-venue::before {
+          width: 34px;
+          margin-bottom: 6px;
+        }
+        .exposition-campus-controls {
+          margin-bottom: 12px;
+          padding: 5px;
+        }
+        .exposition-regions {
+          gap: 2px;
+        }
+        .exposition-region {
+          height: 36px;
+          border-radius: 8px;
+          font-size: 11px;
+        }
+        .exposition-empty {
+          min-height: 120px;
+          font-size: 12px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -2911,8 +3623,8 @@
           </div>
           <ul class="gnb-list">
             <li><a href="#jobs">직무소개</a></li>
-            <li><a href="#qualification">지원자격 및 접수방법</a></li>
-            <li><a href="#schedule">채용설명회 일정</a></li>
+            <li><a href="#requirement">지원자격 및 접수방법</a></li>
+            <li><a href="#exposition">채용설명회 일정</a></li>
           </ul>
           <div class="gnb-cta">
             <a class="btn btn-apply" href="#apply">
@@ -3640,326 +4352,8 @@
             />
           </header>
           <div class="welfare-scrollbox">
-            <div class="welfare-intro">
-              <h3 class="welfare-subtitle">
-                오늘의 나도, 내일의 나도 든든하게!
-              </h3>
-              <p class="welfare-note">
-                건강, 성장, 문화생활까지 알차게 챙겨드려요.
-              </p>
-            </div>
-            <ul class="welfare-list" aria-label="한미그룹 회사 복지">
-              <li>
-                <article class="welfare-card">
-                  <div class="welfare-card-copy">
-                    <h4 class="welfare-card-title">건강 검진</h4>
-                    <p class="welfare-card-description">
-                      건강한 하루가 오래 이어지도록, 정기적인 건강관리를 지원해요.
-                    </p>
-                  </div>
-                  <img
-                    class="welfare-card-icon"
-                    src="./images/wf_ico1.png"
-                    alt="하트가 그려진 건강 검진 달력"
-                  />
-                </article>
-              </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">기념일 축하 지원</h4>
-                  <p class="welfare-card-description">
-                    소중한 기념일이 더 특별해지도록 한미가 함께 축하해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico2.png"
-                  alt="기념일 축하 케이크"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">본인주도 선택복지</h4>
-                  <p class="welfare-card-description">
-                    나에게 필요한 복지를 내 취향과 생활에 맞게 선택할 수 있어요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico3.png"
-                  alt="선택 복지를 나타내는 카드"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">장기 근속 포상</h4>
-                  <p class="welfare-card-description">
-                    한미와 함께 걸어온 소중한 시간에 감사의 마음을 전해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico4.png"
-                  alt="목표를 향한 과녁과 화살"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">유연근무제</h4>
-                  <p class="welfare-card-description">
-                    업무와 일상의 균형을 찾을 수 있도록 유연한 근무를 지원해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico5.png"
-                  alt="유연한 근무 시간을 상징하는 시계"
-                />
-              </article>
-            </li>
-            <li class="welfare-list-intro">
-              <div class="welfare-intro">
-                <h3 class="welfare-subtitle">가족의 행복도 빼놓을 수 없죠!</h3>
-                <p class="welfare-note">
-                  축하할 때도, 도움이 필요할 때도 한미가 함께해요.
-                </p>
-              </div>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">단체 상해 보험</h4>
-                  <p class="welfare-card-description">
-                    예상하지 못한 순간에도 든든할 수 있도록 임직원을 보호해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico6.png"
-                  alt="보장을 나타내는 확인 표시 방패"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">직무 교육 지원</h4>
-                  <p class="welfare-card-description">
-                    배우고 성장하는 즐거움이 계속되도록 역량 개발을 지원해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico7.png"
-                  alt="학습 영상을 보여주는 화면과 연필"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">임직원 제휴 할인</h4>
-                  <p class="welfare-card-description">
-                    다양한 제휴 혜택으로 일상 속 즐거움과 실속을 더해드려요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico8.png"
-                  alt="세일 문구가 적힌 할인 쇼핑백"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">문화 생활 지원</h4>
-                  <p class="welfare-card-description">
-                    바쁜 일상에 기분 좋은 쉼표를 더할 수 있도록 문화생활을
-                    응원해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico9.png"
-                  alt="문화생활을 상징하는 곰 인형과 음표"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">구내식당</h4>
-                  <p class="welfare-card-description">
-                    든든하고 맛있는 한 끼로 활기찬 하루를 채워드려요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico10.png"
-                  alt="숟가락과 포크"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">건강 검진</h4>
-                  <p class="welfare-card-description">
-                    건강한 하루가 오래 이어지도록, 정기적인 건강관리를 지원해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico1.png"
-                  alt="하트가 그려진 건강 검진 달력"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">기념일 축하 지원</h4>
-                  <p class="welfare-card-description">
-                    소중한 기념일이 더 특별해지도록 한미가 함께 축하해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico2.png"
-                  alt="기념일 축하 케이크"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">본인주도 선택복지</h4>
-                  <p class="welfare-card-description">
-                    나에게 필요한 복지를 내 취향과 생활에 맞게 선택할 수 있어요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico3.png"
-                  alt="선택 복지를 나타내는 카드"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">장기 근속 포상</h4>
-                  <p class="welfare-card-description">
-                    한미와 함께 걸어온 소중한 시간에 감사의 마음을 전해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico4.png"
-                  alt="목표를 향한 과녁과 화살"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">유연근무제</h4>
-                  <p class="welfare-card-description">
-                    업무와 일상의 균형을 찾을 수 있도록 유연한 근무를 지원해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico5.png"
-                  alt="유연한 근무 시간을 상징하는 시계"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">단체 상해 보험</h4>
-                  <p class="welfare-card-description">
-                    예상하지 못한 순간에도 든든할 수 있도록 임직원을 보호해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico6.png"
-                  alt="보장을 나타내는 확인 표시 방패"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">직무 교육 지원</h4>
-                  <p class="welfare-card-description">
-                    배우고 성장하는 즐거움이 계속되도록 역량 개발을 지원해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico7.png"
-                  alt="학습 영상을 보여주는 화면과 연필"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">임직원 제휴 할인</h4>
-                  <p class="welfare-card-description">
-                    다양한 제휴 혜택으로 일상 속 즐거움과 실속을 더해드려요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico8.png"
-                  alt="세일 문구가 적힌 할인 쇼핑백"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">문화 생활 지원</h4>
-                  <p class="welfare-card-description">
-                    바쁜 일상에 기분 좋은 쉼표를 더할 수 있도록 문화생활을
-                    응원해요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico9.png"
-                  alt="문화생활을 상징하는 곰 인형과 음표"
-                />
-              </article>
-            </li>
-            <li>
-              <article class="welfare-card">
-                <div class="welfare-card-copy">
-                  <h4 class="welfare-card-title">구내식당</h4>
-                  <p class="welfare-card-description">
-                    든든하고 맛있는 한 끼로 활기찬 하루를 채워드려요.
-                  </p>
-                </div>
-                <img
-                  class="welfare-card-icon"
-                  src="./images/wf_ico10.png"
-                  alt="숟가락과 포크"
-                />
-              </article>
-            </li>
-            </ul>
+            <ul class="welfare-list" aria-label="한미그룹 회사 복지"></ul>
+            <p class="welfare-data-error" role="alert" hidden></p>
           </div>
           <img
             class="welfare-cloud"
@@ -4049,6 +4443,351 @@
             </div>
           </div>
         </dialog>
+      </section>
+      <section
+        class="requirement"
+        id="requirement"
+        aria-labelledby="requirement-title"
+      >
+        <div class="requirement-inner">
+          <h2 class="requirement-title" id="requirement-title">
+            한미그룹과 함께하는 문은<br />활짝 열려 있습니다
+          </h2>
+          <img
+            class="requirement-bulb"
+            src="./images/require_bulb.png"
+            alt=""
+          />
+          <div class="requirement-content">
+            <div role="tablist" class="requirement-tabs" aria-label="채용 안내">
+              <button
+                class="requirement-tab"
+                type="button"
+                role="tab"
+                id="requirement-tab-qualification"
+                aria-selected="true"
+                aria-controls="requirement-qualification"
+                tabindex="0"
+              >
+                지원자격
+              </button>
+              <button
+                class="requirement-tab"
+                type="button"
+                role="tab"
+                id="requirement-tab-process"
+                aria-selected="false"
+                aria-controls="requirement-process"
+                tabindex="-1"
+              >
+                전형절차 및 접수방법
+              </button>
+            </div>
+            <div
+              class="requirement-panel"
+              id="requirement-qualification"
+              role="tabpanel"
+              aria-labelledby="requirement-tab-qualification"
+            >
+              <div class="requirement-eligibility">
+                <article class="requirement-eligibility-item">
+                  <img
+                    src="./images/require_ico_calendar_3d.png"
+                    alt=""
+                  />
+                  <h3>27년 1월 입사가 가능한 자</h3>
+                </article>
+                <article class="requirement-eligibility-item">
+                  <img
+                    src="./images/require_ico_gradcap_3d.png"
+                    alt=""
+                  />
+                  <h3>기졸업자 또는 27년 2월 졸업 예정자</h3>
+                </article>
+              </div>
+              <div class="requirement-conditions">
+                <ul>
+                  <li>남성의 경우 병역을 마쳤거나 면제인 분</li>
+                  <li>해외여행 (또는 해외 출장)에 결격사유가 없는 분</li>
+                  <li>취업보호대상자는 관련 법령에 의거하여 우대</li>
+                </ul>
+              </div>
+              <p class="requirement-notice">
+                모집 직무별로 지원자격이 상이하오니 반드시
+                <strong>채용 공고</strong>를 확인해 주시기 바랍니다.
+              </p>
+            </div>
+            <div
+              class="requirement-panel"
+              id="requirement-process"
+              role="tabpanel"
+              aria-labelledby="requirement-tab-process"
+              hidden
+            >
+              <div class="requirement-process-viewport">
+                <div class="requirement-process-canvas">
+                  <section class="requirement-process-group">
+                    <h3>영업직군</h3>
+                    <ol class="requirement-process-list">
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">🗓️</span>
+                        <h4>지원접수</h4>
+                        <p>9.28~10.18</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">📑</span>
+                        <h4>서류전형</h4>
+                        <p>10.19~10.20</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">🔍</span>
+                        <h4>AI역량검사</h4>
+                        <p>10.21~10.25</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">🪪</span>
+                        <h4>1차면접</h4>
+                        <p>11월 중</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">📍</span>
+                        <h4>현장체험</h4>
+                        <p>12월 초</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">💬</span>
+                        <h4>2차면접</h4>
+                        <p>12월 중</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">📚</span>
+                        <h4>교육전형</h4>
+                        <p>27.1.4~</p>
+                      </li>
+                    </ol>
+                  </section>
+                  <section class="requirement-process-group">
+                    <h3>영업 외 전직군</h3>
+                    <ol class="requirement-process-list">
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">🗓️</span>
+                        <h4>지원접수</h4>
+                        <p>9.28~10.18</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">📑</span>
+                        <h4>서류전형</h4>
+                        <p>10.19~10.20</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">🔍</span>
+                        <h4>AI역량검사</h4>
+                        <p>10.21~10.25</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">🪪</span>
+                        <h4>1차면접</h4>
+                        <p>11월 중</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">💬</span>
+                        <h4>2차면접</h4>
+                        <p>12월 중</p>
+                      </li>
+                      <li class="requirement-process-step">
+                        <span class="requirement-process-icon" aria-hidden="true">🏢</span>
+                        <h4>입사</h4>
+                        <p>27.1.4~<br />(경력직 협의 가능)</p>
+                      </li>
+                    </ol>
+                  </section>
+                </div>
+              </div>
+              <ul class="requirement-process-notes">
+                <li>
+                  상기 일정은 상황에 따라 변경될 수 있으며 각 전형별 상세 일정은
+                  대상자에 한해 개별 안내 예정입니다.
+                </li>
+                <li>
+                  입사지원서에 허위 기재가 있거나 제출서류가 허위로 판명되는 경우,
+                  또는 입사 이후 자격 미확보 및 상실하는 경우는 입사가 취소될 수
+                  있습니다.
+                </li>
+                <li>
+                  지원서 제출 후에는 수정이 절대 불가하오니, 주의하시기 바랍니다.
+                </li>
+                <li>
+                  전형단계별 결과는 E-Mail 및 SMS를 통하여 안내하오니 E-Mail 주소
+                  및 휴대전화 번호를 정확히 기재해주시기 바랍니다.
+                </li>
+                <li>
+                  입사 후 3개월간 수습기간이 적용되며, 수습 기간 중 성적이
+                  불량하거나 직무 수행 능력이 부족하다고 판단되는 경우 입사가
+                  취소될 수 있습니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="exposition"
+        id="exposition"
+        aria-labelledby="exposition-title"
+      >
+        <div class="exposition-inner">
+          <header class="exposition-head">
+            <img
+              class="exposition-character"
+              src="./images/expo_char.png"
+              alt=""
+            />
+            <div class="exposition-heading">
+              <h2 class="exposition-title" id="exposition-title">
+                Hanmi 박람회/캠퍼스로 출발!
+              </h2>
+              <p class="exposition-description">
+                한미그룹이 여러분을 만나러 박람회와 캠퍼스로 찾아갑니다.<br />
+                우리가 어디서 만날지 궁금하다면 아래 지역에서 찾아보세요!
+              </p>
+              <p class="exposition-hint">
+                학교명/장소를 클릭하거나 터치하면 세부장소를 확인하실 수 있습니다.
+              </p>
+            </div>
+          </header>
+          <div class="exposition-switcher">
+            <div
+              class="exposition-tabs"
+              role="tablist"
+              aria-label="박람회 및 캠퍼스 일정"
+            >
+              <button
+                class="exposition-tab"
+                id="exposition-tab-fair"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="exposition-panel-fair"
+                tabindex="0"
+              >
+                박람회
+              </button>
+              <button
+                class="exposition-tab"
+                id="exposition-tab-campus"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="exposition-panel-campus"
+                tabindex="-1"
+              >
+                캠퍼스
+              </button>
+            </div>
+            <div
+              class="exposition-panel"
+              id="exposition-panel-fair"
+              role="tabpanel"
+              aria-labelledby="exposition-tab-fair"
+            >
+              <div class="exposition-fair-grid"></div>
+            </div>
+            <div
+              class="exposition-panel"
+              id="exposition-panel-campus"
+              role="tabpanel"
+              aria-labelledby="exposition-tab-campus"
+              hidden
+            >
+              <div class="exposition-campus-controls">
+                <div
+                  class="exposition-regions"
+                  role="tablist"
+                  aria-label="캠퍼스 방문 지역"
+                >
+                  <button
+                    class="exposition-region"
+                    id="exposition-region-seoul"
+                    type="button"
+                    role="tab"
+                    data-region="seoul"
+                    aria-selected="true"
+                    aria-controls="exposition-campus-schedule"
+                    tabindex="0"
+                  >
+                    서울
+                  </button>
+                  <button
+                    class="exposition-region"
+                    id="exposition-region-gyeonggi"
+                    type="button"
+                    role="tab"
+                    data-region="gyeonggi"
+                    aria-selected="false"
+                    aria-controls="exposition-campus-schedule"
+                    tabindex="-1"
+                  >
+                    경기
+                  </button>
+                  <button
+                    class="exposition-region"
+                    id="exposition-region-gangwon"
+                    type="button"
+                    role="tab"
+                    data-region="gangwon"
+                    aria-selected="false"
+                    aria-controls="exposition-campus-schedule"
+                    tabindex="-1"
+                  >
+                    강원
+                  </button>
+                  <button
+                    class="exposition-region"
+                    id="exposition-region-gyeongsang"
+                    type="button"
+                    role="tab"
+                    data-region="gyeongsang"
+                    aria-selected="false"
+                    aria-controls="exposition-campus-schedule"
+                    tabindex="-1"
+                  >
+                    경상
+                  </button>
+                  <button
+                    class="exposition-region"
+                    id="exposition-region-chungcheong"
+                    type="button"
+                    role="tab"
+                    data-region="chungcheong"
+                    aria-selected="false"
+                    aria-controls="exposition-campus-schedule"
+                    tabindex="-1"
+                  >
+                    충청
+                  </button>
+                  <button
+                    class="exposition-region"
+                    id="exposition-region-jeolla"
+                    type="button"
+                    role="tab"
+                    data-region="jeolla"
+                    aria-selected="false"
+                    aria-controls="exposition-campus-schedule"
+                    tabindex="-1"
+                  >
+                    전라
+                  </button>
+                </div>
+              </div>
+              <div
+                class="exposition-campus-schedule"
+                id="exposition-campus-schedule"
+                role="tabpanel"
+                aria-labelledby="exposition-region-seoul"
+              ></div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -4195,6 +4934,108 @@
         }
         if (window.ResizeObserver) new ResizeObserver(refit).observe(flow);
         else window.addEventListener("resize", refit);
+      })();
+
+      // 복지 섹션: JSON의 그룹과 항목으로 카드 목록을 구성한다.
+      (function () {
+        var section = document.getElementById("welfare");
+        if (!section) return;
+        var list = section.querySelector(".welfare-list");
+        var dataError = section.querySelector(".welfare-data-error");
+
+        function isText(value) {
+          return typeof value === "string" && value.trim().length > 0;
+        }
+
+        function renderBenefits(groups) {
+          var fragment = document.createDocumentFragment();
+          groups.forEach(function (group) {
+            var introItem = document.createElement("li");
+            var intro = document.createElement("div");
+            var heading = document.createElement("h3");
+            var note = document.createElement("p");
+            introItem.className = "welfare-list-intro";
+            intro.className = "welfare-intro";
+            heading.className = "welfare-subtitle";
+            heading.textContent = group.group_title;
+            note.className = "welfare-note";
+            note.textContent = group.group_description;
+            intro.append(heading, note);
+            introItem.appendChild(intro);
+            fragment.appendChild(introItem);
+
+            group.items.forEach(function (benefit) {
+              var item = document.createElement("li");
+              var card = document.createElement("article");
+              var copy = document.createElement("div");
+              var title = document.createElement("h4");
+              var description = document.createElement("p");
+              item.appendChild(card);
+              card.className = "welfare-card";
+              copy.className = "welfare-card-copy";
+              title.className = "welfare-card-title";
+              title.textContent = benefit.title;
+              description.className = "welfare-card-description";
+              description.textContent = benefit.description;
+              copy.append(title, description);
+              card.appendChild(copy);
+
+              if (benefit.icon) {
+                var icon = document.createElement("img");
+                icon.className = "welfare-card-icon";
+                icon.src = benefit.icon;
+                icon.alt = benefit.icon_alt;
+                card.appendChild(icon);
+              }
+              fragment.appendChild(item);
+            });
+          });
+          list.replaceChildren(fragment);
+        }
+
+        fetch("./data/benefits.json")
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error(
+                "복지 데이터 요청 실패: HTTP " + response.status,
+              );
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            if (!data || !Array.isArray(data.benefits) || !data.benefits.length) {
+              throw new Error("복지 데이터에 benefits 그룹 배열이 없습니다.");
+            }
+            data.benefits.forEach(function (group) {
+              if (
+                !group ||
+                !isText(group.group_title) ||
+                !isText(group.group_description) ||
+                !Array.isArray(group.items) ||
+                !group.items.length
+              ) {
+                throw new Error("복지 그룹 데이터의 필수 항목이 누락되었습니다.");
+              }
+              group.items.forEach(function (benefit) {
+                if (
+                  !benefit ||
+                  !isText(benefit.title) ||
+                  !isText(benefit.description) ||
+                  (benefit.icon &&
+                    (!isText(benefit.icon) || !isText(benefit.icon_alt)))
+                ) {
+                  throw new Error("복지 항목 데이터의 필수 항목이 누락되었습니다.");
+                }
+              });
+            });
+            renderBenefits(data.benefits);
+          })
+          .catch(function (error) {
+            console.error("복지 데이터를 불러오지 못했습니다.", error);
+            dataError.textContent =
+              "복지 데이터를 불러오지 못했습니다. 페이지를 웹 서버에서 열고 다시 시도해 주세요.";
+            dataError.hidden = false;
+          });
       })();
 
       // 직무 분야 탭, 소속별 아코디언, 직무 상세 모달
@@ -4582,6 +5423,331 @@
           if (event.target === modal) modal.close();
         });
         renderCategory(0);
+      })();
+
+      // 지원자격과 전형절차 탭 전환
+      (function () {
+        var section = document.getElementById("requirement");
+        if (!section) return;
+        var tabs = Array.from(section.querySelectorAll(".requirement-tab"));
+        var panels = tabs.map(function (tab) {
+          return document.getElementById(tab.getAttribute("aria-controls"));
+        });
+
+        function selectTab(index, focus) {
+          tabs.forEach(function (tab, tabIndex) {
+            var selected = tabIndex === index;
+            tab.setAttribute("aria-selected", selected ? "true" : "false");
+            tab.tabIndex = selected ? 0 : -1;
+            panels[tabIndex].hidden = !selected;
+          });
+          if (focus) tabs[index].focus();
+        }
+
+        tabs.forEach(function (tab, index) {
+          tab.addEventListener("click", function () {
+            selectTab(index, false);
+          });
+          tab.addEventListener("keydown", function (event) {
+            var nextIndex = index;
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+              nextIndex = (index + 1) % tabs.length;
+            } else if (
+              event.key === "ArrowLeft" ||
+              event.key === "ArrowUp"
+            ) {
+              nextIndex = (index - 1 + tabs.length) % tabs.length;
+            } else if (event.key === "Home") {
+              nextIndex = 0;
+            } else if (event.key === "End") {
+              nextIndex = tabs.length - 1;
+            } else {
+              return;
+            }
+            event.preventDefault();
+            selectTab(nextIndex, true);
+          });
+        });
+
+        selectTab(
+          window.location.hash === "#requirement-process" ? 1 : 0,
+          false,
+        );
+      })();
+
+      // 박람회·캠퍼스 일정 탭 및 장소 상세 안내
+      (function () {
+        var section = document.getElementById("exposition");
+        if (!section) return;
+
+        var fairSchedule = [
+          { date: "8월 31일 (월)", venues: ["KAIST"] },
+          {
+            date: "9월 1일 (화)",
+            venues: ["서울대학교", "서강대학교", "연세대학교"],
+          },
+          { date: "9월 2일 (수)", venues: ["UNIST", "한양대학교"] },
+          { date: "9월 3일 (목)", venues: ["GIST"] },
+          {
+            date: "9월 4일 (금)",
+            venues: ["고려대학교", "성균관대학교(자연)"],
+          },
+          { date: "9월 7일 (월)", venues: ["KIST", "동국대학교"] },
+          {
+            date: "9월 8일 (화)",
+            venues: ["이화여자대학교", "중견기업박람회(대전)"],
+          },
+          { date: "9월 9일 (수)", venues: ["POSTECH"] },
+          { date: "", venues: [] },
+          { date: "10월 7일 (수)", venues: ["서울고용센터"] },
+        ];
+        var campusDates = [
+            { date: "9월 14일 (월)", venues: [] },
+            { date: "9월 15일 (화)", venues: [] },
+            { date: "9월 16일 (수)", venues: [] },
+            {
+              date: "9월 17일 (목)",
+              venues: [
+                {
+                  name: "중앙대학교",
+                  location: "310관 2층 201호",
+                  time: "14:00~15:30",
+                },
+              ],
+            },
+            { date: "9월 18일 (금)", venues: [] },
+            { date: "9월 28일 (월)", venues: [] },
+            { date: "9월 29일 (화)", venues: [] },
+            { date: "9월 30일 (수)", venues: [] },
+            {
+              date: "10월 1일 (목)",
+              venues: [
+                {
+                  name: "건국대학교",
+                  location: "세부 장소 안내 예정",
+                  time: "시간 안내 예정",
+                },
+              ],
+            },
+            { date: "10월 2일 (금)", venues: [] },
+            { date: "10월 12일 (월)", venues: [] },
+            { date: "10월 13일 (화)", venues: [] },
+            {
+              date: "10월 14일 (수)",
+              venues: [
+                {
+                  name: "경희대학교",
+                  location: "세부 장소 안내 예정",
+                  time: "시간 안내 예정",
+                },
+              ],
+            },
+          ];
+        var campusVenues = {
+          seoul: campusDates.reduce(function (venues, entry) {
+            venues[entry.date] = entry.venues;
+            return venues;
+          }, {}),
+          gyeonggi: {},
+          gangwon: {},
+          gyeongsang: {},
+          chungcheong: {},
+          jeolla: {},
+        };
+        var tabs = Array.from(section.querySelectorAll(".exposition-tab"));
+        var panels = tabs.map(function (tab) {
+          return document.getElementById(tab.getAttribute("aria-controls"));
+        });
+        var regions = Array.from(
+          section.querySelectorAll(".exposition-region"),
+        );
+        var fairGrid = section.querySelector(".exposition-fair-grid");
+        var campusSchedulePanel = section.querySelector(
+          ".exposition-campus-schedule",
+        );
+
+        function createScheduleGrid(schedule, className, type) {
+          var grid = document.createElement("div");
+          grid.className = className;
+
+          schedule.forEach(function (entry) {
+            var card = document.createElement("article");
+            var date = document.createElement("h3");
+            var venues = document.createElement("div");
+            card.className = "exposition-date-card";
+            date.className = "exposition-date";
+            date.textContent = entry.date;
+            if (!entry.date) {
+              date.setAttribute("aria-hidden", "true");
+            }
+            venues.className = "exposition-venues";
+
+            entry.venues.forEach(function (venue) {
+              if (type === "fair") {
+                var name = document.createElement("span");
+                name.className = "exposition-venue exposition-venue--static";
+                name.textContent = venue;
+                venues.appendChild(name);
+              } else {
+                var button = document.createElement("button");
+                button.className = "exposition-venue";
+                button.type = "button";
+                button.textContent = venue.name;
+                var details = document.createElement("div");
+                var locationLabel = document.createElement("span");
+                var location = document.createElement("p");
+                var timeLabel = document.createElement("span");
+                var time = document.createElement("p");
+                details.className = "exposition-venue-detail";
+                details.hidden = true;
+                locationLabel.className = "exposition-venue-detail-label";
+                locationLabel.textContent = "⌖ 장소";
+                location.className = "exposition-venue-detail-value";
+                location.textContent = venue.location;
+                timeLabel.className = "exposition-venue-detail-label";
+                timeLabel.textContent = "◷ 시간";
+                time.className = "exposition-venue-detail-value";
+                time.textContent = venue.time;
+                details.append(locationLabel, location, timeLabel, time);
+                details.tabIndex = -1;
+                button.setAttribute("aria-expanded", "false");
+                button.addEventListener("click", function () {
+                  var willExpand =
+                    button.getAttribute("aria-expanded") !== "true";
+                  grid
+                    .querySelectorAll(".exposition-venue[aria-expanded='true']")
+                    .forEach(function (openButton) {
+                      openButton.setAttribute("aria-expanded", "false");
+                      openButton.nextElementSibling.hidden = true;
+                      openButton
+                        .closest(".exposition-date-card")
+                        .classList.remove("has-details");
+                    });
+                  if (willExpand) {
+                    button.setAttribute("aria-expanded", "true");
+                    details.hidden = false;
+                    card.classList.add("has-details");
+                    details.focus();
+                  }
+                });
+                details.addEventListener("click", function () {
+                  button.setAttribute("aria-expanded", "false");
+                  details.hidden = true;
+                  card.classList.remove("has-details");
+                  button.focus();
+                });
+                card.addEventListener("focusout", function (event) {
+                  if (card.contains(event.relatedTarget)) return;
+                  button.setAttribute("aria-expanded", "false");
+                  details.hidden = true;
+                  card.classList.remove("has-details");
+                });
+                venues.append(button, details);
+              }
+            });
+
+            card.append(date, venues);
+            grid.appendChild(card);
+          });
+          return grid;
+        }
+
+        function renderFairSchedule() {
+          var grid = createScheduleGrid(
+            fairSchedule,
+            "exposition-fair-grid",
+            "fair",
+          );
+          fairGrid.replaceWith(grid);
+          fairGrid = grid;
+        }
+
+        function renderCampusSchedule(region) {
+          var selectedRegion = regions.find(function (button) {
+            return button.dataset.region === region;
+          });
+          campusSchedulePanel.setAttribute(
+            "aria-labelledby",
+            selectedRegion.id,
+          );
+          var schedule = campusDates.map(function (entry) {
+            return {
+              date: entry.date,
+              venues: campusVenues[region][entry.date] || [],
+            };
+          });
+          campusSchedulePanel.replaceChildren(
+            createScheduleGrid(
+              schedule,
+              "exposition-campus-grid",
+              "campus",
+            ),
+          );
+        }
+
+        function selectTab(index, focus) {
+          tabs.forEach(function (tab, tabIndex) {
+            var selected = tabIndex === index;
+            tab.setAttribute("aria-selected", selected ? "true" : "false");
+            tab.tabIndex = selected ? 0 : -1;
+            panels[tabIndex].hidden = !selected;
+          });
+          if (focus) tabs[index].focus();
+        }
+
+        tabs.forEach(function (tab, index) {
+          tab.addEventListener("click", function () {
+            selectTab(index, false);
+          });
+          tab.addEventListener("keydown", function (event) {
+            var nextIndex = index;
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+              nextIndex = (index + 1) % tabs.length;
+            } else if (
+              event.key === "ArrowLeft" ||
+              event.key === "ArrowUp"
+            ) {
+              nextIndex = (index - 1 + tabs.length) % tabs.length;
+            } else if (event.key === "Home") {
+              nextIndex = 0;
+            } else if (event.key === "End") {
+              nextIndex = tabs.length - 1;
+            } else {
+              return;
+            }
+            event.preventDefault();
+            selectTab(nextIndex, true);
+          });
+        });
+
+        regions.forEach(function (region, index) {
+          region.addEventListener("click", function () {
+            regions.forEach(function (button) {
+              var selected = button === region;
+              button.setAttribute(
+                "aria-selected",
+                selected ? "true" : "false",
+              );
+              button.tabIndex = selected ? 0 : -1;
+            });
+            renderCampusSchedule(region.dataset.region);
+          });
+          region.addEventListener("keydown", function (event) {
+            var nextIndex = index;
+            if (event.key === "ArrowRight") nextIndex = (index + 1) % regions.length;
+            else if (event.key === "ArrowLeft")
+              nextIndex = (index - 1 + regions.length) % regions.length;
+            else if (event.key === "Home") nextIndex = 0;
+            else if (event.key === "End") nextIndex = regions.length - 1;
+            else return;
+            event.preventDefault();
+            regions[nextIndex].focus();
+            regions[nextIndex].click();
+          });
+        });
+
+        renderFairSchedule();
+        renderCampusSchedule("seoul");
       })();
     </script>
   </body>
