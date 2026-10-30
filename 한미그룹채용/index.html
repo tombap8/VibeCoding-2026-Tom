@@ -437,22 +437,260 @@
       }
 
       /* ---------- Footer ---------- */
+      .con8 {
+        position: relative;
+        display: flex;
+        min-height: clamp(490px, 42vw, 640px);
+        align-items: center;
+        justify-content: center;
+        padding: 64px 22px;
+        background: #fff;
+      }
+      .con8-character {
+        position: absolute;
+        top: 24px;
+        right: max(24px, calc((100% - 1200px) / 2));
+        width: clamp(64px, 8vw, 112px);
+      }
+      .con8-list {
+        display: grid;
+        width: 100%;
+        max-width: 1200px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 4.35%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .con8-card {
+        min-width: 0;
+      }
+      .con8-card:nth-child(1) {
+        margin-top: 43px;
+      }
+      .con8-card:nth-child(3) {
+        margin-top: 87px;
+      }
+      .con8-card-link {
+        position: relative;
+        display: block;
+        color: #111;
+      }
+      .con8-image-wrap {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        aspect-ratio: 0.81;
+        border-radius: 8px;
+        background: #222;
+      }
+      .con8-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      .con8-card-link:hover .con8-image,
+      .con8-card-link:focus-visible .con8-image {
+        transform: scale(1.04);
+      }
+      .con8-card-description {
+        display: block;
+        margin: 12px 0 6px;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      .con8-card-action {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.5;
+        text-align: center;
+      }
+      .con8-markings {
+        position: absolute;
+        z-index: 2;
+        inset: 0;
+        pointer-events: none;
+      }
+      .con8-marking {
+        position: absolute;
+        height: auto;
+      }
+      .con8-marking--first-arrow {
+        top: 81%;
+        left: 6%;
+        width: 10%;
+      }
+      .con8-marking--first-star {
+        top: 86%;
+        right: -1%;
+        width: 13%;
+      }
+      .con8-marking--first-underline {
+        top: 100%;
+        left: 44%;
+        width: 18%;
+      }
+      .con8-marking--second-arrow {
+        top: 82%;
+        right: 6%;
+        width: 10%;
+      }
+      .con8-marking--second-circle {
+        top: 91%;
+        left: 41%;
+        width: 18%;
+      }
+      .con8-marking--third-underline {
+        top: 100%;
+        left: 29%;
+        width: 21%;
+      }
+      .con8-arrow,
+      .con9-arrow {
+        display: inline-grid;
+        width: 24px;
+        height: 24px;
+        flex: 0 0 24px;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffb79a, #ff704c);
+        color: #fff;
+        font-size: 17px;
+        line-height: 1;
+      }
+      .con9 {
+        position: relative;
+        display: grid;
+        min-height: clamp(520px, 54vw, 760px);
+        place-items: start center;
+        overflow: hidden;
+        background: #c6f5f5 url("./images/con9_bg.png") center / cover no-repeat;
+        text-align: center;
+      }
+      .con9-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: clamp(76px, 8vw, 116px) 20px 100px;
+      }
+      .con9-title {
+        margin: 0 0 8px;
+        font-size: clamp(25px, 3.3vw, 44px);
+        font-weight: 800;
+        line-height: 1.4;
+      }
+      .con9-countdown {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: clamp(5px, 1vw, 12px);
+        margin: 0;
+        font-size: clamp(17px, 2.3vw, 30px);
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .con9-countdown[hidden],
+      .con9-expired[hidden] {
+        display: none;
+      }
+      .con9-expired {
+        margin: 0;
+        color: var(--red);
+        font-size: clamp(16px, 2.3vw, 24px);
+        font-weight: 700;
+      }
+      .con9-countdown-unit {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      .con9-countdown-value {
+        color: var(--red);
+        font-size: 1.3em;
+        font-weight: 800;
+        font-variant-numeric: tabular-nums;
+      }
+      .con9-earth {
+        position: absolute;
+        top: 48%;
+        left: 50%;
+        width: clamp(160px, 22vw, 270px);
+        transform: translate(-50%, -50%);
+      }
+      .con9-apply {
+        position: absolute;
+        top: 48%;
+        left: 50%;
+        display: inline-flex;
+        min-width: 150px;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 8px 10px 8px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--orange);
+        font-size: 15px;
+        font-weight: 700;
+        transform: translate(-50%, -50%);
+        transition:
+          background-color var(--transition),
+          box-shadow var(--transition);
+      }
+      .con9-apply:hover {
+        background: #fff;
+        box-shadow: 0 4px 14px rgba(66, 150, 170, 0.2);
+      }
+      .con9-note {
+        position: absolute;
+        top: calc(48% + clamp(120px, 15vw, 180px));
+        left: 50%;
+        margin: 0;
+        font-size: 13px;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+      .con9-note::before {
+        margin-right: 8px;
+        color: var(--red);
+        content: "•";
+      }
+      .con9-cloud {
+        position: absolute;
+        bottom: 0;
+        width: clamp(160px, 28vw, 390px);
+        pointer-events: none;
+      }
+      .con9-cloud--left {
+        left: 0;
+      }
+      .con9-cloud--right {
+        right: 0;
+      }
       .site-footer {
-        background: var(--black);
-        color: var(--white-50);
+        display: flex;
+        min-height: 64px;
+        align-items: center;
+        justify-content: center;
+        background: var(--white);
       }
       .footer-inner {
-        width: 100%;
-        max-width: var(--container-width);
-        margin: 0 auto;
-        padding: 40px 60px;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 22px;
-        letter-spacing: -0.3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 20px;
       }
-      .footer-inner p {
-        margin: 0;
+      .footer-logo {
+        width: 112px;
+        height: auto;
       }
 
       /* =====================================================
@@ -3345,6 +3583,10 @@
         font-family: inherit;
         font-weight: 600;
         cursor: pointer;
+        transition:
+          color 0.3s ease,
+          background-color 0.3s ease,
+          box-shadow 0.3s ease;
       }
       .exposition-tab {
         height: 54px;
@@ -3408,6 +3650,11 @@
         font-weight: 600;
         line-height: 1.5;
         text-align: center;
+        transition:
+          color 0.3s ease,
+          background-color 0.3s ease,
+          box-shadow 0.3s ease,
+          opacity 0.3s ease;
       }
       button.exposition-venue {
         cursor: pointer;
@@ -3424,6 +3671,7 @@
       }
       .exposition-venue-detail[hidden] {
         display: none;
+        opacity: 0;
       }
       .exposition-venue-detail {
         display: grid;
@@ -3595,6 +3843,181 @@
         .exposition-empty {
           min-height: 120px;
           font-size: 12px;
+        }
+      }
+      @media (max-width: 1024px) {
+        .con8 {
+          min-height: clamp(440px, 72vw, 520px);
+          padding: 48px 24px;
+        }
+        .con8-character {
+          top: 16px;
+          right: 18px;
+          width: 64px;
+        }
+        .con8-list {
+          max-width: 760px;
+          gap: 3.2%;
+        }
+        .con8-card-description {
+          font-size: 11px;
+        }
+        .con8-card:nth-child(1) {
+          margin-top: 37px;
+        }
+        .con8-card:nth-child(3) {
+          margin-top: 75px;
+        }
+        .con8-image-wrap {
+          aspect-ratio: 0.77;
+        }
+        .con8-marking--first-arrow {
+          left: 9%;
+        }
+        .con8-marking--first-star {
+          top: 84%;
+          right: 0;
+        }
+        .con8-marking--first-underline {
+          left: 36%;
+          width: 25%;
+        }
+        .con8-marking--second-arrow {
+          top: 77%;
+          right: 8%;
+          width: 11%;
+        }
+        .con8-marking--second-circle {
+          left: 38%;
+          width: 24%;
+        }
+        .con8-marking--third-underline {
+          left: 29%;
+          width: 30%;
+        }
+        .con9 {
+          min-height: 540px;
+        }
+        .con9-content {
+          padding-top: 82px;
+        }
+      }
+      @media (max-width: 568px) {
+        .con8 {
+          min-height: 0;
+          padding: 32px 15px 54px;
+        }
+        .con8-character {
+          display: none;
+        }
+        .con8-list {
+          max-width: 420px;
+          grid-template-columns: minmax(0, 1fr);
+          gap: 14px;
+        }
+        .con8-card,
+        .con8-card:nth-child(1),
+        .con8-card:nth-child(3) {
+          margin: 0;
+        }
+        .con8-card-link {
+          position: relative;
+          overflow: hidden;
+          border-radius: 8px;
+          color: #fff;
+        }
+        .con8-markings {
+          display: none;
+        }
+        .con8-image-wrap {
+          aspect-ratio: 0.96;
+          border-radius: 8px;
+        }
+        .con8-image {
+          object-position: center 42%;
+        }
+        .con8-image-wrap::after {
+          position: absolute;
+          inset: 30% 0 0;
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
+          content: "";
+        }
+        .con8-card-description {
+          position: absolute;
+          right: 12px;
+          bottom: 56px;
+          left: 12px;
+          margin: 0;
+          font-size: 12px;
+        }
+        .con8-card-action {
+          display: flex;
+          position: absolute;
+          right: 12px;
+          bottom: 16px;
+          left: 12px;
+          gap: 7px;
+          font-size: 14px;
+        }
+        .con8-arrow {
+          width: 22px;
+          height: 22px;
+          flex-basis: 22px;
+        }
+        .con9 {
+          min-height: 368px;
+        }
+        .con9-content {
+          padding: 34px 8px 60px;
+        }
+        .con9-title {
+          margin-bottom: 4px;
+          font-size: clamp(16px, 5.7vw, 22px);
+          line-height: 1.5;
+        }
+        .con9-countdown {
+          gap: 3px;
+          font-size: clamp(11px, 4vw, 15px);
+        }
+        .con9-expired {
+          font-size: 15px;
+        }
+        .con9-countdown-unit {
+          gap: 2px;
+        }
+        .con9-earth {
+          top: 60%;
+          width: 132px;
+        }
+        .con9-apply {
+          top: 60%;
+          min-width: 116px;
+          gap: 7px;
+          padding: 5px 7px 5px 12px;
+          font-size: 12px;
+        }
+        .con9-arrow {
+          width: 20px;
+          height: 20px;
+          flex-basis: 20px;
+          font-size: 14px;
+        }
+        .con9-note {
+          top: auto;
+          bottom: 42px;
+          font-size: 10px;
+        }
+        .con9-cloud {
+          width: 48%;
+        }
+        .site-footer {
+          min-height: 42px;
+        }
+        .footer-inner {
+          padding: 10px 16px;
+        }
+        .footer-logo {
+          width: 92px;
         }
       }
     </style>
@@ -4789,12 +5212,166 @@
           </div>
         </div>
       </section>
+      <section class="con8" aria-label="한미그룹 바로가기">
+        <img
+          class="con8-character"
+          src="./images/con8_char.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <ul class="con8-list">
+          <li class="con8-card">
+            <a class="con8-card-link" href="#welfare">
+              <span class="con8-image-wrap">
+                <img
+                  class="con8-image"
+                  src="./images/con8_img1.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </span>
+              <span class="con8-card-description">
+                한미그룹의 문화와 복지가 궁금하다면?
+              </span>
+              <span class="con8-card-action">
+                한미그룹 복지 보러가기
+                <span class="con8-arrow" aria-hidden="true">›</span>
+              </span>
+              <span class="con8-markings" aria-hidden="true">
+                <img
+                  class="con8-marking con8-marking--first-arrow"
+                  src="./images/con8_Image.png"
+                  alt=""
+                />
+                <img
+                  class="con8-marking con8-marking--first-star"
+                  src="./images/con8_Image-2.png"
+                  alt=""
+                />
+                <img
+                  class="con8-marking con8-marking--first-underline"
+                  src="./images/con8_Image-1.png"
+                  alt=""
+                />
+              </span>
+            </a>
+          </li>
+          <li class="con8-card">
+            <a class="con8-card-link" href="#tasks">
+              <span class="con8-image-wrap">
+                <img
+                  class="con8-image"
+                  src="./images/con8_img2.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </span>
+              <span class="con8-card-description">
+                한미그룹의 직무가 궁금하다면?
+              </span>
+              <span class="con8-card-action">
+                한미그룹 직무 소개 페이지
+                <span class="con8-arrow" aria-hidden="true">›</span>
+              </span>
+              <span class="con8-markings" aria-hidden="true">
+                <img
+                  class="con8-marking con8-marking--second-arrow"
+                  src="./images/con8_Image-4.png"
+                  alt=""
+                />
+                <img
+                  class="con8-marking con8-marking--second-circle"
+                  src="./images/con8_Image-3.png"
+                  alt=""
+                />
+              </span>
+            </a>
+          </li>
+          <li class="con8-card">
+            <a class="con8-card-link" href="#requirement">
+              <span class="con8-image-wrap">
+                <img
+                  class="con8-image"
+                  src="./images/con8_img3.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </span>
+              <span class="con8-card-description">
+                한미그룹의 채용소식을 빠르게 받고 싶다면?
+              </span>
+              <span class="con8-card-action">
+                한미그룹 채용 안내 보러가기
+                <span class="con8-arrow" aria-hidden="true">›</span>
+              </span>
+              <span class="con8-markings" aria-hidden="true">
+                <img
+                  class="con8-marking con8-marking--third-underline"
+                  src="./images/con8_Image-5.png"
+                  alt=""
+                />
+              </span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="con9" aria-labelledby="con9-title">
+        <img
+          class="con9-cloud con9-cloud--left"
+          src="./images/con9_cloud_l.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          class="con9-cloud con9-cloud--right"
+          src="./images/con9_cloud_r.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <div class="con9-content">
+          <h2 class="con9-title" id="con9-title">
+            당신에게 딱 맞는 자리를 찾으러 출발!
+          </h2>
+          <p class="con9-countdown" aria-label="지원 마감까지 남은 시간">
+            <span class="con9-countdown-unit">
+              <span class="con9-countdown-value" data-countdown="days">03</span>일
+            </span>
+            <span class="con9-countdown-unit">
+              <span class="con9-countdown-value" data-countdown="hours">17</span>시간
+            </span>
+            <span class="con9-countdown-unit">
+              <span class="con9-countdown-value" data-countdown="minutes">10</span>분
+            </span>
+            <span class="con9-countdown-unit">
+              <span class="con9-countdown-value" data-countdown="seconds">00</span>초
+              남았어요
+            </span>
+          </p>
+          <p class="con9-expired" hidden>지원 기간이 종료되었습니다.</p>
+        </div>
+        <img
+          class="con9-earth"
+          src="./images/con9_earth.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <a class="con9-apply" href="#requirement">
+          지원하기
+          <span class="con9-arrow" aria-hidden="true">›</span>
+        </a>
+        <p class="con9-note">아이콘을 클릭해서 지원해주세요!</p>
+      </section>
     </main>
 
-    <!-- 하단 푸터 영역 -->
     <footer class="site-footer">
       <div class="footer-inner">
-        <p>&copy; 2026 Hanmi Group. All rights reserved.</p>
+        <a href="#main-visual" aria-label="한미그룹 홈으로 이동">
+          <img
+            class="footer-logo"
+            src="./images/logo_svg.svg"
+            alt="한미그룹 Hanmi"
+          />
+        </a>
       </div>
     </footer>
 
@@ -5501,59 +6078,8 @@
           { date: "", venues: [] },
           { date: "10월 7일 (수)", venues: ["서울고용센터"] },
         ];
-        var campusDates = [
-            { date: "9월 14일 (월)", venues: [] },
-            { date: "9월 15일 (화)", venues: [] },
-            { date: "9월 16일 (수)", venues: [] },
-            {
-              date: "9월 17일 (목)",
-              venues: [
-                {
-                  name: "중앙대학교",
-                  location: "310관 2층 201호",
-                  time: "14:00~15:30",
-                },
-              ],
-            },
-            { date: "9월 18일 (금)", venues: [] },
-            { date: "9월 28일 (월)", venues: [] },
-            { date: "9월 29일 (화)", venues: [] },
-            { date: "9월 30일 (수)", venues: [] },
-            {
-              date: "10월 1일 (목)",
-              venues: [
-                {
-                  name: "건국대학교",
-                  location: "세부 장소 안내 예정",
-                  time: "시간 안내 예정",
-                },
-              ],
-            },
-            { date: "10월 2일 (금)", venues: [] },
-            { date: "10월 12일 (월)", venues: [] },
-            { date: "10월 13일 (화)", venues: [] },
-            {
-              date: "10월 14일 (수)",
-              venues: [
-                {
-                  name: "경희대학교",
-                  location: "세부 장소 안내 예정",
-                  time: "시간 안내 예정",
-                },
-              ],
-            },
-          ];
-        var campusVenues = {
-          seoul: campusDates.reduce(function (venues, entry) {
-            venues[entry.date] = entry.venues;
-            return venues;
-          }, {}),
-          gyeonggi: {},
-          gangwon: {},
-          gyeongsang: {},
-          chungcheong: {},
-          jeolla: {},
-        };
+        var campusSchedules = null;
+        var campusWeekdays = ["일", "월", "화", "수", "목", "금", "토"];
         var tabs = Array.from(section.querySelectorAll(".exposition-tab"));
         var panels = tabs.map(function (tab) {
           return document.getElementById(tab.getAttribute("aria-controls"));
@@ -5666,16 +6192,51 @@
           var selectedRegion = regions.find(function (button) {
             return button.dataset.region === region;
           });
+          if (!selectedRegion || !campusSchedules) return;
           campusSchedulePanel.setAttribute(
             "aria-labelledby",
             selectedRegion.id,
           );
-          var schedule = campusDates.map(function (entry) {
-            return {
-              date: entry.date,
-              venues: campusVenues[region][entry.date] || [],
-            };
-          });
+          var regionSchedule = campusSchedules[region];
+          var firstDate = new Date(regionSchedule.dates[0]);
+          firstDate.setDate(
+            firstDate.getDate() - ((firstDate.getDay() + 6) % 7),
+          );
+          var lastDate = regionSchedule.dates[regionSchedule.dates.length - 1];
+          var activeWeeks = new Set(
+            regionSchedule.dates.map(function (date) {
+              var monday = new Date(date);
+              monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+              return monday.getTime();
+            }),
+          );
+          var schedule = [];
+
+          for (
+            var date = new Date(firstDate);
+            date <= lastDate;
+            date.setDate(date.getDate() + 1)
+          ) {
+            if (date.getDay() === 0 || date.getDay() === 6) continue;
+
+            var monday = new Date(date);
+            monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+            if (!activeWeeks.has(monday.getTime())) continue;
+
+            var dateKey = date.getMonth() + 1 + "-" + date.getDate();
+            schedule.push({
+              date:
+                date.getMonth() +
+                1 +
+                "월 " +
+                date.getDate() +
+                "일 (" +
+                campusWeekdays[date.getDay()] +
+                ")",
+              venues: regionSchedule.venues[dateKey] || [],
+            });
+          }
+
           campusSchedulePanel.replaceChildren(
             createScheduleGrid(
               schedule,
@@ -5683,6 +6244,67 @@
               "campus",
             ),
           );
+        }
+
+        function parseCampusDate(value) {
+          var match = /^(\d{1,2})월 (\d{1,2})일 \([^)]+\)$/.exec(value);
+          if (!match) {
+            throw new Error("잘못된 캠퍼스 일정 날짜입니다: " + value);
+          }
+          var date = new Date(2026, Number(match[1]) - 1, Number(match[2]));
+          if (
+            date.getMonth() !== Number(match[1]) - 1 ||
+            date.getDate() !== Number(match[2])
+          ) {
+            throw new Error("잘못된 캠퍼스 일정 날짜입니다: " + value);
+          }
+          return date;
+        }
+
+        function loadCampusSchedules(entries) {
+          if (!Array.isArray(entries)) {
+            throw new Error("캠퍼스 일정 데이터 형식이 올바르지 않습니다.");
+          }
+
+          var schedules = {};
+          regions.forEach(function (region) {
+            schedules[region.dataset.region] = {
+              label: region.textContent.trim(),
+              dates: [],
+              venues: {},
+            };
+          });
+
+          entries.forEach(function (entry) {
+            var schedule = Object.values(schedules).find(function (candidate) {
+              return candidate.label === entry.region;
+            });
+            if (!schedule) {
+              throw new Error("등록되지 않은 캠퍼스 일정 지역입니다: " + entry.region);
+            }
+            if (!entry.school || !entry.location || !entry.time) {
+              throw new Error("캠퍼스 일정 장소 정보가 누락되었습니다.");
+            }
+
+            var date = parseCampusDate(entry.date);
+            var dateKey = date.getMonth() + 1 + "-" + date.getDate();
+            if (!schedule.venues[dateKey]) {
+              schedule.venues[dateKey] = [];
+              schedule.dates.push(date);
+            }
+            schedule.venues[dateKey].push({
+              name: entry.school,
+              location: entry.location,
+              time: entry.time,
+            });
+          });
+
+          Object.values(schedules).forEach(function (schedule) {
+            schedule.dates.sort(function (a, b) {
+              return a - b;
+            });
+          });
+          return schedules;
         }
 
         function selectTab(index, focus) {
@@ -5747,7 +6369,68 @@
         });
 
         renderFairSchedule();
-        renderCampusSchedule("seoul");
+        campusSchedulePanel.textContent = "캠퍼스 일정을 불러오는 중입니다.";
+        fetch("./data/campus_recruiting_schedule.json")
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error(
+                "캠퍼스 일정 데이터를 불러오지 못했습니다. (" +
+                  response.status +
+                  ")",
+              );
+            }
+            return response.json();
+          })
+          .then(function (entries) {
+            campusSchedules = loadCampusSchedules(entries);
+            var selectedRegion = regions.find(function (region) {
+              return region.getAttribute("aria-selected") === "true";
+            });
+            renderCampusSchedule(selectedRegion.dataset.region);
+          })
+          .catch(function (error) {
+            console.error("캠퍼스 일정 로딩 실패:", error);
+            campusSchedulePanel.textContent =
+              "캠퍼스 일정을 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.";
+          });
+      })();
+    </script>
+    <script>
+      (function () {
+        var countdown = document.querySelector(".con9-countdown");
+        if (!countdown) return;
+
+        var deadline = new Date("2026-10-18T23:59:59+09:00").getTime();
+        var expiredMessage = document.querySelector(".con9-expired");
+        var units = {
+          days: countdown.querySelector('[data-countdown="days"]'),
+          hours: countdown.querySelector('[data-countdown="hours"]'),
+          minutes: countdown.querySelector('[data-countdown="minutes"]'),
+          seconds: countdown.querySelector('[data-countdown="seconds"]'),
+        };
+
+        function updateCountdown() {
+          var remaining = deadline - Date.now();
+          if (remaining <= 0) {
+            countdown.hidden = true;
+            expiredMessage.hidden = false;
+            return;
+          }
+          var totalSeconds = Math.floor(remaining / 1000);
+          var values = {
+            days: Math.floor(totalSeconds / 86400),
+            hours: Math.floor((totalSeconds % 86400) / 3600),
+            minutes: Math.floor((totalSeconds % 3600) / 60),
+            seconds: totalSeconds % 60,
+          };
+
+          Object.keys(units).forEach(function (unit) {
+            units[unit].textContent = String(values[unit]).padStart(2, "0");
+          });
+        }
+
+        updateCountdown();
+        window.setInterval(updateCountdown, 1000);
       })();
     </script>
   </body>
