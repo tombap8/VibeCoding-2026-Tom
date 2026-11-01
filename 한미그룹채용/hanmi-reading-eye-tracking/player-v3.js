@@ -1,4 +1,4 @@
-/* Original PNG sequence + per-frame eye overlay. No CDN or build required. */
+/* Version 3: original PNG sequence + stable left-eye geometry. No CDN or build required. */
 (() => {
   'use strict';
   const scriptURL = document.currentScript.src;
