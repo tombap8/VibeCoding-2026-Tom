@@ -12,14 +12,22 @@
       this.frames = [];
       this.index = 0; this.elapsed = 0; this.last = 0; this.raf = 0;
       this.ready = false; this.visible = true; this.paused = false;
-      this.tracking = true; this.pointer = null; this.gaze = { x: 0, y: 0 };
+      this.pointerTracking = matchMedia('(min-width: 1025px) and (hover: hover) and (pointer: fine)');
+      this.tracking = this.pointerTracking.matches; this.pointer = null; this.gaze = { x: 0, y: 0 };
       this.reduce = matchMedia('(prefers-reduced-motion: reduce)');
       this.paused = this.reduce.matches;
       this.tick = this.tick.bind(this);
       this.onVisibility = () => { this.last = 0; this.update(); };
       document.addEventListener('visibilitychange', this.onVisibility);
+      this.onPointerTracking = e => {
+        this.tracking = e.matches;
+        this.pointer = null;
+        this.gaze = { x: 0, y: 0 };
+        this.update();
+      };
+      this.pointerTracking.addEventListener('change', this.onPointerTracking);
       this.canvas.addEventListener('pointermove', e => {
-        if (e.pointerType === 'touch') return;
+        if (!this.tracking || e.pointerType === 'touch') return;
         const r = this.canvas.getBoundingClientRect();
         this.pointer = {x:(e.clientX-r.left)*1920/r.width,y:(e.clientY-r.top)*1080/r.height};
         this.update();
@@ -37,7 +45,7 @@
         this.paused=!this.paused;this.syncButton();this.update();
       });
       root.querySelector('[data-track]')?.addEventListener('change', e => {
-        this.tracking=e.target.checked; this.update();
+        this.tracking=this.pointerTracking.matches && e.target.checked; this.update();
       });
       this.syncButton(); this.load();
     }
@@ -138,6 +146,7 @@
     destroy() {
       cancelAnimationFrame(this.raf);this.observer.disconnect();
       document.removeEventListener('visibilitychange',this.onVisibility);
+      this.pointerTracking.removeEventListener('change',this.onPointerTracking);
       this.reduce.removeEventListener('change',this.onReduce);
       this.ready=false;this.frames=[];
     }

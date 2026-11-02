@@ -10,6 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Noto+Sans+KR:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="./hanmi-reading-eye-tracking/player.css"
+    />
     <style>
       /* CSS변수구역 */
       /* :root{변수코드} 
@@ -711,16 +715,25 @@
         font-weight: 800;
         font-variant-numeric: tabular-nums;
       }
-      .con9-earth {
+      .con9-action {
         position: absolute;
         top: 48%;
         left: 50%;
         width: clamp(160px, 22vw, 270px);
+        aspect-ratio: 1;
         transform: translate(-50%, -50%);
+      }
+      .con9-earth {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition: transform 0.3s ease;
       }
       .con9-apply {
         position: absolute;
-        top: 48%;
+        top: 50%;
         left: 50%;
         display: inline-flex;
         min-width: 150px;
@@ -738,6 +751,11 @@
         transition:
           background-color var(--transition),
           box-shadow var(--transition);
+      }
+      @media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+        .con9-action:hover .con9-earth {
+          transform: scale(1.5);
+        }
       }
       .con9-apply:hover {
         background: #fff;
@@ -1252,12 +1270,14 @@
         height: auto;
         pointer-events: none;
       }
-      .mirae-walking {
+      .mirae-scene .hanmi-walker {
+        position: absolute;
         z-index: 2;
-        width: 68%;
-        max-width: 1000px;
+        width: 83vw;
+        max-width: none;
         left: 50%;
         bottom: -1%;
+        margin: 0;
         transform: translateX(-50%);
       }
       .mirae-cloud--left {
@@ -1306,9 +1326,7 @@
           top: 20%;
           font-size: clamp(27px, 4.4vw, 46px);
         }
-        .mirae-walking {
-          width: 65%;
-          max-width: 760px;
+        .mirae-scene .hanmi-walker {
           bottom: -1%;
         }
         .mirae-cloud--left {
@@ -1339,9 +1357,7 @@
           font-size: clamp(19px, 6.5vw, 55px);
           letter-spacing: -0.075em;
         }
-        .mirae-walking {
-          width: 105%;
-          max-width: none;
+        .mirae-scene .hanmi-walker {
           bottom: -1%;
         }
         .mirae-cloud--left {
@@ -2823,14 +2839,14 @@
         opacity: 0.45;
         pointer-events: none;
       }
-      .tasks-character {
+      .tasks-hero .hanmi-walker {
         position: absolute;
         z-index: 0;
         bottom: 0;
         left: 50%;
-        width: clamp(300px, 38vw, 550px);
-        max-width: 80vw;
-        height: auto;
+        width: 50vw;
+        max-width: none;
+        margin: 0;
         transform: translateX(-50%);
       }
       .tasks-inner {
@@ -3113,9 +3129,6 @@
         .tasks-hero {
           height: clamp(400px, 61vw, 480px);
         }
-        .tasks-character {
-          width: clamp(300px, 58vw, 420px);
-        }
         .tasks-inner {
           padding: 0 30px 64px;
         }
@@ -3146,9 +3159,6 @@
       @media (max-width: 568px) {
         .tasks-hero {
           height: 412px;
-        }
-        .tasks-character {
-          width: min(78vw, 340px);
         }
         .tasks-inner {
           padding: 0 22px 40px;
@@ -4107,12 +4117,11 @@
         .con9-countdown-unit {
           gap: 2px;
         }
-        .con9-earth {
+        .con9-action {
           top: 60%;
           width: 132px;
         }
         .con9-apply {
-          top: 60%;
           min-width: 116px;
           gap: 7px;
           padding: 5px 7px 5px 12px;
@@ -4291,11 +4300,15 @@
               src="./images/mirae_cloud4.png"
               alt="오른쪽 아래의 작은 구름"
             />
-            <img
-              class="mirae-walking"
-              src="./images/mirae_walking.png"
-              alt="초록빛 지구본 위를 씩씩하게 걸어가는 파란색 알약 캐릭터"
-            />
+            <div class="hanmi-walker" data-hanmi-walker>
+              <canvas
+                width="1920"
+                height="1080"
+                role="img"
+                aria-label="마우스를 바라보며 지구 위를 걷는 캐릭터"
+              ></canvas>
+              <span data-status role="status">이미지 준비 중</span>
+            </div>
             <img
               class="mirae-star mirae-star--top"
               src="./images/mirae_star1.png"
@@ -4366,7 +4379,7 @@
                   />
                 </figure>
                 <img
-                  class="history-deco history-deco--beaker"
+                  class="history-deco history-deco--beaker updown"
                   src="./images/obj_beaker.png"
                   alt="분홍색 액체가 담긴 실험용 비커"
                 />
@@ -4414,7 +4427,7 @@
                   alt="흐릿하게 번진 푸른 분자 구조"
                 />
                 <img
-                  class="history-deco history-deco--microscope"
+                  class="history-deco history-deco--microscope updown"
                   src="./images/obj_microscope.png"
                   alt="파란색 현미경"
                 />
@@ -4565,7 +4578,7 @@
                   />
                 </figure>
                 <img
-                  class="history-deco history-deco--mol-big"
+                  class="history-deco history-deco--mol-big updown"
                   src="./images/obj_mol_big.png"
                   alt="유리 질감의 큰 분자 구조 모형"
                 />
@@ -4597,7 +4610,7 @@
                 alt="캐릭터 아래에 깔린 흐릿한 구름 그림자"
               />
               <img
-                class="history-deco history-deco--char"
+                class="history-deco history-deco--char leftright"
                 src="./images/con2_char.png"
                 alt="사원증을 목에 걸고 달려가는 파란색 알약 캐릭터"
               />
@@ -4629,7 +4642,7 @@
       <!-- ---------- 직무소개 (Jobs) ---------- -->
       <section class="jobs" id="jobs" aria-labelledby="jobs-title">
         <img
-          class="jobs-deco jobs-deco--bottle"
+          class="jobs-deco jobs-deco--bottle updown"
           src="./images/con3_bottle.png"
           width="442"
           height="692"
@@ -4657,7 +4670,7 @@
           </header>
 
           <img
-            class="jobs-deco jobs-deco--char"
+            class="jobs-deco jobs-deco--char leftright"
             src="./images/con3_char.png"
             width="560"
             height="458"
@@ -4770,7 +4783,7 @@
             alt=""
           />
           <img
-            class="innovation-deco innovation-deco--atom"
+            class="innovation-deco innovation-deco--atom bigsmall"
             src="./images/inno_molecule1.png"
             alt=""
           />
@@ -4875,7 +4888,7 @@
             </p>
           </div>
           <img
-            class="innovation-deco innovation-deco--molecule"
+            class="innovation-deco innovation-deco--molecule updown"
             src="./images/inno_molecule2.png"
             alt=""
           />
@@ -4891,7 +4904,7 @@
               건강부터 성장, 휴식까지 알차게 준비한 복지를 소개할게요.
             </p>
             <img
-              class="welfare-character"
+              class="welfare-character updown"
               src="./images/con5_char.png"
               alt="화장품과 거울을 든 한미 캐릭터"
             />
@@ -4914,11 +4927,15 @@
             src="./images/tasks_bg_title.png"
             alt=""
           />
-          <img
-            class="tasks-character"
-            src="./images/tasks_character.png"
-            alt=""
-          />
+          <div class="hanmi-walker" data-hanmi-reading-walker>
+            <canvas
+              width="1920"
+              height="1080"
+              role="img"
+              aria-label="돋보기를 들고 글을 읽는 한미 캐릭터"
+            ></canvas>
+            <span data-status role="status">이미지 준비 중</span>
+          </div>
         </div>
         <div class="tasks-inner">
           <header class="tasks-intro">
@@ -4999,7 +5016,7 @@
             한미그룹과 함께하는 문은<br />활짝 열려 있습니다
           </h2>
           <img
-            class="requirement-bulb"
+            class="requirement-bulb updown"
             src="./images/require_bulb.png"
             alt=""
           />
@@ -5183,7 +5200,7 @@
         <div class="exposition-inner">
           <header class="exposition-head">
             <img
-              class="exposition-character"
+              class="exposition-character updown"
               src="./images/expo_char.png"
               alt=""
             />
@@ -5336,7 +5353,7 @@
       </section>
       <section class="con8" aria-label="한미그룹 바로가기">
         <img
-          class="con8-character"
+          class="con8-character updown"
           src="./images/con8_char.png"
           alt=""
           aria-hidden="true"
@@ -5471,16 +5488,18 @@
           </p>
           <p class="con9-expired" hidden>지원 기간이 종료되었습니다.</p>
         </div>
-        <img
-          class="con9-earth"
-          src="./images/con9_earth.png"
-          alt=""
-          aria-hidden="true"
-        />
-        <a class="con9-apply" href="#requirement">
-          지원하기
-          <span class="con9-arrow" aria-hidden="true">›</span>
-        </a>
+        <div class="con9-action">
+          <img
+            class="con9-earth"
+            src="./images/con9_earth.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <a class="con9-apply" href="#requirement">
+            지원하기
+            <span class="con9-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
         <p class="con9-note">아이콘을 클릭해서 지원해주세요!</p>
       </section>
     </main>
@@ -6681,5 +6700,24 @@
         window.setInterval(updateCountdown, 1000);
       })();
     </script>
+    <script src="./hanmi-eye-tracking/metadata.js"></script>
+    <script src="./hanmi-eye-tracking/player.js"></script>
+    <script>
+      (function () {
+        var heroWalker = document.querySelector(
+          ".mirae-scene [data-hanmi-walker]",
+        );
+        var readingWalker = document.querySelector(
+          "[data-hanmi-reading-walker]",
+        );
+        if (!heroWalker || !readingWalker) {
+          throw new Error("캐릭터 애니메이션 캔버스를 찾을 수 없습니다.");
+        }
+        heroWalker.removeAttribute("data-hanmi-walker");
+        readingWalker.setAttribute("data-hanmi-walker", "");
+      })();
+    </script>
+    <script src="./hanmi-reading-eye-tracking/metadata-v3.js"></script>
+    <script src="./hanmi-reading-eye-tracking/player-v3.js"></script>
   </body>
 </html>
