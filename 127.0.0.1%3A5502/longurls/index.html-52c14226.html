@@ -79,16 +79,18 @@
 
       /* 요소 높이의 약 10%만큼 위아래로 이동합니다. */
       .updown {
-        animation: updown 2s ease-in-out infinite;
-      }
-      /* 요소 너비의 약 10%만큼 좌우로 이동합니다. */
-      .leftright {
-        animation: leftright 2s ease-in-out infinite;
-      }
-      /* 원래 크기에서 10% 축소·확대를 반복합니다. */
-      .bigsmall {
-        animation: bigsmall 2s ease-in-out infinite;
-      }
+        animation: updown 2s eas
+        position: fixed;
+        z-index: 10000;
+        top: 15px;
+        right: 15px;
+        width: 15px;
+        height: 15px;
+        margin: 0;
+        accent-color: var(--red);
+        cursor: pointer;
+        opacity: 0;
+        border: none;
       /* 이동 애니메이션은 시작과 끝 위치를 같게 해 자연스럽게 반복합니다. */
       @keyframes updown {
         0%,

@@ -1,0 +1,92 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --red: #e60012;
+  --orange: #ff5d32;
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-50: rgba(255, 255, 255, 0.5);
+  --gradient-cta: linear-gradient(90deg, #e60012 0%, #ff5d32 100%);
+  --font: "Inter", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --transition: 0.2s ease;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: var(--font);
+  color: var(--black);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  position: relative;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+button {
+  font-family: inherit;
+  border: 0;
+  cursor: pointer;
+}
+img {
+  display: block;
+  max-width: none;
+}
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+.updown {
+  animation: updown 2s ease-in-out infinite;
+}
+/* 요소 너비의 약 10%만큼 좌우로 이동합니다. */
+.leftright {
+  animation: leftright 2s ease-in-out infinite;
+}
+/* 원래 크기에서 10% 축소·확대를 반복합니다. */
+.bigsmall {
+  animation: bigsmall 2s ease-in-out infinite;
+}
+/* 이동 애니메이션은 시작과 끝 위치를 같게 해 자연스럽게 반복합니다. */
+@keyframes updown {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 var(--updown-distance, -10%);
+  }
+}
+@keyframes leftright {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: -10% 0;
+  }
+}
+@keyframes bigsmall {
+  0%,
+  100% {
+    scale: 1;
+  }
+  25% {
+    scale: 0.9;
+  }
+  75% {
+    scale: 1.1;
+  }
+}
+/* 사용자가 동작 줄이기를 설정했다면 애니메이션을 비활성화합니다. */
+@media (prefers-reduced-motion: reduce) {
+  .updown,
+  .leftright,
+  .bigsmall {
+    animation: none;
+  }
+}
