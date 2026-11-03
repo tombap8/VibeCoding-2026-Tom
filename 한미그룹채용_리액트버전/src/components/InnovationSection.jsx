@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 export default function InnovationSection() {
   return (
     <section className="innovation" id="innovation" aria-labelledby="innovation-title">
@@ -12,9 +13,9 @@ export default function InnovationSection() {
             연구와 혁신으로 성장하며 글로벌 제약/바이오 기업을 향해 나아갑니다.
           </p>
         </header>
-        <img className="innovation-deco innovation-deco--chemical" src="/images/inno_chemical.png" alt="" />
+        <img className="innovation-deco innovation-deco--chemical" src={publicAsset("images/inno_chemical.png")} alt="" />
         {" "}
-        <img className="innovation-deco innovation-deco--atom bigsmall" src="/images/inno_molecule1.png" alt="" />
+        <img className="innovation-deco innovation-deco--atom bigsmall" src={publicAsset("images/inno_molecule1.png")} alt="" />
         <div className="innovation-board">
           <ul className="innovation-news" aria-label="한미그룹 혁신 소식">
             <li>
@@ -78,7 +79,7 @@ export default function InnovationSection() {
             말풍선을 클릭해서 기사를 확인해 보세요.
           </p>
         </div>
-        <img className="innovation-deco innovation-deco--molecule updown" src="/images/inno_molecule2.png" alt="" />
+        <img className="innovation-deco innovation-deco--molecule updown" src={publicAsset("images/inno_molecule2.png")} alt="" />
       </div>
     </section>
   );

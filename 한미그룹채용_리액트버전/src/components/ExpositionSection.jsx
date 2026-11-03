@@ -1,9 +1,10 @@
+import { publicAsset } from "../publicAsset.js";
 export default function ExpositionSection() {
   return (
     <section className="exposition" id="exposition" aria-labelledby="exposition-title">
       <div className="exposition-inner">
         <header className="exposition-head">
-          <img className="exposition-character updown" src="/images/expo_char.png" alt="" />
+          <img className="exposition-character updown" src={publicAsset("images/expo_char.png")} alt="" />
           <div className="exposition-heading">
             <h2 className="exposition-title" id="exposition-title">
               Hanmi 박람회/캠퍼스로 출발!

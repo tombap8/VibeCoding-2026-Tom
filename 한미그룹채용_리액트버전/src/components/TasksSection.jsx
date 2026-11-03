@@ -1,10 +1,11 @@
+import { publicAsset } from "../publicAsset.js";
 import CanvasStage from "./CanvasStage.jsx";
 
 export default function TasksSection() {
   return (
     <section className="tasks" id="tasks" aria-labelledby="tasks-title">
       <div className="tasks-hero" aria-hidden="true">
-        <img className="tasks-title-bg" src="/images/tasks_bg_title.png" alt="" />
+        <img className="tasks-title-bg" src={publicAsset("images/tasks_bg_title.png")} alt="" />
         <CanvasStage
           variant="reading"
           label="돋보기를 들고 글을 읽는 한미 캐릭터"

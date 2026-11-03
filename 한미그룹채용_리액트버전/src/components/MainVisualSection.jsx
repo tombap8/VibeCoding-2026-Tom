@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 export default function MainVisualSection() {
   return (
     <section className="main-visual" id="main-visual" aria-label="한미그룹 2026년 하반기 공개채용">
@@ -32,15 +33,15 @@ export default function MainVisualSection() {
         <div className="mv-visual" aria-hidden="true">
           <div className="ring ring-glow" />
           <div className="ring ring-line" />
-          <img className="micro updown" src="/images/mv_micro.png" alt="" />
+          <img className="micro updown" src={publicAsset("images/mv_micro.png")} alt="" />
           {" "}
-          <img className="char1 updown" src="/images/mv_char1.png" alt="" />
+          <img className="char1 updown" src={publicAsset("images/mv_char1.png")} alt="" />
           {" "}
-          <img className="char2 updown" src="/images/mv_char2.png" alt="" />
+          <img className="char2 updown" src={publicAsset("images/mv_char2.png")} alt="" />
           {" "}
-          <img className="char3 updown" src="/images/mv_char3.png" alt="" />
+          <img className="char3 updown" src={publicAsset("images/mv_char3.png")} alt="" />
           {" "}
-          <img className="char4 updown" src="/images/mv_char4.png" alt="" />
+          <img className="char4 updown" src={publicAsset("images/mv_char4.png")} alt="" />
           {" "}
           <span className="star star1" />
           {" "}

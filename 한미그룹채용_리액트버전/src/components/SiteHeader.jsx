@@ -1,13 +1,14 @@
+import { publicAsset } from "../publicAsset.js";
 export default function SiteHeader() {
   return (
     <header className="site-header">
       <div className="header-inner">
         <a className="brand" href="#main-visual" aria-label="한미그룹 홈">
-          <img src="/images/logo_svg.svg" alt="한미그룹 Hanmi" />
+          <img src={publicAsset("images/logo_svg.svg")} alt="한미그룹 Hanmi" />
         </a>
         <nav className="gnb" id="gnb" aria-label="주요 메뉴">
           <div className="gnb-head">
-            <img src="/images/logo_svg.svg" alt="한미그룹 Hanmi" />
+            <img src={publicAsset("images/logo_svg.svg")} alt="한미그룹 Hanmi" />
             {" "}
             <button type="button" className="btn-close" aria-label="메뉴 닫기">
               <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 const scripts = [
-  "/hanmi-eye-tracking/metadata.js",
-  "/hanmi-eye-tracking/player.js",
-  "/js/main.js",
-  "/hanmi-reading-eye-tracking/metadata-v3.js",
-  "/hanmi-reading-eye-tracking/player-v3.js",
+  `${import.meta.env.BASE_URL}hanmi-eye-tracking/metadata.js`,
+  `${import.meta.env.BASE_URL}hanmi-eye-tracking/player.js`,
+  `${import.meta.env.BASE_URL}js/main.js`,
+  `${import.meta.env.BASE_URL}hanmi-reading-eye-tracking/metadata-v3.js`,
+  `${import.meta.env.BASE_URL}hanmi-reading-eye-tracking/player-v3.js`,
 ];
 
 function loadScript(source) {

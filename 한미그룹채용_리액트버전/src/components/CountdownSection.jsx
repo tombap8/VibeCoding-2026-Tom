@@ -1,9 +1,10 @@
+import { publicAsset } from "../publicAsset.js";
 export default function CountdownSection() {
   return (
     <section className="con9" aria-labelledby="con9-title">
-      <img className="con9-cloud con9-cloud--left" src="/images/con9_cloud_l.png" alt="" aria-hidden="true" />
+      <img className="con9-cloud con9-cloud--left" src={publicAsset("images/con9_cloud_l.png")} alt="" aria-hidden="true" />
       {" "}
-      <img className="con9-cloud con9-cloud--right" src="/images/con9_cloud_r.png" alt="" aria-hidden="true" />
+      <img className="con9-cloud con9-cloud--right" src={publicAsset("images/con9_cloud_r.png")} alt="" aria-hidden="true" />
       <div className="con9-content">
         <h2 className="con9-title" id="con9-title">
           당신에게 딱 맞는 자리를 찾으러 출발!
@@ -42,7 +43,7 @@ export default function CountdownSection() {
         </p>
       </div>
       <div className="con9-action">
-        <img className="con9-earth" src="/images/con9_earth.png" alt="" aria-hidden="true" />
+        <img className="con9-earth" src={publicAsset("images/con9_earth.png")} alt="" aria-hidden="true" />
         {" "}
         <a className="con9-apply" href="#requirement">
           지원하기

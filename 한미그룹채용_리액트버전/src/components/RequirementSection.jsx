@@ -1,3 +1,4 @@
+import { publicAsset } from "../publicAsset.js";
 export default function RequirementSection() {
   return (
     <section className="requirement" id="requirement" aria-labelledby="requirement-title">
@@ -7,7 +8,7 @@ export default function RequirementSection() {
           <br />
           활짝 열려 있습니다
         </h2>
-        <img className="requirement-bulb updown" src="/images/require_bulb.png" alt="" />
+        <img className="requirement-bulb updown" src={publicAsset("images/require_bulb.png")} alt="" />
         <div className="requirement-content">
           <div role="tablist" className="requirement-tabs" aria-label="채용 안내">
             <button className="requirement-tab" type="button" role="tab" id="requirement-tab-qualification" aria-selected="true" aria-controls="requirement-qualification" tabIndex="0">
@@ -21,13 +22,13 @@ export default function RequirementSection() {
           <div className="requirement-panel" id="requirement-qualification" role="tabpanel" aria-labelledby="requirement-tab-qualification">
             <div className="requirement-eligibility">
               <article className="requirement-eligibility-item">
-                <img src="/images/require_ico_calendar_3d.png" alt="" />
+                <img src={publicAsset("images/require_ico_calendar_3d.png")} alt="" />
                 <h3>
                   27년 1월 입사가 가능한 자
                 </h3>
               </article>
               <article className="requirement-eligibility-item">
-                <img src="/images/require_ico_gradcap_3d.png" alt="" />
+                <img src={publicAsset("images/require_ico_gradcap_3d.png")} alt="" />
                 <h3>
                   기졸업자 또는 27년 2월 졸업 예정자
                 </h3>
